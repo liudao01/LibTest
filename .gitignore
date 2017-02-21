@@ -16,4 +16,4 @@ app/src/main/res/drawable/
 myLib/libs/
 myLib/src/androidTest/java/httploglib/test2/
 myLib/src/test/java/httploglib/test2/
-settings.gradle
+#settings.gradle
