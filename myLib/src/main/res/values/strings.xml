@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">HttpLogLib</string>
+    <string name="floating">拖动</string>
+    <string name="start">启动悬浮窗口</string>
+    <string name="stop">移除悬浮窗口</string>
+
+</resources>

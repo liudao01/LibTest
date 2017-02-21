@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.wanjian.sak.view.DrawingBoardView
+        android:id="@+id/drawBoard"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.wanjian.sak.view.FloatView
+        android:id="@+id/floatView"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="100dp"
+        android:src="@mipmap/sak_launcher"
+        android:visibility="gone" />
+
+    <com.wanjian.sak.view.OperatorView
+        android:id="@+id/operatorView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        tools:visibility="visible"></com.wanjian.sak.view.OperatorView>
+
+
+</merge>

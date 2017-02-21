@@ -1,0 +1,70 @@
+//apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
+//apply plugin: 'bintray-release'
+apply plugin: 'com.github.dcendents.android-maven'
+
+group='com.github.liudao01'
+android {
+    compileSdkVersion 23
+    buildToolsVersion '23.0.2'
+
+    defaultConfig {
+//        applicationId "httploglib.lib"
+        minSdkVersion 8
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    lintOptions {
+        abortOnError false
+    }
+
+}
+
+dependencies {
+
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:23.1.1'
+    testCompile 'junit:junit:4.12'
+    compile 'com.orhanobut:logger:1.15'
+    compile 'com.google.code.gson:gson:2.6.2'
+
+    //    compile 'com.wanjian:sak:0.0.2'
+}
+//ext {
+//    bintrayRepo = 'maven'////bintray上的仓库名，一般为maven
+//    bintrayName = 'dev_tool'//bintray上的项目名
+//
+//    publishedGroupId = 'com.xiaoliu'//JCenter的GroupId
+//    artifact = 'small'//JCenter的ArtifactId/   ARTIFACT_ID我认为就是这个类库的名称
+//
+//    siteUrl = 'https://github.com/liudao01/LibTet'
+//    gitUrl = 'https://github.com/liudao01/LibTet'
+//
+//    libraryVersion = '1.0.0'//版本号
+//    libraryName = 'libtest'//项目名字，没什么用
+//    libraryDescription = 'dev tool'//项目描述，没什么用
+//
+//    //开发者信息
+//    developerId = 'liudao'
+//    developerName = 'liudao'
+//    developerEmail = 'liudao1@qq.com'
+//
+//    //以上所有信息自行修改，以下不变
+//
+//    licenseName = 'The Apache Software License, Version 2.0'
+//    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+//    allLicenses = ["Apache-2.0"]
+//}
+//apply from:'https://cdn.rawgit.com/Jude95/JCenter/master/install.gradle'
+//apply from:'https://cdn.rawgit.com/Jude95/JCenter/master/bintray.gradle'

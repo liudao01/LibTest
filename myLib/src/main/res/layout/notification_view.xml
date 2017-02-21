@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_custom_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_net"
+            android:layout_width="48dp"
+            android:layout_height="wrap_content"
+            android:text="网络"
+            android:textSize="11dp" />
+
+        <Button
+            android:id="@+id/btn_service"
+            android:layout_width="48dp"
+            android:layout_height="wrap_content"
+            android:text="服务"
+            android:textSize="11dp" />
+
+        <Button
+            android:id="@+id/btn_bug"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:text="崩溃"
+            android:textSize="11dp" />
+
+        <Button
+            android:id="@+id/btn_ui_test"
+            android:layout_width="48dp"
+            android:layout_height="wrap_content"
+            android:text="UI测试"
+            android:textSize="11dp" />
+
+        <Button
+            android:id="@+id/btn_change"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:text="切换显示"
+            android:textSize="11dp" />
+    </LinearLayout>
+
+</RelativeLayout>

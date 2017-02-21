@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="80dp"
+    android:layout_height="500dp"
+    android:orientation="vertical">
+
+
+    <Button
+        android:id="@+id/float_id"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:text="@string/floating"
+        android:textSize="10dp" />
+
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@color/colorGray"></ListView>
+
+    <Button
+        android:id="@+id/bt_close"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:text="收起"
+        android:textSize="10dp" />
+</LinearLayout>

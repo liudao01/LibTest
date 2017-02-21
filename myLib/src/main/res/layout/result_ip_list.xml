@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:layout_height="match_parent" >
+
+
+    <Button
+        android:id="@+id/bt_clear_all"
+        android:text="清除全部 ,清除将会更新ip数据."
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+
+    <ListView
+        android:id="@+id/listview_ip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff4f7f9"
+        android:cacheColorHint="#00000000"
+        android:divider="#dddbdb"
+        android:layout_weight="1"
+        android:dividerHeight="1.0px"
+        android:layoutAnimation="@anim/layout_animation1"
+        android:listSelector="@android:color/transparent"
+        />
+    <Button
+        android:id="@+id/bt_close"
+        android:text="关闭"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <Button 
+        android:id="@+id/start"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:text="@string/start"/>
+    <Button
+        android:id="@+id/pop"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="悬浮窗权限"/>
+    <Button
+        android:id="@+id/send"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="发送请求网络数据"/>
+
+    <Button
+        android:text="崩溃测试"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_broken" />
+
+    <Button
+        android:id="@+id/bt_select_ip"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="显示当前服务器地址"/>
+    <Button
+        android:id="@+id/bt_add_ip"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="测试添加服务器地址"/>
+
+    <TextView
+        android:text="当前ip地址"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_ip" />
+</LinearLayout>

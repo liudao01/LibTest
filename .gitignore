@@ -1,0 +1,23 @@
+*.iml
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.idea/
+Would skip repository LibTest/
+app/libs/
+app/src/main/res/drawable/
+gradle.properties
+gradle/
+gradlew
+gradlew.bat
+"https\357\200\272/"
+"https\357\200\272github.com/"
+myLib/libs/
+myLib/src/androidTest/java/httploglib/test2/
+myLib/src/test/java/httploglib/test2/
+settings.gradle
