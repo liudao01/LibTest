@@ -12,7 +12,6 @@ Would skip repository LibTest/
 app/libs/
 app/src/main/res/drawable/
 gradle.properties
-gradle/
 gradlew
 gradlew.bat
 "https\357\200\272/"
