@@ -11,9 +11,6 @@
 Would skip repository LibTest/
 app/libs/
 app/src/main/res/drawable/
-gradle.properties
-gradlew
-gradlew.bat
 "https\357\200\272/"
 "https\357\200\272github.com/"
 myLib/libs/
