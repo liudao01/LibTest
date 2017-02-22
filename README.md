@@ -26,9 +26,11 @@
 
 
 //初始化ip地址 如果有一个 只写一个
+
+
  
 
- private List<IpConfigBeen> initSwitchs() {
+ public List<IpConfigBeen> initSwitchs() {
         List<IpConfigBeen> list = new ArrayList<>();
         list.add(new IpConfigBeen("http://192.168.1.103:8080/truck/api/", "接口1", false));
         list.add(new IpConfigBeen("http://192.168.1.138:6060/truck/api/", "接口2", false));
