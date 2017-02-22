@@ -28,8 +28,8 @@
 //初始化ip地址 如果有一个 只写一个
 
 
- 
-
+ ```java  
+  
  public List<IpConfigBeen> initSwitchs() {
         List<IpConfigBeen> list = new ArrayList<>();
         list.add(new IpConfigBeen("http://192.168.1.103:8080/truck/api/", "接口1", false));
@@ -39,6 +39,10 @@
         list.add(new IpConfigBeen("https://www.xxxxxxxx.com/truck/api/", "正式接口", false));
         return list;
     }
+  
+```
+
+
 
 
 2, 在接口地址里面 
