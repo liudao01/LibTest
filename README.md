@@ -43,18 +43,22 @@
 ```
 
 
-
-
 2, 在接口地址里面 
 
 
-     public static String switchs  = TestLibConfig.getSwitchs(MyApplication.getContext());//设置接口地址前缀   获取当前接口 是正式还是测试
+ ```java
+ public static String switchs  = TestLibConfig.getSwitchs(MyApplication.getContext());//设置接口地址前缀   获取当前接口 是正式还是测试
+ ```
 
 
 3,  在请求返回结果里面 
-
-	发送网络数据的方法
+ ```java  
+  
+	//发送网络数据的方法
 	 TestLibUtil.getInstance().sendmessage("请求头可以为空", "url 地址", "返回数据结果"));
+  
+```
+
 
 
 
