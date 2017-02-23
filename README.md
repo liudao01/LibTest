@@ -11,6 +11,21 @@
 
 ***************测试工具库  集成步骤**************
 
+Add it in your root build.gradle at the end of repositories:
+
+	allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+Step 2. Add the dependency
+
+	dependencies {
+	        compile 'com.github.liudao01:LibTest:v1.0.1'
+	}
+Share this release:
+
 	注意 如果需要 切换界面的话 需要悬浮窗权限  得去添加权限为 允许
 总共需要三个步骤  1 测试库初始化 在Applaction里面   初始化IP地址 
 		2 设置接口地址  用于正式测试接口地址的切换
