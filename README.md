@@ -10,7 +10,7 @@
 //我这个也只是初级版本 还会再不断的修改的  
 
 ***************测试工具库  集成步骤**************
-
+## 引入
 Add it in your root build.gradle at the end of repositories:
 
 	allprojects {
@@ -31,7 +31,7 @@ Share this release:
 		2 设置接口地址  用于正式测试接口地址的切换
 		3 发送网络请求数据 			总共就是这三部了		
 		
- 1,   //初始化测试库  网络请求初始化 IP地址初始化
+## 1,   //初始化测试库  网络请求初始化 IP地址初始化
        if (LogUtil.DEBUG) {
             //网络请求初始化
            TestLibConfig.initWindows(this);
@@ -58,7 +58,7 @@ Share this release:
 ```
 
 
-2, 在接口地址里面 
+## 2, 在接口地址里面 
 
 
  ```java
@@ -66,7 +66,7 @@ Share this release:
  ```
 
 
-3,  在请求返回结果里面 
+## 3,  在请求返回结果里面 
  ```java  
   
 	//发送网络数据的方法
@@ -77,7 +77,7 @@ Share this release:
 
 
 
-//下面是我项目里面的片段代码 可以作为参考
+## //下面是我项目里面的片段代码 可以作为参考
 
     /**
      * 请求成功发送json
