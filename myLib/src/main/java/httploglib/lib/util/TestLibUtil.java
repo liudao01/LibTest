@@ -15,6 +15,7 @@ import httploglib.lib.been.HttpBeen;
 import httploglib.lib.been.IpConfigBeen;
 import httploglib.lib.crash.CrashHandler;
 import httploglib.lib.service.WindowService;
+import lib.DemoHoverMenuService;
 
 /**
  * @author liuml
@@ -37,6 +38,9 @@ public class TestLibUtil {
     }
 
 
+    public void startUtil(Context context){
+        DemoHoverMenuService.showFloatingMenu(context);
+    }
     public void initWindows(Application context) {
         this.context = context;
         if (!isServiceWork(context, WindowService.class.getName())) {
