@@ -92,9 +92,10 @@ public class DemoHoverMenuAdapter implements HoverMenuAdapter {
         if (NET.equals(menuItemId)) {
             return createTabView(R.drawable.ic_orange_circle, Color.WHITE, null);
         }
-//        else if (CARSH_ID.equals(menuItemId)) {
-//            return createTabView(R.drawable.ic_paintbrush, mTheme.getAccentColor(), mTheme.getBaseColor());
-//        } else if (IP_SWITCH.equals(menuItemId)) {
+        else if (CARSH_ID.equals(menuItemId)) {
+            return createTabView(R.drawable.tab_background, mTheme.getAccentColor(), mTheme.getBaseColor());
+        }
+//        else if (IP_SWITCH.equals(menuItemId)) {
 //            return createTabView(R.drawable.ic_stack, mTheme.getAccentColor(), mTheme.getBaseColor());
 //        } else if (MENU_ID.equals(menuItemId)) {
 //            return createTabView(R.drawable.ic_menu, mTheme.getAccentColor(), mTheme.getBaseColor());
@@ -148,7 +149,7 @@ public class DemoHoverMenuAdapter implements HoverMenuAdapter {
 //    }
     private View createTabView(@DrawableRes int tabBitmapRes, @ColorInt int backgroundColor, @ColorInt Integer iconColor) {
         Resources resources = mContext.getResources();
-        int padding = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8, resources.getDisplayMetrics());
+        int padding = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, resources.getDisplayMetrics());
 //
         DemoTabView view = new DemoTabView(mContext, resources.getDrawable(R.drawable.tab_background), resources.getDrawable(tabBitmapRes));
         view.setTabBackgroundColor(backgroundColor);

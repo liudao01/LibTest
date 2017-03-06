@@ -32,7 +32,8 @@ import io.mattcarroll.hover.defaulthovermenu.menus.MenuItem;
 import io.mattcarroll.hover.defaulthovermenu.menus.MenuListNavigatorContent;
 import io.mattcarroll.hover.defaulthovermenu.menus.ShowSubmenuMenuAction;
 import io.mattcarroll.hover.defaulthovermenu.toolbar.ToolbarNavigatorContent;
-import lib.net.HoverIntroductionNavigatorContent;
+import lib.carsh.CarshNavigatorContent;
+import lib.net.HttpNavigatorContent;
 import lib.theming.HoverThemeManager;
 
 /**
@@ -68,8 +69,9 @@ public class DemoHoverMenuFactory {
         toolbarNavigatorContent.pushContent(drillDownMenuNavigatorContent);
 
         Map<String, NavigatorContent> demoMenu = new LinkedHashMap<>();
-        demoMenu.put(DemoHoverMenuAdapter.NET, new HoverIntroductionNavigatorContent(context, Bus.getInstance()));
-        //demoMenu.put(DemoHoverMenuAdapter.CARSH_ID, new ColorSelectionNavigatorContent(context, Bus.getInstance(), HoverThemeManager.getInstance(), HoverThemeManager.getInstance().getTheme()));
+
+        demoMenu.put(DemoHoverMenuAdapter.NET, new HttpNavigatorContent(context, Bus.getInstance()));//网络导航
+        demoMenu.put(DemoHoverMenuAdapter.CARSH_ID, new CarshNavigatorContent(context, Bus.getInstance()));//carsh 导航
 //        demoMenu.put(DemoHoverMenuAdapter.IP_SWITCH, new AppStateNavigatorContent(context));
 //        demoMenu.put(DemoHoverMenuAdapter.MENU_ID, toolbarNavigatorContent);
 //        demoMenu.put(DemoHoverMenuAdapter.PLACEHOLDER_ID, new PlaceholderNavigatorContent(context, bus));

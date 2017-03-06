@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package lib.net;
+package lib.carsh;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -31,15 +31,15 @@ import lib.theming.HoverTheme;
 /**
  * {@link NavigatorContent} that displays an introduction to Hover.
  */
-public class HoverIntroductionNavigatorContent extends FrameLayout implements NavigatorContent {
+public class CarshNavigatorContent extends FrameLayout implements NavigatorContent {
 
     private final EventBus mBus;
     private View mLogo;
-    private HoverMotion mHoverMotion;
+//    private HoverMotion mHoverMotion;
     private TextView mHoverTitleTextView;
     private TextView mGoalsTitleTextView;
 
-    public HoverIntroductionNavigatorContent(@NonNull Context context, @NonNull EventBus bus) {
+    public CarshNavigatorContent(@NonNull Context context, @NonNull EventBus bus) {
         super(context);
         mBus = bus;
         init();
@@ -49,7 +49,7 @@ public class HoverIntroductionNavigatorContent extends FrameLayout implements Na
         LayoutInflater.from(getContext()).inflate(R.layout.view_content_introduction, this, true);
 
         mLogo = findViewById(R.id.imageview_logo);
-        mHoverMotion = new HoverMotion();
+//        mHoverMotion = new HoverMotion();
         mHoverTitleTextView = (TextView) findViewById(R.id.textview_hover_title);
         mGoalsTitleTextView = (TextView) findViewById(R.id.textview_goals_title);
     }
@@ -74,12 +74,12 @@ public class HoverIntroductionNavigatorContent extends FrameLayout implements Na
 
     @Override
     public void onShown(@NonNull Navigator navigator) {
-        mHoverMotion.start(mLogo);
+//        mHoverMotion.start(mLogo);
     }
 
     @Override
     public void onHidden() {
-        mHoverMotion.stop();
+//        mHoverMotion.stop();
     }
 
     public void onEventMainThread(@NonNull HoverTheme newTheme) {

@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import httploglib.lib.R;
 import httploglib.lib.been.HttpBeen;
-import httploglib.lib.service.WindowService;
+import httploglib.lib.util.TestLibUtil;
 
 
 public class ResultInfoActivity extends Activity {
@@ -49,7 +49,7 @@ public class ResultInfoActivity extends Activity {
 
 
         int position = getIntent().getIntExtra("javabean", 0);
-        HttpBeen httpBeen = WindowService.httpMoudleList.get(position);
+        HttpBeen httpBeen = TestLibUtil.httpMoudleList.get(position);
         tvUrl.setText(httpBeen.getUrl());
         tvJson.setText(httpBeen.getJson());
 

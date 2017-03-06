@@ -19,8 +19,8 @@
         android:text="长按列表可复制链接到剪切板"
         android:textColor="@color/colorAccent" />
 
-    <ListView
-        android:id="@+id/listview"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -30,9 +30,4 @@
         android:layoutAnimation="@anim/layout_animation1"
         android:listSelector="@android:color/transparent" />
 
-    <Button
-        android:id="@+id/bt_close"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="关闭" />
 </LinearLayout>

@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import com.orhanobut.logger.Logger;
 import com.wanjian.sak.LayoutManager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import httploglib.lib.been.HttpBeen;
@@ -24,7 +25,7 @@ import lib.DemoHoverMenuService;
  */
 
 public class TestLibUtil {
-
+    public static List<HttpBeen> httpMoudleList;
     private Application context;
     IpLibConfig libConfig ;
 
@@ -40,6 +41,7 @@ public class TestLibUtil {
 
     public void startUtil(Context context){
         DemoHoverMenuService.showFloatingMenu(context);
+        httpMoudleList = new ArrayList<>();
     }
     public void initWindows(Application context) {
         this.context = context;
@@ -51,6 +53,8 @@ public class TestLibUtil {
             crashHandler.init(context);
             //UI
             LayoutManager.init(context);
+            //
+
 
         }
 
@@ -71,13 +75,13 @@ public class TestLibUtil {
         Logger.d("打印数据 url=     \n" + url);
         HttpBeen been = new HttpBeen(url, json, header);
         //最大条数  0条避免数量过多溢出
-        if (WindowService.httpMoudleList != null) {
+        if (httpMoudleList != null) {
 
-            if (WindowService.httpMoudleList.size() > 30) {
-                WindowService.httpMoudleList.remove(30);
-                WindowService.httpMoudleList.add(been);
+            if (httpMoudleList.size() > 30) {
+                httpMoudleList.remove(30);
+                httpMoudleList.add(been);
             } else {
-                WindowService.httpMoudleList.add(been);
+                httpMoudleList.add(been);
             }
         }
     }
