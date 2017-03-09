@@ -161,7 +161,9 @@ public class WindowService extends Service implements AdapterView.OnItemClickLis
     }
 
     public static void clearList() {
-        httpMoudleList.clear();
+        if (httpMoudleList != null && httpMoudleList.size() > 0) {
+            httpMoudleList.clear();
+        }
     }
 
 

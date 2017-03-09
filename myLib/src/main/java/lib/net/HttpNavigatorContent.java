@@ -36,7 +36,6 @@ import java.util.List;
 import de.greenrobot.event.EventBus;
 import httploglib.lib.R;
 import httploglib.lib.been.HttpBeen;
-import httploglib.lib.service.WindowService;
 import httploglib.lib.util.TestLibUtil;
 import httploglib.lib.util.Utils;
 import io.mattcarroll.hover.Navigator;
@@ -59,6 +58,7 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
     MyAdapter myAdapter;
     private LinearLayout httpResult;
     private LinearLayout httpResultList;
+    private ListView listview;
 
     private TextView tvUrl;
     private TextView tvJsonSize;
@@ -75,6 +75,49 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
         this.context = context;
         init();
         initResult();
+    }
+
+    private void init() {
+        LayoutInflater.from(getContext()).inflate(R.layout.result_list, this, true);
+        mLogo = findViewById(R.id.imageview_logo);
+//        mHoverMotion = new HoverMotion();
+        httpResult = (LinearLayout) findViewById(R.id.http_result);
+        httpResultList = (LinearLayout) findViewById(R.id.http_result_list);
+
+        btClear = (Button) findViewById(R.id.bt_clear);
+//        recyclerview = (RecyclerView) findViewById(R.id.recyclerview);
+//        recyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
+//        recyclerview.setAdapter(new HttpAdapter(TestLibUtil.httpMoudleList));
+        //添加分割线
+//        recyclerview.addItemDecoration(new DividerItemDecoration(  getActivity(), DividerItemDecoration.HORIZONTAL_LIST));
+        btClear.setOnClickListener(this);
+
+
+        listview = (ListView) findViewById(R.id.listview);
+        listview.setOnItemClickListener(this);
+        listview.setOnItemLongClickListener(this);
+
+        //获得Serializable方式传过来的值
+        beens = TestLibUtil.httpMoudleList;
+        if (beens != null && beens.size() > 0) {
+            Collections.reverse(beens);//倒序刚发的在最前面
+            myAdapter = new MyAdapter();
+            listview.setAdapter(myAdapter);
+
+        }
+
+        // Logger.d( beens.get(0).getJson());
+        bt_clear = (Button) findViewById(R.id.bt_clear);
+        bt_clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TestLibUtil.httpMoudleList.clear();
+                beens.clear();
+                myAdapter.notifyDataSetChanged();
+            }
+        });
+
+
     }
 
     private void initResult() {
@@ -107,57 +150,17 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
     }
 
 
-    private  void showResult(){
+    private void showResult() {
         httpResult.setVisibility(View.VISIBLE);
         httpResultList.setVisibility(View.GONE);
     }
-    private void showResultList(){
+
+    private void showResultList() {
         httpResultList.setVisibility(View.VISIBLE);
         httpResult.setVisibility(View.GONE);
 
     }
-    private void init() {
-        LayoutInflater.from(getContext()).inflate(R.layout.result_list, this, true);
-        mLogo = findViewById(R.id.imageview_logo);
-//        mHoverMotion = new HoverMotion();
-        httpResult = (LinearLayout) findViewById(R.id.http_result);
-        httpResultList = (LinearLayout) findViewById(R.id.http_result_list);
 
-        btClear = (Button) findViewById(R.id.bt_clear);
-//        recyclerview = (RecyclerView) findViewById(R.id.recyclerview);
-//        recyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
-//        recyclerview.setAdapter(new HttpAdapter(TestLibUtil.httpMoudleList));
-        //添加分割线
-//        recyclerview.addItemDecoration(new DividerItemDecoration(  getActivity(), DividerItemDecoration.HORIZONTAL_LIST));
-        btClear.setOnClickListener(this);
-
-
-        ListView listview = (ListView) findViewById(R.id.listview);
-        listview.setOnItemClickListener(this);
-        listview.setOnItemLongClickListener(this);
-
-        //获得Serializable方式传过来的值
-        beens = TestLibUtil.httpMoudleList;
-        if (beens != null && beens.size() > 0) {
-            Collections.reverse(beens);//倒序刚发的在最前面
-            myAdapter = new MyAdapter();
-            listview.setAdapter(myAdapter);
-
-        }
-
-        // Logger.d( beens.get(0).getJson());
-        bt_clear = (Button) findViewById(R.id.bt_clear);
-        bt_clear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                WindowService.clearList();
-                beens.clear();
-                myAdapter.notifyDataSetChanged();
-            }
-        });
-
-
-    }
 
     @Override
     protected void onAttachedToWindow() {
@@ -179,12 +182,12 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
 
     @Override
     public void onShown(@NonNull Navigator navigator) {
-//        mHoverMotion.start(mLogo);
+
     }
 
     @Override
     public void onHidden() {
-//        mHoverMotion.stop();
+
     }
 
     public void onEventMainThread(@NonNull HoverTheme newTheme) {
@@ -200,7 +203,7 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
 
         clickPosition = position;
         showResult();
-        //context.startActivity(intent);
+
     }
 
     @Override

@@ -19,6 +19,7 @@ import java.util.List;
 import httploglib.lib.R;
 import httploglib.lib.been.HttpBeen;
 import httploglib.lib.service.WindowService;
+import httploglib.lib.util.TestLibUtil;
 import httploglib.lib.util.Utils;
 
 /**
@@ -56,7 +57,7 @@ public class ResultListActivity extends Activity implements AdapterView.OnItemCl
         bt_clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                WindowService.clearList();
+                TestLibUtil.httpMoudleList.clear();
                 beens.clear();
                 myAdapter.notifyDataSetChanged();
             }

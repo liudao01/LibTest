@@ -12,9 +12,7 @@
         android:layout_height="match_parent"
         android:visibility="gone">
 
-        <include
-
-            layout="@layout/result" />
+        <include layout="@layout/result" />
     </LinearLayout>
 
     <LinearLayout
@@ -29,7 +27,8 @@
             android:id="@+id/bt_clear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="清除数据" />
+            android:text="清除数据"
+            android:textSize="12dp" />
 
 
         <TextView
@@ -37,6 +36,11 @@
             android:layout_height="wrap_content"
             android:text="长按列表可复制链接到剪切板"
             android:textColor="@color/colorAccent" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/colorWhite" />
 
         <ListView
             android:id="@+id/listview"
@@ -53,7 +57,8 @@
             android:id="@+id/bt_close"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="返回" />
+            android:text="返回"
+            android:visibility="gone" />
     </LinearLayout>
 
 
