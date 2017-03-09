@@ -22,17 +22,18 @@ public class ResultInfoActivity extends Activity {
 
     /**
      * jsonObject.put("phoneModel", SystemUtils.getMobileModel());//机型
-     jsonObject.put("sysVersion", SystemUtils.getMobileSysVersion());//系统版本
-     jsonObject.put("w_and_h", SystemUtils.getScreenWidth(null)+"*"+SystemUtils.getScreenHeight(null));//宽高
-     jsonObject.put("version", SystemUtils.getVersionName());//app版本
-
-     JSONObject addressJson=new JSONObject();
-     addressJson.put("province", sharedUtils.getLocationProvince());//省
-     addressJson.put("city", sharedUtils.getLocationCity());//市
-     addressJson.put("district", sharedUtils.getLocationDistrict());//县区
-     addressJson.put("detailsAddress", sharedUtils.getLocationAddress());//详细地址
-     jsonObject.put("userAddress",addressJson);
-     jsonObject.put("network",SystemUtils.getNetworkType());//网络制式
+     * jsonObject.put("sysVersion", SystemUtils.getMobileSysVersion());//系统版本
+     * jsonObject.put("w_and_h", SystemUtils.getScreenWidth(null)+"*"+SystemUtils.getScreenHeight(null));//宽高
+     * jsonObject.put("version", SystemUtils.getVersionName());//app版本
+     * <p>
+     * JSONObject addressJson=new JSONObject();
+     * addressJson.put("province", sharedUtils.getLocationProvince());//省
+     * addressJson.put("city", sharedUtils.getLocationCity());//市
+     * addressJson.put("district", sharedUtils.getLocationDistrict());//县区
+     * addressJson.put("detailsAddress", sharedUtils.getLocationAddress());//详细地址
+     * jsonObject.put("userAddress",addressJson);
+     * jsonObject.put("network",SystemUtils.getNetworkType());//网络制式
+     *
      * @param savedInstanceState
      */
 
@@ -44,7 +45,7 @@ public class ResultInfoActivity extends Activity {
         tvUrl = (TextView) findViewById(R.id.tv_url);
         tvJsonSize = (TextView) findViewById(R.id.tv_json_size);
         tvJson = (TextView) findViewById(R.id.tv_json);
-    tvJsonHeader = (TextView) findViewById(R.id.tv_json_header);
+        tvJsonHeader = (TextView) findViewById(R.id.tv_json_header);
         btClose = (Button) findViewById(R.id.bt_close);
 
 
@@ -57,7 +58,7 @@ public class ResultInfoActivity extends Activity {
             byte[] buff = httpBeen.getJson().getBytes();
             int f = buff.length;
             double kb = f / 1024.0;
-            kb = (double)(Math.round(kb*100)/100.0);
+            kb = (double) (Math.round(kb * 100) / 100.0);
             tvJsonSize.setText(kb + " kb");
         }
 

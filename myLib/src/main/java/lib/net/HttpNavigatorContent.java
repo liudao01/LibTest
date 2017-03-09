@@ -16,7 +16,6 @@
 package lib.net;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -27,6 +26,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -35,7 +35,6 @@ import java.util.List;
 
 import de.greenrobot.event.EventBus;
 import httploglib.lib.R;
-import httploglib.lib.actiity.ResultInfoActivity;
 import httploglib.lib.been.HttpBeen;
 import httploglib.lib.service.WindowService;
 import httploglib.lib.util.TestLibUtil;
@@ -58,18 +57,71 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
     Button bt_clear;
     Context context;
     MyAdapter myAdapter;
+    private LinearLayout httpResult;
+    private LinearLayout httpResultList;
+
+    private TextView tvUrl;
+    private TextView tvJsonSize;
+    private TextView tvJson;
+    private Button btClose;
+    private TextView tvJsonHeader;
+
+    private int clickPosition;
+
 
     public HttpNavigatorContent(@NonNull Context context, @NonNull EventBus bus) {
         super(context);
         mBus = bus;
         this.context = context;
         init();
+        initResult();
     }
 
+    private void initResult() {
+        tvUrl = (TextView) findViewById(R.id.tv_url);
+        tvJsonSize = (TextView) findViewById(R.id.tv_json_size);
+        tvJson = (TextView) findViewById(R.id.tv_json);
+        tvJsonHeader = (TextView) findViewById(R.id.tv_json_header);
+        btClose = (Button) findViewById(R.id.bt_close);
+
+
+        HttpBeen httpBeen = TestLibUtil.httpMoudleList.get(clickPosition);
+        tvUrl.setText(httpBeen.getUrl());
+        tvJson.setText(httpBeen.getJson());
+
+        if (!TextUtils.isEmpty(httpBeen.getJson())) {
+            byte[] buff = httpBeen.getJson().getBytes();
+            int f = buff.length;
+            double kb = f / 1024.0;
+            kb = (double) (Math.round(kb * 100) / 100.0);
+            tvJsonSize.setText(kb + " kb");
+        }
+
+        tvJsonHeader.setText(httpBeen.getHttpHeader());
+        btClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showResultList();
+            }
+        });
+    }
+
+
+    private  void showResult(){
+        httpResult.setVisibility(View.VISIBLE);
+        httpResultList.setVisibility(View.GONE);
+    }
+    private void showResultList(){
+        httpResultList.setVisibility(View.VISIBLE);
+        httpResult.setVisibility(View.GONE);
+
+    }
     private void init() {
         LayoutInflater.from(getContext()).inflate(R.layout.result_list, this, true);
         mLogo = findViewById(R.id.imageview_logo);
 //        mHoverMotion = new HoverMotion();
+        httpResult = (LinearLayout) findViewById(R.id.http_result);
+        httpResultList = (LinearLayout) findViewById(R.id.http_result_list);
 
         btClear = (Button) findViewById(R.id.bt_clear);
 //        recyclerview = (RecyclerView) findViewById(R.id.recyclerview);
@@ -146,11 +198,9 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        Intent intent = new Intent();
-        intent.setClass(context, ResultInfoActivity.class);
-        intent.putExtra("javabean", position);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(intent);
+        clickPosition = position;
+        showResult();
+        //context.startActivity(intent);
     }
 
     @Override
@@ -194,4 +244,6 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
             return view;
         }
     }
+
+
 }
