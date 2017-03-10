@@ -72,7 +72,7 @@ public class DemoHoverMenuFactory {
 
         demoMenu.put(DemoHoverMenuAdapter.NET, new HttpNavigatorContent(context, Bus.getInstance()));//网络导航
         demoMenu.put(DemoHoverMenuAdapter.CARSH_ID, new CarshNavigatorContent(context, Bus.getInstance()));//carsh 导航
-//        demoMenu.put(DemoHoverMenuAdapter.IP_SWITCH, new AppStateNavigatorContent(context));
+//        demoMenu.put(DemoHoverMenuAdapter.IP_SWITCH, new IpSwitchNavigatorContent(context,Bus.getInstance()));//ip 切换导航
 //        demoMenu.put(DemoHoverMenuAdapter.MENU_ID, toolbarNavigatorContent);
 //        demoMenu.put(DemoHoverMenuAdapter.PLACEHOLDER_ID, new PlaceholderNavigatorContent(context, bus));
 

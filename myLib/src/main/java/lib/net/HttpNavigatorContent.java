@@ -29,6 +29,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Collections;
 import java.util.List;
@@ -79,7 +80,7 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
 
     private void init() {
         LayoutInflater.from(getContext()).inflate(R.layout.result_list, this, true);
-        mLogo = findViewById(R.id.imageview_logo);
+//        mLogo = findViewById(R.id.imageview_logo);
 //        mHoverMotion = new HoverMotion();
         httpResult = (LinearLayout) findViewById(R.id.http_result);
         httpResultList = (LinearLayout) findViewById(R.id.http_result_list);
@@ -191,6 +192,7 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
     }
 
     public void onEventMainThread(@NonNull HoverTheme newTheme) {
+        //点击导航按钮的时候调用这个
     }
 
     @Override
@@ -201,6 +203,7 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+        Toast.makeText(context,"点击了",Toast.LENGTH_SHORT).show();
         clickPosition = position;
         showResult();
 

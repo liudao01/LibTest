@@ -42,6 +42,10 @@ public class TestLibUtil {
     public void startUtil(Context context){
         DemoHoverMenuService.showFloatingMenu(context);
         httpMoudleList = new ArrayList<>();
+
+        //崩溃工具初始化
+        CrashHandler crashHandler = CrashHandler.getInstance();
+        crashHandler.init(context);
     }
     public void initWindows(Application context) {
         this.context = context;

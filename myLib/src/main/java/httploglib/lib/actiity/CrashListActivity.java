@@ -26,6 +26,7 @@ import httploglib.lib.util.FileUtils;
  * @time 2016/12/7 16:45
  */
 public class CrashListActivity extends Activity implements AdapterView.OnItemClickListener {
+
     List<String> lists;
 
     Button bt_clear, bt_close;
@@ -34,7 +35,7 @@ public class CrashListActivity extends Activity implements AdapterView.OnItemCli
     protected void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.result_list);
+        setContentView(R.layout.carsh_result_list);
 
         ListView  listview = (ListView) findViewById(R.id.listview);
         listview.setOnItemClickListener(this);
