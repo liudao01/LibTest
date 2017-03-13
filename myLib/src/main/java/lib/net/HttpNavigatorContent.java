@@ -202,8 +202,9 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        clickPosition = position;
+//        Toast.makeText(context,"点击了",Toast.LENGTH_SHORT).show();
         showResult();
+        clickPosition = position;
 
     }
 
@@ -241,7 +242,7 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
             HttpBeen httpBeen = beens.get(i);
             tv.setText(httpBeen.getUrl());
             if (!TextUtils.isEmpty(httpBeen.getJson())) {
-                tv.setTextColor(context.getResources().getColor(R.color.colorPrimary));
+                tv.setTextColor(context.getResources().getColor(R.color.colorWhite));
             } else {
                 tv.setTextColor(context.getResources().getColor(R.color.colorAccent));
             }

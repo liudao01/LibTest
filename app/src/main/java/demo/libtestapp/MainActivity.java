@@ -58,6 +58,12 @@ public class MainActivity extends Activity {
         //ip 测试
         IPinit();
 
+        List<IpConfigBeen> ipList = TestLibUtil.getInstance().getIpList();
+        String list = "";
+        for (IpConfigBeen ipConfigBeen : ipList) {
+            list = list + ipConfigBeen.toString()+"\n";
+        }
+        tvIpList.setText(list);
 
         /**
          * 开始的时候 的权限 判断是否可以让悬浮窗 悬浮到所有应用的前面

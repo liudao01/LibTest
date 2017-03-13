@@ -172,6 +172,8 @@ public class CarshNavigatorContent extends FrameLayout implements NavigatorConte
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+        //Toast.makeText(context,"点击了",Toast.LENGTH_SHORT).show();
         showResult();
 //        String read = read(context, FileUtils.getCrashPath() + "/" + lists.get(position));
         String read = readFileFromSDCard(FileUtils.getCrashPath() + "/" + lists.get(position));
