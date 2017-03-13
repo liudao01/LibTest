@@ -4,6 +4,8 @@ import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 
 import com.orhanobut.logger.Logger;
@@ -12,11 +14,16 @@ import com.wanjian.sak.LayoutManager;
 import java.util.ArrayList;
 import java.util.List;
 
+import httploglib.lib.R;
 import httploglib.lib.been.HttpBeen;
 import httploglib.lib.been.IpConfigBeen;
 import httploglib.lib.crash.CrashHandler;
 import httploglib.lib.service.WindowService;
+import lib.Bus;
 import lib.DemoHoverMenuService;
+import lib.appstate.AppStateTracker;
+import lib.theming.HoverTheme;
+import lib.theming.HoverThemeManager;
 
 /**
  * @author liuml
@@ -26,8 +33,8 @@ import lib.DemoHoverMenuService;
 
 public class TestLibUtil {
     public static List<HttpBeen> httpMoudleList;
-    private Context context;
-    IpLibConfig libConfig ;
+    private Application context;
+    IpLibConfig libConfig;
 
     //使用静态单例模式
     private static class InnerInstance {
@@ -41,19 +48,26 @@ public class TestLibUtil {
 
     /**
      * 1.1版本初始化
+     *
      * @param context
      */
-    public void startUtil(Context context){
+    public void startUtil(Application context) {
         this.context = context;
         DemoHoverMenuService.showFloatingMenu(context);
-        httpMoudleList = new ArrayList<>();
+        if (httpMoudleList == null) {
+            httpMoudleList = new ArrayList<>();
+        }
         //崩溃工具初始化
         CrashHandler crashHandler = CrashHandler.getInstance();
         crashHandler.init(context);
+
+        setupTheme();
+        setupAppStateTracking();
     }
 
     /**
      * 1.0版本初始化
+     *
      * @param context
      */
     public void initWindows(Application context) {
@@ -76,6 +90,7 @@ public class TestLibUtil {
 
     /**
      * 发送网路哦请求
+     *
      * @param header
      * @param url
      * @param json
@@ -98,9 +113,6 @@ public class TestLibUtil {
             }
         }
     }
-
-
-
 
 
     /**
@@ -164,6 +176,7 @@ public class TestLibUtil {
         }
         return url;
     }
+
     /**
      * 添加ip
      *
@@ -201,12 +214,46 @@ public class TestLibUtil {
 
     /**
      * 获取所有ip地址
+     *
      * @return
      */
-    public List<IpConfigBeen> getIpList(){
+    public List<IpConfigBeen> getIpList() {
         List<IpConfigBeen> ipList = IpLibConfig.getInstance(context).getIpList();
-        return  ipList;
+        return ipList;
     }
 
+    /**
+     *
+     */
+
+
+//    public void setAppTracking(Application appTracking){
+//        setupTheme();
+//        setupAppStateTracking(appTracking);
+//    }
+
+    /**
+     * 主题样式 颜色
+     */
+    private void setupTheme() {
+        HoverTheme defaultTheme = new HoverTheme(
+                ContextCompat.getColor(context, R.color.colorAccent),
+                ContextCompat.getColor(context, R.color.colorGray));
+        HoverThemeManager.init(Bus.getInstance(), defaultTheme);
+    }
+
+    private void setupAppStateTracking() {
+        ActivityManager activityManager = (ActivityManager) context.getSystemService(context.ACTIVITY_SERVICE);
+
+        //整个app 的状态跟踪器
+        AppStateTracker.init(context, Bus.getInstance());
+
+        //获取栈顶的activity 的id 以及名字
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            if (activityManager.getAppTasks().size() > 0) {
+                AppStateTracker.getInstance().trackTask(activityManager.getAppTasks().get(0).getTaskInfo());
+            }
+        }
+    }
 
 }

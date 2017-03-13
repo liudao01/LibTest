@@ -24,10 +24,6 @@ public class MyApplication extends Application {
     public static Context applicationContext;
     private static MyApplication instance;
 
-    public MyApplication() {
-
-    }
-
     /**
      * 开始调用
      */

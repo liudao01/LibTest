@@ -28,7 +28,7 @@ public class MainActivity extends Activity {
 
         setContentView(R.layout.activity_main);
 
-        TestLibUtil.getInstance().startUtil(MainActivity.this);
+
         tvIpList = (TextView) findViewById(R.id.tv_ip_list);
 
         //网络测试
