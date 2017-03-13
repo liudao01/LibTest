@@ -128,19 +128,7 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
         btClose = (Button) findViewById(R.id.bt_close);
 
 
-        HttpBeen httpBeen = TestLibUtil.httpMoudleList.get(clickPosition);
-        tvUrl.setText(httpBeen.getUrl());
-        tvJson.setText(httpBeen.getJson());
 
-        if (!TextUtils.isEmpty(httpBeen.getJson())) {
-            byte[] buff = httpBeen.getJson().getBytes();
-            int f = buff.length;
-            double kb = f / 1024.0;
-            kb = (double) (Math.round(kb * 100) / 100.0);
-            tvJsonSize.setText(kb + " kb");
-        }
-
-        tvJsonHeader.setText(httpBeen.getHttpHeader());
         btClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -205,7 +193,23 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
 //        Toast.makeText(context,"点击了",Toast.LENGTH_SHORT).show();
         showResult();
         clickPosition = position;
+        setData();
+    }
 
+    private void setData(){
+        HttpBeen httpBeen = TestLibUtil.httpMoudleList.get(clickPosition);
+        tvUrl.setText(httpBeen.getUrl());
+        tvJson.setText(httpBeen.getJson());
+
+        if (!TextUtils.isEmpty(httpBeen.getJson())) {
+            byte[] buff = httpBeen.getJson().getBytes();
+            int f = buff.length;
+            double kb = f / 1024.0;
+            kb = (double) (Math.round(kb * 100) / 100.0);
+            tvJsonSize.setText(kb + " kb");
+        }
+
+        tvJsonHeader.setText(httpBeen.getHttpHeader());
     }
 
     @Override
