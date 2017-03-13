@@ -1,5 +1,5 @@
 <layoutAnimation xmlns:android="http://schemas.android.com/apk/res/android"
     android:animation="@anim/anim_item"
     android:animationOrder="normal"
-    android:delay="0.5">
+    android:delay="0.3">
 </layoutAnimation>

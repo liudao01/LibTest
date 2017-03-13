@@ -99,6 +99,7 @@ public class CarshNavigatorContent extends FrameLayout implements NavigatorConte
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                carshAdapter.notifyDataSetChanged();
             }
         });
 
@@ -173,11 +174,16 @@ public class CarshNavigatorContent extends FrameLayout implements NavigatorConte
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         showResult();
 //        String read = read(context, FileUtils.getCrashPath() + "/" + lists.get(position));
-        String read = readFileFromSDCard( FileUtils.getCrashPath() + "/" + lists.get(position));
+        String read = readFileFromSDCard(FileUtils.getCrashPath() + "/" + lists.get(position));
         Log.d(TAG, "onItemClick: " + read);
         tvCarsh.setText(read);
     }
 
+    /**
+     * @param fileName
+     * @return
+     * @desc 读取文件内容
+     */
     public String readFileFromSDCard(String fileName) {
         byte[] buffer = null;
         try {
@@ -249,7 +255,9 @@ public class CarshNavigatorContent extends FrameLayout implements NavigatorConte
         public View getView(int i, View view, ViewGroup viewGroup) {
             view = View.inflate(context, R.layout.carsh_result_item, null);
             TextView tv = (TextView) view.findViewById(R.id.tv_carsh_item);
-            tv.setText(lists.get(i));
+            if (lists != null && lists.size() > 0) {
+                tv.setText(lists.get(i));
+            }
             return view;
         }
     }

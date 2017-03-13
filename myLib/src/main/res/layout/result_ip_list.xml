@@ -18,7 +18,6 @@
         android:id="@+id/listview_ip"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#fff4f7f9"
         android:cacheColorHint="#00000000"
         android:divider="#dddbdb"
         android:layout_weight="1"
@@ -26,9 +25,4 @@
         android:layoutAnimation="@anim/layout_animation1"
         android:listSelector="@android:color/transparent"
         />
-    <Button
-        android:id="@+id/bt_close"
-        android:text="关闭"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 </LinearLayout>

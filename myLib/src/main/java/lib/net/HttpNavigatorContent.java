@@ -29,7 +29,6 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.Collections;
 import java.util.List;
@@ -203,7 +202,6 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        Toast.makeText(context,"点击了",Toast.LENGTH_SHORT).show();
         clickPosition = position;
         showResult();
 

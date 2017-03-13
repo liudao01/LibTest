@@ -1,5 +1,6 @@
 package demo.libtestapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -7,15 +8,21 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import httploglib.lib.been.IpConfigBeen;
 import httploglib.lib.util.TestLibUtil;
 
 public class MainActivity extends AppCompatActivity {
+   public Context context;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         TestLibUtil.getInstance().startUtil(MainActivity.this);
-
+        context = this;
 
 
         //网络测试
@@ -41,6 +48,11 @@ public class MainActivity extends AppCompatActivity {
                 "}";
 
         TestLibUtil.getInstance().sendmessage("", url, json);
+
+        //ip 测试
+        IPinit();
+
+
         /**
          * 开始的时候 的权限 判断是否可以让悬浮窗 悬浮到所有应用的前面
          */
@@ -52,4 +64,20 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+    public  void IPinit() {
+        List<IpConfigBeen> list = new ArrayList<>();
+
+        list.add(new IpConfigBeen("http://192.168.1.103:8080/", "测试地址1", false));
+        list.add(new IpConfigBeen("http://192.168.1.102:8080/truck/api/", "测试地址2", false));
+        list.add(new IpConfigBeen("http://192.168.1.157:6060/truck/api/", "测试地址3", false));
+        list.add(new IpConfigBeen("http://192.168.1.154:8080/truck/api/", "测试地址4", false));
+        list.add(new IpConfigBeen("http://xxx.xxx.xxx.229:8008/truck/api/", "测试地址5", false));
+        list.add(new IpConfigBeen("http://xxx.175.xxx.242:8001/truck/api/", "测试地址6", false));
+        list.add(new IpConfigBeen("http://58.58.62.227:81/truck/api/", "测试地址7", false));
+        list.add(new IpConfigBeen("http://58.xx.xx.xxx:8008/truck/api/", "测试地址8", false));
+        list.add(new IpConfigBeen("http://www.xxxxxxxx.com:8008/truck/api/", "正式接口", true));
+        TestLibUtil.getInstance().initIpSwitchs(this.getApplicationContext(), list);
+    }
+
 }

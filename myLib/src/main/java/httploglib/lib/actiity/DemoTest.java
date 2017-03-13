@@ -26,8 +26,6 @@ import java.util.List;
 
 import httploglib.lib.R;
 import httploglib.lib.been.IpConfigBeen;
-import httploglib.lib.util.IpLibConfig;
-import httploglib.lib.util.ListDataSave;
 import httploglib.lib.util.TestLibUtil;
 
 /**
@@ -91,36 +89,36 @@ public class DemoTest extends AppCompatActivity {
         });
 
 
-        //切换服务器ip 地址 测试
-        final ListDataSave instance = ListDataSave.getInstance(getApplicationContext(), ListDataSave.ListDataSave);
-        //instance.setDataList(ListDataSave.listTag, getData());
-        final IpLibConfig libConfig = new IpLibConfig(getApplicationContext());
-        //存入
-        libConfig.initIpConfig(getData());
-
-        bt_select_ip.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                List<IpConfigBeen> list = instance.getDataList(ListDataSave.listTag);
-                for (IpConfigBeen ipConfigBeen : list) {
-                    if (ipConfigBeen.isSelect()) {
-                        tv_ip.setText(ipConfigBeen.toString());
-                    }
-                }
-            }
-        });
+//        //切换服务器ip 地址 测试
+//        final ListDataSave instance = ListDataSave.getInstance(getApplicationContext(), ListDataSave.ListDataSave);
+//        //instance.setDataList(ListDataSave.listTag, getData());
+//        final IpLibConfig libConfig = new IpLibConfig(getApplicationContext());
+//        //存入
+//        libConfig.initIpConfig(getData());
+//
+//        bt_select_ip.setOnClickListener(new View.OnClickListener() {
+//
+//            @Override
+//            public void onClick(View v) {
+//
+//                List<IpConfigBeen> list = instance.getDataList(ListDataSave.listTag);
+//                for (IpConfigBeen ipConfigBeen : list) {
+//                    if (ipConfigBeen.isSelect()) {
+//                        tv_ip.setText(ipConfigBeen.toString());
+//                    }
+//                }
+//            }
+//        });
 
         //服务器地址添加测试
 
-        bt_add_ip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //测试添加
-                libConfig.AddIp(new IpConfigBeen("www.google.com", "谷歌", false));
-            }
-        });
+//        bt_add_ip.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                //测试添加
+//                libConfig.AddIp(new IpConfigBeen("www.google.com", "谷歌", false));
+//            }
+//        });
 
 
 

@@ -26,7 +26,7 @@ import lib.DemoHoverMenuService;
 
 public class TestLibUtil {
     public static List<HttpBeen> httpMoudleList;
-    private Application context;
+    private Context context;
     IpLibConfig libConfig ;
 
     //使用静态单例模式
@@ -39,14 +39,23 @@ public class TestLibUtil {
     }
 
 
+    /**
+     * 1.1版本初始化
+     * @param context
+     */
     public void startUtil(Context context){
+        this.context = context;
         DemoHoverMenuService.showFloatingMenu(context);
         httpMoudleList = new ArrayList<>();
-
         //崩溃工具初始化
         CrashHandler crashHandler = CrashHandler.getInstance();
         crashHandler.init(context);
     }
+
+    /**
+     * 1.0版本初始化
+     * @param context
+     */
     public void initWindows(Application context) {
         this.context = context;
         if (!isServiceWork(context, WindowService.class.getName())) {
@@ -91,22 +100,6 @@ public class TestLibUtil {
     }
 
 
-    /**
-     * 这里逻辑判断  除非sp内 没有IP地址的数据才会去更新
-     *
-     * @param context
-     * @param list
-     */
-    public void setSwitchs(Context context, List<IpConfigBeen> list) {
-        libConfig = IpLibConfig.getInstance(context);
-        //存入之前先判断是否已经有了
-        String str = getSwitchs((context));
-        if (TextUtils.isEmpty(str)) {
-            //存入
-            libConfig.initIpConfig(list);
-        }
-    }
-
 
 
 
@@ -136,6 +129,22 @@ public class TestLibUtil {
     }
 
     /**********************************************ip 操作******************************************************/
+
+    /**
+     * 这里逻辑判断  除非sp内 没有IP地址的数据才会去更新
+     *
+     * @param context
+     * @param list
+     */
+    public void initIpSwitchs(Context context, List<IpConfigBeen> list) {
+        libConfig = IpLibConfig.getInstance(context);
+        //存入之前先判断是否已经有了
+        String str = getSwitchs((context));
+        if (TextUtils.isEmpty(str)) {
+            //存入
+            libConfig.initIpConfig(list);
+        }
+    }
 
     /**
      * 获取当前ip

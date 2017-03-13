@@ -33,6 +33,7 @@ import io.mattcarroll.hover.defaulthovermenu.menus.MenuListNavigatorContent;
 import io.mattcarroll.hover.defaulthovermenu.menus.ShowSubmenuMenuAction;
 import io.mattcarroll.hover.defaulthovermenu.toolbar.ToolbarNavigatorContent;
 import lib.carsh.CarshNavigatorContent;
+import lib.iputil.IpSwitchNavigatorContent;
 import lib.net.HttpNavigatorContent;
 import lib.theming.HoverThemeManager;
 
@@ -72,7 +73,7 @@ public class DemoHoverMenuFactory {
 
         demoMenu.put(DemoHoverMenuAdapter.NET, new HttpNavigatorContent(context, Bus.getInstance()));//网络导航
         demoMenu.put(DemoHoverMenuAdapter.CARSH_ID, new CarshNavigatorContent(context, Bus.getInstance()));//carsh 导航
-//        demoMenu.put(DemoHoverMenuAdapter.IP_SWITCH, new IpSwitchNavigatorContent(context,Bus.getInstance()));//ip 切换导航
+        demoMenu.put(DemoHoverMenuAdapter.IP_SWITCH, new IpSwitchNavigatorContent(context,Bus.getInstance()));//ip 切换导航
 //        demoMenu.put(DemoHoverMenuAdapter.MENU_ID, toolbarNavigatorContent);
 //        demoMenu.put(DemoHoverMenuAdapter.PLACEHOLDER_ID, new PlaceholderNavigatorContent(context, bus));
 
