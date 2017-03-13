@@ -1,12 +1,13 @@
 package demo.libtestapp;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,16 +15,21 @@ import java.util.List;
 import httploglib.lib.been.IpConfigBeen;
 import httploglib.lib.util.TestLibUtil;
 
-public class MainActivity extends AppCompatActivity {
-   public Context context;
+public class MainActivity extends Activity {
+    public Context context;
+    private TextView tvIpList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        TestLibUtil.getInstance().startUtil(MainActivity.this);
         context = this;
 
+
+        setContentView(R.layout.activity_main);
+
+        TestLibUtil.getInstance().startUtil(MainActivity.this);
+        tvIpList = (TextView) findViewById(R.id.tv_ip_list);
 
         //网络测试
         final String url = "www.baidu.com";
@@ -65,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public  void IPinit() {
+    public void IPinit() {
         List<IpConfigBeen> list = new ArrayList<>();
 
         list.add(new IpConfigBeen("http://192.168.1.103:8080/", "测试地址1", false));
