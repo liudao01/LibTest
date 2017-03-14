@@ -101,10 +101,10 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
 
         //获得Serializable方式传过来的值
         beens = TestLibUtil.httpMoudleList;
-        Log.d(TAG, "init: beens = "+beens.toArray());
+        Log.d(TAG, "init: beens = " + beens.toArray());
         if (beens != null && beens.size() > 0) {
             Collections.reverse(beens);//倒序刚发的在最前面
-            myAdapter = new MyAdapter(context,beens);
+            myAdapter = new MyAdapter(context, beens);
             listview.setAdapter(myAdapter);
 
         }
@@ -173,7 +173,9 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
     @Override
     public void onShown(@NonNull Navigator navigator) {
 
-        myAdapter.setList(TestLibUtil.httpMoudleList);
+        if (TestLibUtil.httpMoudleList != null) {
+            myAdapter.setList(TestLibUtil.httpMoudleList);
+        }
     }
 
     @Override
@@ -183,7 +185,9 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
 
     public void onEventMainThread(@NonNull HoverTheme newTheme) {
         //点击导航按钮的时候调用这个
-        myAdapter.setList(TestLibUtil.httpMoudleList);
+        if (TestLibUtil.httpMoudleList != null) {
+            myAdapter.setList(TestLibUtil.httpMoudleList);
+        }
     }
 
     @Override
