@@ -3,9 +3,6 @@ package httploglib.lib.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -106,24 +103,24 @@ public class ListDataSave {
 
     }
 
-    /**
-     * 获取lIst
-     *
-     * @param tag
-     * @return
-     */
-    public <T> List<T> getList(String tag) {
-        List<T> datalist = new ArrayList<T>();
-        String strJson = preferences.getString(tag, null);
-        if (null == strJson) {
-            return datalist;
-        }
-        Gson gson = new Gson();
-        datalist = gson.fromJson(strJson, new TypeToken<List<T>>() {
-        }.getType());
-        return datalist;
-
-    }
+//    /**
+//     * 获取lIst
+//     *
+//     * @param tag
+//     * @return
+//     */
+//    public <T> List<T> getList(String tag) {
+//        List<T> datalist = new ArrayList<T>();
+//        String strJson = preferences.getString(tag, null);
+//        if (null == strJson) {
+//            return datalist;
+//        }
+//        Gson gson = new Gson();
+//        datalist = gson.fromJson(strJson, new TypeToken<List<T>>() {
+//        }.getType());
+//        return datalist;
+//
+//    }
 
     /**
      * 将数组转换为JSON格式的数据。
