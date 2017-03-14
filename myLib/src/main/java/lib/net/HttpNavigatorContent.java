@@ -173,6 +173,7 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
     @Override
     public void onShown(@NonNull Navigator navigator) {
 
+        myAdapter.setList(TestLibUtil.httpMoudleList);
     }
 
     @Override
@@ -182,6 +183,7 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
 
     public void onEventMainThread(@NonNull HoverTheme newTheme) {
         //点击导航按钮的时候调用这个
+        myAdapter.setList(TestLibUtil.httpMoudleList);
     }
 
     @Override

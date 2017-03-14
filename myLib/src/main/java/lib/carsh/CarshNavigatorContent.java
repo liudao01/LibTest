@@ -27,7 +27,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -167,7 +166,8 @@ public class CarshNavigatorContent extends FrameLayout implements NavigatorConte
     public void onEventMainThread(@NonNull HoverTheme newTheme) {
 //        mHoverTitleTextView.setTextColor(newTheme.getAccentColor());
 //        mGoalsTitleTextView.setTextColor(newTheme.getAccentColor());
-
+        selectCarsh();
+        carshAdapter.setList(lists);
     }
 
     @Override
@@ -202,30 +202,6 @@ public class CarshNavigatorContent extends FrameLayout implements NavigatorConte
         return s;
     }
 
-    /**
-     * @param fileName
-     * @return
-     * @desc 读取文件内容
-     */
-    public static String read(Context context, String fileName) {
-
-        try {
-            FileInputStream fis = context.openFileInput(fileName);
-            ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            byte[] b = new byte[1024];
-            int len = 0;
-            while ((len = fis.read(b)) != -1) {
-                bos.write(b, 0, len);
-            }
-            byte[] data = bos.toByteArray();
-            fis.close();
-            bos.close();
-            return new String(data);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
 
 
     class CarshAdapter extends AutoAdapter {
