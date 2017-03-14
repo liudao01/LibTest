@@ -66,6 +66,7 @@ public class CarshNavigatorContent extends FrameLayout implements NavigatorConte
         super(context);
         mBus = bus;
         this.context = context;
+        lists = new ArrayList<>();
         init();
     }
 
@@ -75,7 +76,6 @@ public class CarshNavigatorContent extends FrameLayout implements NavigatorConte
         listview = (ListView) findViewById(R.id.listview);
         listview.setOnItemClickListener(this);
         //获得Serializable方式传过来的值
-        lists = new ArrayList<>();
 
         selectCarsh();//获取carsh列表
         carshResult = (LinearLayout) findViewById(R.id.carsh_result);

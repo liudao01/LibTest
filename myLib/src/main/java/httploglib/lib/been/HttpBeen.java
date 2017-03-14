@@ -14,6 +14,7 @@ public class HttpBeen implements Serializable {
     private String json;
     private String httpHeader;
 
+
     public String getHttpHeader() {
         return httpHeader;
     }
@@ -31,6 +32,8 @@ public class HttpBeen implements Serializable {
         this.url = url;
         this.json = json;
         this.httpHeader = httpHeader;
+    }
+    public HttpBeen() {
     }
 
     public String getUrl() {
