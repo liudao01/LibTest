@@ -17,9 +17,7 @@ package lib.net;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -53,7 +51,7 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
     private View mLogo;
     //    private HoverMotion mHoverMotion;
     private Button btClear;
-    private RecyclerView recyclerview;
+    //    private RecyclerView recyclerview;
     List<HttpBeen> beens;
     Button bt_clear;
     Context context;
@@ -91,7 +89,7 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
 //        recyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
 //        recyclerview.setAdapter(new HttpAdapter(TestLibUtil.httpMoudleList));
         //添加分割线
-//        recyclerview.addItemDecoration(new DividerItemDecoration(  getActivity(), DividerItemDecoration.HORIZONTAL_LIST));
+//        recyclerview.addItemXDecoration(new DividerItemDecoration(  getActivity(), DividerItemDecoration.HORIZONTAL_LIST));
         btClear.setOnClickListener(this);
 
 
@@ -101,13 +99,12 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
 
         //获得Serializable方式传过来的值
         beens = TestLibUtil.httpMoudleList;
-        Log.d(TAG, "init: beens = " + beens.toArray());
+
         if (beens != null && beens.size() > 0) {
             Collections.reverse(beens);//倒序刚发的在最前面
-            myAdapter = new MyAdapter(context, beens);
-            listview.setAdapter(myAdapter);
-
         }
+        myAdapter = new MyAdapter(context, beens);
+        listview.setAdapter(myAdapter);
 
         // Logger.d( beens.get(0).getJson());
         bt_clear = (Button) findViewById(R.id.bt_clear);
@@ -172,17 +169,26 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
 
     @Override
     public void onShown(@NonNull Navigator navigator) {
-
+//        if (TestLibUtil.httpMoudleList != null) {
+//            if (myAdapter != null) {
+//                myAdapter.setList(TestLibUtil.httpMoudleList);
+//            }
+//        }
     }
 
-    public static void setList(){
+    public static void setList() {
 
         if (TestLibUtil.httpMoudleList != null) {
             if (myAdapter != null) {
-                myAdapter.setList(TestLibUtil.httpMoudleList);
+                List<HttpBeen> httpMoudleList = TestLibUtil.httpMoudleList;
+                if (httpMoudleList != null && httpMoudleList.size() > 0) {
+                    Collections.reverse(httpMoudleList);//倒序刚发的在最前面
+                }
+                myAdapter.setList(httpMoudleList);
             }
         }
     }
+
     @Override
     public void onHidden() {
 
@@ -190,6 +196,14 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
 
     public void onEventMainThread(@NonNull HoverTheme newTheme) {
         //点击导航按钮的时候调用这个
+//        if (TestLibUtil.httpMoudleList != null) {
+//            if (myAdapter == null) {
+//                myAdapter = new MyAdapter(context, TestLibUtil.httpMoudleList);
+//            } else {
+//                myAdapter.setList(TestLibUtil.httpMoudleList);
+//
+//            }
+//        }
     }
 
     @Override
