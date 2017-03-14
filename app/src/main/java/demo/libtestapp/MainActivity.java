@@ -53,7 +53,7 @@ public class MainActivity extends Activity {
                 "    ]\n" +
                 "}";
 
-        TestLibUtil.getInstance().sendmessage("", url, json);
+      //  TestLibUtil.getInstance().sendmessage("", url, json);
 
         //ip 测试
         IPinit();

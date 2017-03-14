@@ -20,9 +20,7 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -42,6 +40,8 @@ import httploglib.lib.R;
 import httploglib.lib.util.FileUtils;
 import io.mattcarroll.hover.Navigator;
 import io.mattcarroll.hover.NavigatorContent;
+import lib.adapter.AutoAdapter;
+import lib.adapter.ViewHolder;
 import lib.theming.HoverTheme;
 
 /**
@@ -83,7 +83,7 @@ public class CarshNavigatorContent extends FrameLayout implements NavigatorConte
         carshResultList = (LinearLayout) findViewById(R.id.carsh_result_list);
         tvCarsh = (TextView) findViewById(R.id.tv_carsh);
 
-        carshAdapter = new CarshAdapter();
+        carshAdapter = new CarshAdapter(context,lists);
         listview.setAdapter(carshAdapter);
 
 
@@ -228,24 +228,10 @@ public class CarshNavigatorContent extends FrameLayout implements NavigatorConte
     }
 
 
-    class CarshAdapter extends BaseAdapter {
+    class CarshAdapter extends AutoAdapter {
 
-        @Override
-        public int getCount() {
-            if (lists != null) {
-                return lists.size();
-            } else {
-                return 0;
-            }
-
-        }
-
-        @Override
-        public Object getItem(int i) {
-            if (lists != null && lists.size() > 0) {
-                return lists.get(i);
-            }
-            return null;
+        public CarshAdapter(Context context, List<?> list) {
+            super(context, list);
         }
 
         @Override
@@ -253,14 +239,25 @@ public class CarshNavigatorContent extends FrameLayout implements NavigatorConte
             return i;
         }
 
+//        @Override
+//        public View getView(int i, View view, ViewGroup viewGroup) {
+//            view = View.inflate(context, R.layout.carsh_result_item, null);
+//            TextView tv = (TextView) view.findViewById(R.id.tv_carsh_item);
+//            if (lists != null && lists.size() > 0) {
+//                tv.setText(lists.get(i));
+//            }
+//            return view;
+//        }
+
         @Override
-        public View getView(int i, View view, ViewGroup viewGroup) {
-            view = View.inflate(context, R.layout.carsh_result_item, null);
-            TextView tv = (TextView) view.findViewById(R.id.tv_carsh_item);
-            if (lists != null && lists.size() > 0) {
-                tv.setText(lists.get(i));
-            }
-            return view;
+        public int getLayoutID(int position) {
+            return R.layout.carsh_result_item;
+        }
+
+        @Override
+        public void baseGetView(int position, View v, ViewHolder vh) {
+            TextView tv =  vh.getTextView(R.id.tv_carsh_item);
+            tv.setText(lists.get(position));
         }
     }
 }

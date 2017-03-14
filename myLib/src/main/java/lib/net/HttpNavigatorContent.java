@@ -21,9 +21,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -40,6 +38,8 @@ import httploglib.lib.util.TestLibUtil;
 import httploglib.lib.util.Utils;
 import io.mattcarroll.hover.Navigator;
 import io.mattcarroll.hover.NavigatorContent;
+import lib.adapter.AutoAdapter;
+import lib.adapter.ViewHolder;
 import lib.theming.HoverTheme;
 
 /**
@@ -101,7 +101,7 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
         beens = TestLibUtil.httpMoudleList;
         if (beens != null && beens.size() > 0) {
             Collections.reverse(beens);//倒序刚发的在最前面
-            myAdapter = new MyAdapter();
+            myAdapter = new MyAdapter(context,beens);
             listview.setAdapter(myAdapter);
 
         }
@@ -126,7 +126,6 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
         tvJson = (TextView) findViewById(R.id.tv_json);
         tvJsonHeader = (TextView) findViewById(R.id.tv_json_header);
         btClose = (Button) findViewById(R.id.bt_close);
-
 
 
         btClose.setOnClickListener(new View.OnClickListener() {
@@ -196,7 +195,7 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
         setData();
     }
 
-    private void setData(){
+    private void setData() {
         HttpBeen httpBeen = TestLibUtil.httpMoudleList.get(clickPosition);
         tvUrl.setText(httpBeen.getUrl());
         tvJson.setText(httpBeen.getJson());
@@ -220,37 +219,59 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
     }
 
 
-    class MyAdapter extends BaseAdapter {
+    class MyAdapter extends AutoAdapter {
+        public MyAdapter(Context context, List<?> list) {
+            super(context, list);
+            // TODO Auto-generated constructor stub
+        }
+
+//        @Override
+//        public int getCount() {
+//            if (beens != null) return beens.size();
+//            else return 0;
+//
+//        }
+//
+//        @Override
+//        public Object getItem(int i) {
+//            return beens.get(i);
+//        }
+//
+//        @Override
+//        public long getItemId(int i) {
+//            return i;
+//        }
+
+//        @Override
+//        public View getView(int i, View view, ViewGroup viewGroup) {
+//            view = View.inflate(context, R.layout.result_list_item, null);
+//            TextView tv = (TextView) view.findViewById(R.id.list_item_text);
+//            HttpBeen httpBeen = beens.get(i);
+//            tv.setText(httpBeen.getUrl());
+//            if (!TextUtils.isEmpty(httpBeen.getJson())) {
+//                tv.setTextColor(context.getResources().getColor(R.color.colorWhite));
+//            } else {
+//                tv.setTextColor(context.getResources().getColor(R.color.colorAccent));
+//            }
+//            return view;
+//        }
 
         @Override
-        public int getCount() {
-            if (beens != null) return beens.size();
-            else return 0;
-
+        public int getLayoutID(int position) {
+            return R.layout.result_list_item;
         }
 
         @Override
-        public Object getItem(int i) {
-            return beens.get(i);
-        }
+        public void baseGetView(int position, View v, ViewHolder vh) {
 
-        @Override
-        public long getItemId(int i) {
-            return i;
-        }
-
-        @Override
-        public View getView(int i, View view, ViewGroup viewGroup) {
-            view = View.inflate(context, R.layout.result_list_item, null);
-            TextView tv = (TextView) view.findViewById(R.id.list_item_text);
-            HttpBeen httpBeen = beens.get(i);
+            TextView tv = vh.getTextView(R.id.list_item_text);
+            HttpBeen httpBeen = beens.get(position);
             tv.setText(httpBeen.getUrl());
             if (!TextUtils.isEmpty(httpBeen.getJson())) {
                 tv.setTextColor(context.getResources().getColor(R.color.colorWhite));
             } else {
                 tv.setTextColor(context.getResources().getColor(R.color.colorAccent));
             }
-            return view;
         }
     }
 
