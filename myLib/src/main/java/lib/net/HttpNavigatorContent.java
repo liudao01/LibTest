@@ -186,7 +186,9 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
     public void onEventMainThread(@NonNull HoverTheme newTheme) {
         //点击导航按钮的时候调用这个
         if (TestLibUtil.httpMoudleList != null) {
-            myAdapter.setList(TestLibUtil.httpMoudleList);
+            if (myAdapter != null) {
+                myAdapter.setList(TestLibUtil.httpMoudleList);
+            }
         }
     }
 

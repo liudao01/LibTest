@@ -166,8 +166,11 @@ public class CarshNavigatorContent extends FrameLayout implements NavigatorConte
     public void onEventMainThread(@NonNull HoverTheme newTheme) {
 //        mHoverTitleTextView.setTextColor(newTheme.getAccentColor());
 //        mGoalsTitleTextView.setTextColor(newTheme.getAccentColor());
+        if(carshAdapter!=null){
         selectCarsh();
         carshAdapter.setList(lists);
+
+        }
     }
 
     @Override
