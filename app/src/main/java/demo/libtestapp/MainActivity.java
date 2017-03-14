@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.view.View;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -53,8 +54,14 @@ public class MainActivity extends Activity {
                 "    ]\n" +
                 "}";
 
-      //  TestLibUtil.getInstance().sendmessage("", url, json);
+        TestLibUtil.getInstance().sendmessage("", url, json);
 
+        tvIpList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TestLibUtil.getInstance().sendmessage("", url, json);
+            }
+        });
         //ip 测试
         IPinit();
 

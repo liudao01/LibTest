@@ -1,12 +1,12 @@
 package lib.adapter;
 
-import java.util.List;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+
+import java.util.List;
 
 /**
  * 
@@ -22,6 +22,10 @@ public abstract class MBaseAdapter extends BaseAdapter {
 		this.context = context;
 		this.list = list;
 		this.inflater = LayoutInflater.from(context);
+	}
+	public void setList(List<?> list){
+		this.list = list;
+		this.notifyDataSetChanged();
 	}
 
 	public MBaseAdapter(LayoutInflater inflater, List<?> list) {

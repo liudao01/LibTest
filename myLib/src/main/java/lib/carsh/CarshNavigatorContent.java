@@ -99,7 +99,7 @@ public class CarshNavigatorContent extends FrameLayout implements NavigatorConte
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                carshAdapter.notifyDataSetChanged();
+                carshAdapter.setList(lists);
             }
         });
 
@@ -257,7 +257,7 @@ public class CarshNavigatorContent extends FrameLayout implements NavigatorConte
         @Override
         public void baseGetView(int position, View v, ViewHolder vh) {
             TextView tv =  vh.getTextView(R.id.tv_carsh_item);
-            tv.setText(lists.get(position));
+            tv.setText((String)list.get(position));
         }
     }
 }

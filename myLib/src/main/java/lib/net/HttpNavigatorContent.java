@@ -19,6 +19,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -47,6 +48,7 @@ import lib.theming.HoverTheme;
  */
 public class HttpNavigatorContent extends FrameLayout implements NavigatorContent, View.OnClickListener, AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
 
+    private static final String TAG = "HttpNavigatorContent";
     private final EventBus mBus;
     private View mLogo;
     //    private HoverMotion mHoverMotion;
@@ -99,6 +101,7 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
 
         //获得Serializable方式传过来的值
         beens = TestLibUtil.httpMoudleList;
+        Log.d(TAG, "init: beens = "+beens.toArray());
         if (beens != null && beens.size() > 0) {
             Collections.reverse(beens);//倒序刚发的在最前面
             myAdapter = new MyAdapter(context,beens);
@@ -113,7 +116,7 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
             public void onClick(View view) {
                 TestLibUtil.httpMoudleList.clear();
                 beens.clear();
-                myAdapter.notifyDataSetChanged();
+                myAdapter.setList(beens);
             }
         });
 
@@ -265,7 +268,7 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
         public void baseGetView(int position, View v, ViewHolder vh) {
 
             TextView tv = vh.getTextView(R.id.list_item_text);
-            HttpBeen httpBeen = beens.get(position);
+            HttpBeen httpBeen = (HttpBeen) list.get(position);
             tv.setText(httpBeen.getUrl());
             if (!TextUtils.isEmpty(httpBeen.getJson())) {
                 tv.setTextColor(context.getResources().getColor(R.color.colorWhite));
