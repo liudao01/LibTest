@@ -57,7 +57,7 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
     List<HttpBeen> beens;
     Button bt_clear;
     Context context;
-    MyAdapter myAdapter;
+    static MyAdapter myAdapter;
     private LinearLayout httpResult;
     private LinearLayout httpResultList;
     private ListView listview;
@@ -173,13 +173,16 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
     @Override
     public void onShown(@NonNull Navigator navigator) {
 
+    }
+
+    public static void setList(){
+
         if (TestLibUtil.httpMoudleList != null) {
             if (myAdapter != null) {
                 myAdapter.setList(TestLibUtil.httpMoudleList);
             }
         }
     }
-
     @Override
     public void onHidden() {
 
@@ -187,11 +190,6 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
 
     public void onEventMainThread(@NonNull HoverTheme newTheme) {
         //点击导航按钮的时候调用这个
-        if (TestLibUtil.httpMoudleList != null) {
-            if (myAdapter != null) {
-                myAdapter.setList(TestLibUtil.httpMoudleList);
-            }
-        }
     }
 
     @Override

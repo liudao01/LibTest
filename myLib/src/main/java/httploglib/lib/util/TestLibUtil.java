@@ -22,6 +22,7 @@ import httploglib.lib.service.WindowService;
 import lib.Bus;
 import lib.DemoHoverMenuService;
 import lib.appstate.AppStateTracker;
+import lib.net.HttpNavigatorContent;
 import lib.theming.HoverTheme;
 import lib.theming.HoverThemeManager;
 
@@ -112,6 +113,7 @@ public class TestLibUtil {
                 httpMoudleList.add(been);
             }
         }
+        HttpNavigatorContent.setList();
     }
 
     /**
