@@ -174,7 +174,9 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
     public void onShown(@NonNull Navigator navigator) {
 
         if (TestLibUtil.httpMoudleList != null) {
-            myAdapter.setList(TestLibUtil.httpMoudleList);
+            if (myAdapter != null) {
+                myAdapter.setList(TestLibUtil.httpMoudleList);
+            }
         }
     }
 
