@@ -112,8 +112,8 @@ public class TestLibUtil {
             } else {
                 httpMoudleList.add(been);
             }
+            HttpNavigatorContent.setList();
         }
-        HttpNavigatorContent.setList();
     }
 
     /**
@@ -129,6 +129,7 @@ public class TestLibUtil {
             } else {
                 httpMoudleList.add(httpBeen);
             }
+            HttpNavigatorContent.setList();
         }
     }
 
