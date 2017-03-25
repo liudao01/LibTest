@@ -9,7 +9,6 @@ import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 
 import com.orhanobut.logger.Logger;
-import com.wanjian.sak.LayoutManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,7 +79,7 @@ public class TestLibUtil {
             CrashHandler crashHandler = CrashHandler.getInstance();
             crashHandler.init(context);
             //UI
-            LayoutManager.init(context);
+           // LayoutManager.init(context);
             //
 
 
