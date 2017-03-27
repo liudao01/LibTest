@@ -4,7 +4,6 @@
     package="httploglib.lib">
 
     <application
-        android:name=".MyApplication"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
@@ -33,7 +32,7 @@
             <meta-data
                 android:name="android.accessibilityservice"
                 android:resource="@xml/accessible_service_config" />
-        </service>f
+        </service>
         <service android:name="lib.DemoHoverMenuService"/>
     </application>
 

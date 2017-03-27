@@ -20,7 +20,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.orhanobut.logger.Logger;
-import com.wanjian.sak.LayoutManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -254,7 +253,7 @@ public class WindowService extends Service implements AdapterView.OnItemClickLis
     }
 
     public static void setView(boolean b) {
-        LayoutManager.setTempViewVisible(b);
+       // LayoutManager.setTempViewVisible(b);
     }
 
     class WindowMyAdapter extends BaseAdapter {

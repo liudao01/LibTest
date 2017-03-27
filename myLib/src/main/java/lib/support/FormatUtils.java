@@ -20,9 +20,6 @@ import android.text.TextUtils;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
-import com.readystatesoftware.chuck.R;
-import com.readystatesoftware.chuck.internal.data.HttpHeader;
-import com.readystatesoftware.chuck.internal.data.HttpTransaction;
 
 import org.xml.sax.InputSource;
 
@@ -37,6 +34,10 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.sax.SAXSource;
 import javax.xml.transform.sax.SAXTransformerFactory;
 import javax.xml.transform.stream.StreamResult;
+
+import httploglib.lib.R;
+import lib.data.HttpHeader;
+import lib.data.HttpTransaction;
 
 public class FormatUtils {
 

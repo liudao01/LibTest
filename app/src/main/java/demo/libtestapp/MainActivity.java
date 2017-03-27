@@ -25,7 +25,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context = this;
-
+       // TestLibUtil.getInstance().startUtil(getApplication());
 
         setContentView(R.layout.activity_main);
 
