@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import httploglib.lib.been.IpConfigBeen;
+import lib.data.HttpTransaction;
 import lib.util.TestLibUtil;
 import lib.http.ChuckInterceptor;
 import okhttp3.OkHttpClient;
@@ -72,7 +73,10 @@ public class MainActivity extends Activity {
                 "    ]\n" +
                 "}";
 
-       // TestLibUtil.getInstance().sendmessage("", url, json);
+        HttpTransaction httpTransaction = new HttpTransaction();
+        httpTransaction.setUrl(url);
+        httpTransaction.setResponseBody(json);
+        TestLibUtil.getInstance().sendmessage(httpTransaction);
 
 //        tvIpList.setOnClickListener(new View.OnClickListener() {
 //            @Override
