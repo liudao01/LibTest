@@ -43,6 +43,7 @@ import lib.adapter.ViewHolder;
 import lib.data.HttpTransaction;
 import lib.theming.HoverTheme;
 import lib.util.TestLibUtil;
+import lib.util.Utils;
 
 /**
  * {@link NavigatorContent} that displays an introduction to Hover.
@@ -349,7 +350,10 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 //        HttpBeen httpBeen = (HttpBeen) TestLibUtil.httpMoudleList.get(position);
-//        Utils.copy(context, httpBeen.getUrl());
+        HttpTransaction httpTransaction = (HttpTransaction) TestLibUtil.httpMoudleList.get(position);
+        String str = TextUtils.isEmpty(httpTransaction.getRequestBody()) ? "" : "请求参数: " + httpTransaction.getRequestBody();//请求参数
+        Utils.copy(context, "请求方式: " + httpTransaction.getMethod() + "\n" + "请求地址: " + httpTransaction.getUrl()
+                + "\n" + str);
         return true;
     }
 
