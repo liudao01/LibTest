@@ -8,17 +8,26 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import httploglib.lib.been.IpConfigBeen;
-import httploglib.lib.util.TestLibUtil;
+import lib.util.TestLibUtil;
+import lib.http.ChuckInterceptor;
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends Activity {
     public Context context;
     private TextView tvIpList;
+    private Button btStart;
+
 
 
     @Override
@@ -29,8 +38,17 @@ public class MainActivity extends Activity {
 
         setContentView(R.layout.activity_main);
 
+        btStart = (Button) findViewById(R.id.bt_start);
 
         tvIpList = (TextView) findViewById(R.id.tv_ip_list);
+
+
+        btStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                doHttpActivity();
+            }
+        });
 
         //网络测试
         final String url = "www.baidu.com";
@@ -54,14 +72,14 @@ public class MainActivity extends Activity {
                 "    ]\n" +
                 "}";
 
-        TestLibUtil.getInstance().sendmessage("", url, json);
+       // TestLibUtil.getInstance().sendmessage("", url, json);
 
-        tvIpList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                TestLibUtil.getInstance().sendmessage("", url, json);
-            }
-        });
+//        tvIpList.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                TestLibUtil.getInstance().sendmessage("", url, json);
+//            }
+//        });
         //ip 测试
         IPinit();
 
@@ -97,6 +115,50 @@ public class MainActivity extends Activity {
         list.add(new IpConfigBeen("http://58.xx.xx.xxx:8008/truck/api/", "测试地址8", false));
         list.add(new IpConfigBeen("http://www.xxxxxxxx.com:8008/truck/api/", "正式接口", true));
         TestLibUtil.getInstance().initIpSwitchs(this.getApplicationContext(), list);
+    }
+
+
+    private OkHttpClient getClient(Context context) {
+        return new OkHttpClient.Builder()
+                // Add a ChuckInterceptor instance to your OkHttp client
+                .addInterceptor(new ChuckInterceptor(context))
+                .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                .build();
+    }
+
+    private void doHttpActivity() {
+        SampleApiService.HttpbinApi api = SampleApiService.getInstance(getClient(this));
+        Callback<Void> cb = new Callback<Void>() {
+            @Override public void onResponse(Call call, Response response) {}
+            @Override public void onFailure(Call call, Throwable t) { t.printStackTrace(); }
+        };
+        api.get().enqueue(cb);
+        api.post(new SampleApiService.Data("posted_____sssssssssssssssss")).enqueue(cb);
+        api.patch(new SampleApiService.Data("patched")).enqueue(cb);
+        api.put(new SampleApiService.Data("put")).enqueue(cb);
+        api.delete().enqueue(cb);
+        api.status(201).enqueue(cb);
+        api.status(401).enqueue(cb);
+        api.status(500).enqueue(cb);
+        api.delay(9).enqueue(cb);
+        api.delay(15).enqueue(cb);
+        api.redirectTo("https://http2.akamai.com").enqueue(cb);
+        api.redirect(3).enqueue(cb);
+        api.redirectRelative(2).enqueue(cb);
+        api.redirectAbsolute(4).enqueue(cb);
+        api.stream(500).enqueue(cb);
+        api.streamBytes(2048).enqueue(cb);
+        api.image("image/png").enqueue(cb);
+        api.gzip().enqueue(cb);
+        api.xml().enqueue(cb);
+        api.utf8().enqueue(cb);
+        api.deflate().enqueue(cb);
+        api.cookieSet("v").enqueue(cb);
+        api.basicAuth("me", "pass").enqueue(cb);
+        api.drip(512, 5, 1, 200).enqueue(cb);
+        api.deny().enqueue(cb);
+        api.cache("Mon").enqueue(cb);
+        api.cache(30).enqueue(cb);
     }
 
 }

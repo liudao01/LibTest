@@ -26,7 +26,7 @@ import java.util.List;
 
 import httploglib.lib.R;
 import httploglib.lib.been.IpConfigBeen;
-import httploglib.lib.util.TestLibUtil;
+import lib.util.TestLibUtil;
 
 /**
  * @explain 这是用于测试的类  demo 样例

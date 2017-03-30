@@ -16,7 +16,10 @@
 package lib.net;
 
 import android.content.Context;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.NonNull;
+import android.text.Html;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,13 +36,13 @@ import java.util.List;
 import de.greenrobot.event.EventBus;
 import httploglib.lib.R;
 import httploglib.lib.been.HttpBeen;
-import httploglib.lib.util.TestLibUtil;
-import httploglib.lib.util.Utils;
 import io.mattcarroll.hover.Navigator;
 import io.mattcarroll.hover.NavigatorContent;
 import lib.adapter.AutoAdapter;
 import lib.adapter.ViewHolder;
+import lib.data.HttpTransaction;
 import lib.theming.HoverTheme;
+import lib.util.TestLibUtil;
 
 /**
  * {@link NavigatorContent} that displays an introduction to Hover.
@@ -52,10 +55,11 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
     //    private HoverMotion mHoverMotion;
     private Button btClear;
     //    private RecyclerView recyclerview;
-    List<HttpBeen> beens;
+//    List<HttpBeen> beens;
+    List<HttpTransaction> httpTransactionList;
     Button bt_clear;
     Context context;
-    static MyAdapter myAdapter;
+    //    static MyAdapter myAdapter;
     private LinearLayout httpResult;
     private LinearLayout httpResultList;
     private ListView listview;
@@ -67,7 +71,34 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
     private TextView tvJsonHeader;
 
     private int clickPosition;
+    static ListHttpAdapter listHttpAdapter;
 
+    TextView url;
+    TextView method;
+    TextView protocol;
+    TextView status;
+    TextView response;
+    TextView ssl;
+    TextView requestTime;
+    TextView responseTime;
+    TextView duration;
+    TextView requestSize;
+    TextView responseSize;
+    TextView totalSize;
+    private TextView requestHeaders;
+    private TextView requestBody;
+    private TextView responseHeaders;
+    private TextView reponseBody;
+
+
+    static Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            List<HttpTransaction> httpTransactionList = (List<HttpTransaction>) msg.obj;
+            listHttpAdapter.setList(httpTransactionList);
+        }
+    };
 
     public HttpNavigatorContent(@NonNull Context context, @NonNull EventBus bus) {
         super(context);
@@ -76,6 +107,7 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
         init();
         initResult();
     }
+
 
     private void init() {
         LayoutInflater.from(getContext()).inflate(R.layout.result_list, this, true);
@@ -97,14 +129,18 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
         listview.setOnItemClickListener(this);
         listview.setOnItemLongClickListener(this);
 
-        //获得Serializable方式传过来的值
-        beens = TestLibUtil.httpMoudleList;
+        httpTransactionList = TestLibUtil.httpMoudleList;
 
-        if (beens != null && beens.size() > 0) {
-            Collections.reverse(beens);//倒序刚发的在最前面
+//        if (beens != null && beens.size() > 0) {
+//            Collections.reverse(beens);//倒序刚发的在最前面
+//        }
+        if (httpTransactionList != null && httpTransactionList.size() > 0) {
+            Collections.reverse(httpTransactionList);//倒序刚发的在最前面
         }
-        myAdapter = new MyAdapter(context, beens);
-        listview.setAdapter(myAdapter);
+        listHttpAdapter = new ListHttpAdapter(context, httpTransactionList);
+        // myAdapter = new MyAdapter(context, beens);
+//        listview.setAdapter(myAdapter);
+        listview.setAdapter(listHttpAdapter);
 
         // Logger.d( beens.get(0).getJson());
         bt_clear = (Button) findViewById(R.id.bt_clear);
@@ -112,11 +148,32 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
             @Override
             public void onClick(View view) {
                 TestLibUtil.httpMoudleList.clear();
-                beens.clear();
-                myAdapter.setList(beens);
+                httpTransactionList.clear();
+//              myAdapter.setList(beens);
+                listHttpAdapter.setList(httpTransactionList);
             }
         });
 
+
+        //数据详情的控件
+
+        url = (TextView) findViewById(R.id.url);
+        method = (TextView) findViewById(R.id.method);
+        protocol = (TextView) findViewById(R.id.protocol);
+        status = (TextView) findViewById(R.id.status);
+        response = (TextView) findViewById(R.id.response);
+        ssl = (TextView) findViewById(R.id.ssl);
+        requestTime = (TextView) findViewById(R.id.request_time);
+        responseTime = (TextView) findViewById(R.id.response_time);
+        duration = (TextView) findViewById(R.id.duration);
+        requestSize = (TextView) findViewById(R.id.request_size);
+        responseSize = (TextView) findViewById(R.id.response_size);
+        totalSize = (TextView) findViewById(R.id.total_size);
+
+        requestHeaders = (TextView) findViewById(R.id.request_headers);
+        requestBody = (TextView) findViewById(R.id.request_body);
+        responseHeaders = (TextView) findViewById(R.id.response_headers);
+        reponseBody = (TextView) findViewById(R.id.reponse_body);
 
     }
 
@@ -176,15 +233,31 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
 //        }
     }
 
+    public static void oldsetList() {
+
+//        if (TestLibUtil.httpMoudleList != null) {
+//            if (myAdapter != null) {
+//                List<HttpBeen> httpMoudleList = TestLibUtil.httpMoudleList;
+//                if (httpMoudleList != null && httpMoudleList.size() > 0) {
+//                    Collections.reverse(httpMoudleList);//倒序刚发的在最前面
+//                }
+//                myAdapter.setList(httpMoudleList);
+//            }
+//        }
+    }
+
     public static void setList() {
 
         if (TestLibUtil.httpMoudleList != null) {
-            if (myAdapter != null) {
-                List<HttpBeen> httpMoudleList = TestLibUtil.httpMoudleList;
+            if (listHttpAdapter != null) {
+                List<HttpTransaction> httpMoudleList = TestLibUtil.httpMoudleList;
                 if (httpMoudleList != null && httpMoudleList.size() > 0) {
                     Collections.reverse(httpMoudleList);//倒序刚发的在最前面
                 }
-                myAdapter.setList(httpMoudleList);
+                Message message = Message.obtain();
+                message.obj = httpMoudleList;
+                handler.sendMessage(message);
+
             }
         }
     }
@@ -217,11 +290,48 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
 //        Toast.makeText(context,"点击了",Toast.LENGTH_SHORT).show();
         showResult();
         clickPosition = position;
-        setData();
+        //setData();
+        setHttpInfoData((HttpTransaction) httpTransactionList.get(position));
+    }
+
+    private void setHttpInfoData(HttpTransaction transaction) {
+        url.setText(transaction.getUrl());
+        method.setText(transaction.getMethod());
+        protocol.setText(transaction.getProtocol());
+        status.setText(transaction.getStatus().toString());
+        response.setText(transaction.getResponseSummaryText());
+        ssl.setText((transaction.isSsl() ? R.string.chuck_yes : R.string.chuck_no));
+        requestTime.setText(transaction.getRequestDateString());
+        responseTime.setText(transaction.getResponseDateString());
+        duration.setText(transaction.getDurationString());
+        requestSize.setText(transaction.getRequestSizeString());
+        responseSize.setText(transaction.getResponseSizeString());
+        totalSize.setText(transaction.getTotalSizeString());
+
+        requestHeaders.setVisibility((TextUtils.isEmpty(transaction.getRequestHeadersString(true)) ? View.GONE : View.VISIBLE));
+        responseHeaders.setVisibility((TextUtils.isEmpty(transaction.getResponseHeadersString(true)) ? View.GONE : View.VISIBLE));
+
+        requestHeaders.setText("requestHeaders  " + Html.fromHtml(transaction.getRequestHeadersString(true)));
+        responseHeaders.setText("responseHeaders  " + Html.fromHtml(transaction.getResponseHeadersString(true)));
+
+        setText(1, requestBody, transaction.getFormattedRequestBody(), transaction.requestBodyIsPlainText());
+        setText(2, reponseBody, transaction.getFormattedResponseBody(), transaction.responseBodyIsPlainText());
+    }
+
+    private void setText(int type, TextView textView, String bodyString, boolean isPlainText) {
+        if (!isPlainText) {
+            textView.setText(context.getString(R.string.chuck_body_omitted));
+        } else {
+            if (type == 1) {
+                textView.setText("requestBody " + bodyString);
+            } else {
+                textView.setText("reponseBody " + bodyString);
+            }
+        }
     }
 
     private void setData() {
-        HttpBeen httpBeen = TestLibUtil.httpMoudleList.get(clickPosition);
+        HttpBeen httpBeen = (HttpBeen) TestLibUtil.httpMoudleList.get(clickPosition);
         tvUrl.setText(httpBeen.getUrl());
         tvJson.setText(httpBeen.getJson());
 
@@ -238,8 +348,8 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
 
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-        HttpBeen httpBeen = TestLibUtil.httpMoudleList.get(position);
-        Utils.copy(context, httpBeen.getUrl());
+//        HttpBeen httpBeen = (HttpBeen) TestLibUtil.httpMoudleList.get(position);
+//        Utils.copy(context, httpBeen.getUrl());
         return true;
     }
 
@@ -250,36 +360,6 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
             // TODO Auto-generated constructor stub
         }
 
-//        @Override
-//        public int getCount() {
-//            if (beens != null) return beens.size();
-//            else return 0;
-//
-//        }
-//
-//        @Override
-//        public Object getItem(int i) {
-//            return beens.get(i);
-//        }
-//
-//        @Override
-//        public long getItemId(int i) {
-//            return i;
-//        }
-
-//        @Override
-//        public View getView(int i, View view, ViewGroup viewGroup) {
-//            view = View.inflate(context, R.layout.result_list_item, null);
-//            TextView tv = (TextView) view.findViewById(R.id.list_item_text);
-//            HttpBeen httpBeen = beens.get(i);
-//            tv.setText(httpBeen.getUrl());
-//            if (!TextUtils.isEmpty(httpBeen.getJson())) {
-//                tv.setTextColor(context.getResources().getColor(R.color.colorWhite));
-//            } else {
-//                tv.setTextColor(context.getResources().getColor(R.color.colorAccent));
-//            }
-//            return view;
-//        }
 
         @Override
         public int getLayoutID(int position) {

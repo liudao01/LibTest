@@ -2,7 +2,7 @@ package demo.libtestapp;
 
 import android.app.Application;
 
-import httploglib.lib.util.TestLibUtil;
+import lib.util.TestLibUtil;
 
 /**
  * @author liuml

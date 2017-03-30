@@ -1,4 +1,4 @@
-package httploglib.lib.util;
+package lib.util;
 
 /**
  * Created by liuml on 2016/6/27 0027 17:31

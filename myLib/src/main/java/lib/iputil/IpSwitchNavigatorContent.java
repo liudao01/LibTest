@@ -35,7 +35,7 @@ import java.util.List;
 import de.greenrobot.event.EventBus;
 import httploglib.lib.R;
 import httploglib.lib.been.IpConfigBeen;
-import httploglib.lib.util.TestLibUtil;
+import lib.util.TestLibUtil;
 import io.mattcarroll.hover.Navigator;
 import io.mattcarroll.hover.NavigatorContent;
 import lib.theming.HoverTheme;

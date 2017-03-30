@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:visibility="gone">
 
-        <include layout="@layout/result" />
+        <include layout="@layout/result_http_info" />
     </LinearLayout>
 
     <LinearLayout

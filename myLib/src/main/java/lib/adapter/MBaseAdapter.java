@@ -15,7 +15,7 @@ public abstract class MBaseAdapter extends BaseAdapter {
     public LayoutInflater inflater;
     public Context context;
     public List<?> list;
-
+    public abstract int getLayoutID(int position);
     public MBaseAdapter(Context context, List<?> list) {
         this.context = context;
         this.list = list;
@@ -24,6 +24,7 @@ public abstract class MBaseAdapter extends BaseAdapter {
 
     public void setList(List<?> list) {
         this.list = list;
+
         this.notifyDataSetChanged();
     }
 
@@ -56,16 +57,29 @@ public abstract class MBaseAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         return baseGetView(position, convertView, parent);
     }
+//
+//    /**
+//     * 与BaseAdapter 中的getView() 一样
+//     *
+//     * @param position
+//     * @param convertView
+//     * @param parent
+//     * @return
+//     */
+//    public abstract View baseGetView(int position, View convertView,
+//                                     ViewGroup parent);
 
-    /**
-     * 与BaseAdapter 中的getView() 一样
-     *
-     * @param position
-     * @param convertView
-     * @param parent
-     * @return
-     */
-    public abstract View baseGetView(int position, View convertView,
-                                     ViewGroup parent);
 
+    public View baseGetView(int position, View convertView, ViewGroup parent) {
+
+        if (convertView == null) {
+            convertView = inflater
+                    .inflate(getLayoutID(position), parent, false);
+        }
+        baseGetView(position, convertView,
+                ViewHolder.getViewHolder(convertView));
+        return convertView;
+    }
+
+    public abstract void baseGetView(int position, View v, ViewHolder vh);
 }

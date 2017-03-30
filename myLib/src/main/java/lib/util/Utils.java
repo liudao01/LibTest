@@ -1,4 +1,4 @@
-package httploglib.lib.util;
+package lib.util;
 
 import android.app.Activity;
 import android.app.ActivityManager;

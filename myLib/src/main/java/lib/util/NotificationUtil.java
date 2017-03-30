@@ -1,4 +1,4 @@
-package httploglib.lib.util;
+package lib.util;
 
 
 import android.app.Notification;
@@ -9,7 +9,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
-import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationCompat.Builder;
 import android.widget.Button;
 import android.widget.RemoteViews;

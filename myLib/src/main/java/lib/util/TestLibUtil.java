@@ -1,4 +1,4 @@
-package httploglib.lib.util;
+package lib.util;
 
 import android.app.ActivityManager;
 import android.app.Application;
@@ -21,6 +21,7 @@ import httploglib.lib.service.WindowService;
 import lib.Bus;
 import lib.DemoHoverMenuService;
 import lib.appstate.AppStateTracker;
+import lib.data.HttpTransaction;
 import lib.net.HttpNavigatorContent;
 import lib.theming.HoverTheme;
 import lib.theming.HoverThemeManager;
@@ -32,7 +33,7 @@ import lib.theming.HoverThemeManager;
  */
 
 public class TestLibUtil {
-    public static List<HttpBeen> httpMoudleList;
+    public static List httpMoudleList;
     private Application context;
     IpLibConfig libConfig;
 
@@ -119,6 +120,22 @@ public class TestLibUtil {
      * 发送网路哦请求
      */
     public void sendmessage(HttpBeen httpBeen) {
+        //最大条数  0条避免数量过多溢出
+        if (httpMoudleList != null) {
+
+            if (httpMoudleList.size() > 30) {
+                httpMoudleList.remove(30);
+                httpMoudleList.add(httpBeen);
+            } else {
+                httpMoudleList.add(httpBeen);
+            }
+            HttpNavigatorContent.setList();
+        }
+    }
+    /**
+     * 发送网路哦请求
+     */
+    public void sendmessage(HttpTransaction httpBeen) {
         //最大条数  0条避免数量过多溢出
         if (httpMoudleList != null) {
 

@@ -18,8 +18,8 @@ import java.util.List;
 
 import httploglib.lib.R;
 import httploglib.lib.been.IpConfigBeen;
-import httploglib.lib.util.CommonDialog;
-import httploglib.lib.util.TestLibUtil;
+import lib.util.CommonDialog;
+import lib.util.TestLibUtil;
 
 
 /**

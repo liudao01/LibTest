@@ -29,7 +29,7 @@ import httploglib.lib.actiity.CrashListActivity;
 import httploglib.lib.actiity.IpConfigListActivity;
 import httploglib.lib.actiity.ResultListActivity;
 import httploglib.lib.been.HttpBeen;
-import httploglib.lib.util.NotificationUtil;
+import lib.util.NotificationUtil;
 
 
 /**

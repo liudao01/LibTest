@@ -36,7 +36,7 @@ import java.util.List;
 
 import de.greenrobot.event.EventBus;
 import httploglib.lib.R;
-import httploglib.lib.util.FileUtils;
+import lib.util.FileUtils;
 import io.mattcarroll.hover.Navigator;
 import io.mattcarroll.hover.NavigatorContent;
 import lib.adapter.AutoAdapter;

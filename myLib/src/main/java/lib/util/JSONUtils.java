@@ -1,4 +1,4 @@
-package httploglib.lib.util;
+package lib.util;
 
 import org.json.JSONArray;
 import org.json.JSONException;

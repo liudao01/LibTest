@@ -18,8 +18,6 @@ package lib.http;
 import android.content.Context;
 import android.util.Log;
 
-import com.orhanobut.logger.Logger;
-
 import java.io.EOFException;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -30,6 +28,7 @@ import java.util.concurrent.TimeUnit;
 import httploglib.lib.R;
 import lib.data.HttpTransaction;
 import lib.support.RetentionManager;
+import lib.util.TestLibUtil;
 import okhttp3.Headers;
 import okhttp3.Interceptor;
 import okhttp3.MediaType;
@@ -201,7 +200,7 @@ public final class ChuckInterceptor implements Interceptor {
 
         //update(transaction, transactionUri);
 
-        Logger.d("请求的参数  =  \n" + transaction.toString());
+        TestLibUtil.getInstance().sendmessage(transaction);
         return response;
     }
 

@@ -32,6 +32,15 @@ public class ViewHolder {
         view.setTag(viewHolder);
     }
 
+    @SuppressWarnings({ "unchecked", "hiding"})
+    public <T extends View> T getView(int resId){
+        View v=viewHolder.get(resId);
+        if(null==v){
+            v = view.findViewById(resId);
+            viewHolder.put(resId, v);
+        }
+        return (T)v;
+    }
 
     public <T extends View> T get(int id) {
 
@@ -70,5 +79,7 @@ public class ViewHolder {
     public void setTextView(int  id,CharSequence charSequence){
         getTextView(id).setText(charSequence);
     }
+
+
 
 }

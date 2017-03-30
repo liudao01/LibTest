@@ -19,8 +19,8 @@ import java.util.List;
 import httploglib.lib.R;
 import httploglib.lib.been.HttpBeen;
 import httploglib.lib.service.WindowService;
-import httploglib.lib.util.TestLibUtil;
-import httploglib.lib.util.Utils;
+import lib.util.TestLibUtil;
+import lib.util.Utils;
 
 /**
  * @author liuml.
