@@ -1,6 +1,6 @@
 # 主要功能 1 查看网络请求地址  2 收集carsh 3 切换服务器ip 
 # 效果图 网络的  
-![https://github.com/liudao01/LibTest/blob/master/demo.gif]
+ ![img](https://github.com/liudao01/LibTest/blob/master/demo.gif)
 
 # 这里是1.4.1 版本的  (自用的 贡献出来)
 
