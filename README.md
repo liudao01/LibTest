@@ -43,6 +43,7 @@ if (LogUtil.DEBUG) {//我这里判断的是否是debug版本
         TestLibUtil.getInstance().initIpSwitchs(this.getApplicationContext(), list);
     }
 ______________________________________
+```
 ```java
 # 做一下悬浮窗判断
     在起始页面 或者欢迎页面加入下面代码,或者你自己
@@ -57,6 +58,8 @@ ______________________________________
                 startActivity(drawOverlaysSettingsIntent);
             }
         }
+	
+```
 ## 2, 如果要有切换ip的功能,设置自己url 在接口地址里面 设置自己的url 
  ```java
  public static String switchs  = TestLibConfig.getSwitchs(MyApplication.getContext());//设置接口地址前缀   获取当前接口 是正式还是测试
@@ -89,12 +92,7 @@ ______________________________________
   
 ```
 
-
-
-
-
-
-
+----end----下面的是之前版本的 
 
 
 //我这个也只是初级版本 还会再不断的修改的  
