@@ -1,6 +1,5 @@
 # 这里是1.4.1 版本的  (自用的 贡献出来)
 
-
 ***************测试工具库  集成步骤**************
 ## 引入
 Add it in your root build.gradle at the end of repositories:
@@ -41,7 +40,8 @@ Share this release:
        list.add(new IpConfigBeen("http://www.xxxxxx.com:8008", "正式接口", false));
         TestLibUtil.getInstance().initIpSwitchs(this.getApplicationContext(), list);
     }
-    
+______________________________________
+# 做一下悬浮窗判断
     在起始页面 或者欢迎页面加入下面代码,或者你自己
     手动加上悬浮窗权限也行 建议用这种方式自动判断
     /**
