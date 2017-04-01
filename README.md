@@ -27,7 +27,9 @@ Share this release:
 2  必须将gradle 相关的东西 提交到github上面去要不然会编译错误
 
 ## 1,   //初始化测试库  网络请求初始化 IP地址初始化
-       if (LogUtil.DEBUG) {//我这里判断的是否是debug版本
+
+```java
+if (LogUtil.DEBUG) {//我这里判断的是否是debug版本
             //工具类 初始化
            TestLibUtil.getInstance().startUtil(this);
             //IP地址初始化  这个用不用都行 你想有切换ip的功能 你就加上下面的代码
@@ -41,6 +43,7 @@ Share this release:
         TestLibUtil.getInstance().initIpSwitchs(this.getApplicationContext(), list);
     }
 ______________________________________
+```java
 # 做一下悬浮窗判断
     在起始页面 或者欢迎页面加入下面代码,或者你自己
     手动加上悬浮窗权限也行 建议用这种方式自动判断
