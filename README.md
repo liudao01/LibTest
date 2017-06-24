@@ -21,7 +21,7 @@ Step 2. Add the dependency
 	}
 Share this release:
 
-## 在你自己的 Application中 使用下面的代码
+## 在你自己的 welcome页面 (第一个页面) 使用下面的代码
 
 上传jitpack 注意事项:
 1 将github 项目克隆到非空目录   可以使用tmp  新建一个空tmp 文件夹 再移动.git文件夹  再删除tmp文件夹 再更新
