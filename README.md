@@ -21,6 +21,16 @@ Step 2. Add the dependency
 	}
 Share this release:
 
+## 在 application 加上
+
+     tools:replace="Android:icon,android:name,android:theme,android:allowBackup,android:supportsRtl,android:label"
+     
+ # 在AndroidManifest 根目录 增加 如下
+ 
+ 
+         xmlns:tools="http://schemas.android.com/tools"
+         
+         
 ## 在你自己的 welcome页面 (第一个页面) 使用下面的代码
 
 上传jitpack 注意事项:
@@ -37,6 +47,8 @@ if (LogUtil.DEBUG) {//我这里判断的是否是debug版本
            TestLibConfig.setSwitchs(this, initSwitchs());
 	    IPinit();
         }
+        
+        
 	 public void IPinit() {
         List<IpConfigBeen> list = new ArrayList<>();
         list.add(new IpConfigBeen("http://xx.xx.xx.227:81", "测试服务器", true));//别照抄..你自己的测试服务器地址
@@ -45,6 +57,9 @@ if (LogUtil.DEBUG) {//我这里判断的是否是debug版本
     }
 ______________________________________
 ```
+
+
+
 ```java
 # 做一下悬浮窗判断
     在起始页面 或者欢迎页面加入下面代码,或者你自己
