@@ -82,7 +82,7 @@ public class CarshNavigatorContent extends FrameLayout implements NavigatorConte
         carshResultList = (LinearLayout) findViewById(R.id.carsh_result_list);
         tvCarsh = (TextView) findViewById(R.id.tv_carsh);
 
-        carshAdapter = new CarshAdapter(context,lists);
+        carshAdapter = new CarshAdapter(context, lists);
         listview.setAdapter(carshAdapter);
 
 
@@ -117,10 +117,12 @@ public class CarshNavigatorContent extends FrameLayout implements NavigatorConte
         File dir = FileUtils.getCrashFile();
         File[] files = dir.listFiles();
         lists.clear();
-        for (File mCurrentFile : files) {
-            lists.add(mCurrentFile.getName());
+        if (null != files) {
+            for (File mCurrentFile : files) {
+                lists.add(mCurrentFile.getName());
+            }
+            Collections.reverse(lists);//倒序刚发的在最前面
         }
-        Collections.reverse(lists);//倒序刚发的在最前面
 
     }
 
@@ -166,9 +168,9 @@ public class CarshNavigatorContent extends FrameLayout implements NavigatorConte
     public void onEventMainThread(@NonNull HoverTheme newTheme) {
 //        mHoverTitleTextView.setTextColor(newTheme.getAccentColor());
 //        mGoalsTitleTextView.setTextColor(newTheme.getAccentColor());
-        if(carshAdapter!=null){
-        selectCarsh();
-        carshAdapter.setList(lists);
+        if (carshAdapter != null) {
+            selectCarsh();
+            carshAdapter.setList(lists);
 
         }
     }
@@ -206,7 +208,6 @@ public class CarshNavigatorContent extends FrameLayout implements NavigatorConte
     }
 
 
-
     class CarshAdapter extends AutoAdapter {
 
         public CarshAdapter(Context context, List<?> list) {
@@ -235,8 +236,8 @@ public class CarshNavigatorContent extends FrameLayout implements NavigatorConte
 
         @Override
         public void baseGetView(int position, View v, ViewHolder vh) {
-            TextView tv =  vh.getTextView(R.id.tv_carsh_item);
-            tv.setText((String)list.get(position));
+            TextView tv = vh.getTextView(R.id.tv_carsh_item);
+            tv.setText((String) list.get(position));
         }
     }
 }
