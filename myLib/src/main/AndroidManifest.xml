@@ -4,8 +4,8 @@
     package="httploglib.lib">
 
     <application
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppT
+        heme">
         <activity
             android:name="httploglib.lib.actiity.DemoTest"
             android:launchMode="singleTask" />

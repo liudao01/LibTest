@@ -2,6 +2,7 @@ package lib.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.text.TextUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,6 +31,9 @@ public class ListDataSave {
     }
 
     public ListDataSave(Context mContext, String preferenceName) {
+        if(TextUtils.isEmpty(preferenceName)){
+            preferenceName = ListDataSave;
+        }
         preferences = mContext.getSharedPreferences(preferenceName, Context.MODE_PRIVATE);
         editor = preferences.edit();
     }
