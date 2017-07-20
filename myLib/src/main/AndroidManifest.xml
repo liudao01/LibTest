@@ -4,6 +4,7 @@
     package="httploglib.lib">
 
     <application
+        tools:replace="android:icon, android:theme"
         android:theme="@style/AppTheme">
         <activity
             android:name="httploglib.lib.actiity.DemoTest"
