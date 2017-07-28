@@ -31,21 +31,18 @@ public class MainActivity extends BaseActivity {
     private Button btMomory;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context = this;
-       // TestLibUtil.getInstance().startUtil(getApplication());
+        // TestLibUtil.getInstance().startUtil(getApplication());
 
         setContentView(R.layout.activity_main);
 
         btStart = (Button) findViewById(R.id.bt_start);
 
         tvIpList = (TextView) findViewById(R.id.tv_ip_list);
-    btMomory = (Button) findViewById(R.id.bt_momory);
-
-
+        btMomory = (Button) findViewById(R.id.bt_momory);
         btStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,7 +89,7 @@ public class MainActivity extends BaseActivity {
         List<IpConfigBeen> ipList = TestLibUtil.getInstance().getIpList();
         String list = "";
         for (IpConfigBeen ipConfigBeen : ipList) {
-            list = list + ipConfigBeen.toString()+"\n";
+            list = list + ipConfigBeen.toString() + "\n";
         }
         tvIpList.setText(list);
 
@@ -113,7 +110,7 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(getApplicationContext(),TestActivity.class));
+                startActivity(new Intent(getApplicationContext(), TestActivity.class));
             }
         });
     }
@@ -145,8 +142,14 @@ public class MainActivity extends BaseActivity {
     private void doHttpActivity() {
         SampleApiService.HttpbinApi api = SampleApiService.getInstance(getClient(this));
         Callback<Void> cb = new Callback<Void>() {
-            @Override public void onResponse(Call call, Response response) {}
-            @Override public void onFailure(Call call, Throwable t) { t.printStackTrace(); }
+            @Override
+            public void onResponse(Call call, Response response) {
+            }
+
+            @Override
+            public void onFailure(Call call, Throwable t) {
+                t.printStackTrace();
+            }
         };
         api.get().enqueue(cb);
         api.post(new SampleApiService.Data("posted_____sssssssssssssssss")).enqueue(cb);
