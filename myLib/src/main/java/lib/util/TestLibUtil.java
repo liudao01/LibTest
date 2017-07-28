@@ -9,6 +9,7 @@ import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 
 import com.orhanobut.logger.Logger;
+import com.squareup.leakcanary.LeakCanary;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,12 +49,13 @@ public class TestLibUtil {
 
 
     /**
-     * 1.1版本初始化
+     * 初始化
      *
      * @param context
      */
     public void startUtil(Application context) {
         this.context = context;
+        LeakCanary.install(context);
         DemoHoverMenuService.showFloatingMenu(context);
         if (httpMoudleList == null) {
             httpMoudleList = new ArrayList<>();
@@ -64,6 +66,8 @@ public class TestLibUtil {
 
         setupTheme();
         setupAppStateTracking();
+
+
     }
 
     /**

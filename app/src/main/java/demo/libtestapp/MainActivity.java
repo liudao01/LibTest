@@ -1,6 +1,5 @@
 package demo.libtestapp;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -16,18 +15,20 @@ import java.util.List;
 
 import httploglib.lib.been.IpConfigBeen;
 import lib.data.HttpTransaction;
-import lib.util.TestLibUtil;
 import lib.http.ChuckInterceptor;
+import lib.util.TestLibUtil;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends Activity {
+public class MainActivity extends BaseActivity {
     public Context context;
     private TextView tvIpList;
     private Button btStart;
+
+    private Button btMomory;
 
 
 
@@ -42,6 +43,7 @@ public class MainActivity extends Activity {
         btStart = (Button) findViewById(R.id.bt_start);
 
         tvIpList = (TextView) findViewById(R.id.tv_ip_list);
+    btMomory = (Button) findViewById(R.id.bt_momory);
 
 
         btStart.setOnClickListener(new View.OnClickListener() {
@@ -104,6 +106,16 @@ public class MainActivity extends Activity {
                 startActivity(drawOverlaysSettingsIntent);
             }
         }
+
+
+        //检测内存泄露
+        btMomory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(getApplicationContext(),TestActivity.class));
+            }
+        });
     }
 
     public void IPinit() {
