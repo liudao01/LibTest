@@ -63,6 +63,7 @@ public class TestLibUtil {
         crashHandler.init(context);
 
         setupTheme();
+
         setupAppStateTracking();
     }
 
