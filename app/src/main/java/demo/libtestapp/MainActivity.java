@@ -9,6 +9,7 @@ import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +36,7 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context = this;
-        // TestLibUtil.getInstance().startUtil(getApplication());
+        TestLibUtil.getInstance().startUtil(getApplication());
 
         setContentView(R.layout.activity_main);
 
@@ -47,6 +48,7 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 doHttpActivity();
+                Toast.makeText(getApplicationContext(),"发送数据",Toast.LENGTH_SHORT).show();
             }
         });
 
