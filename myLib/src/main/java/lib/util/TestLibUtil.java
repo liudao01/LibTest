@@ -80,7 +80,7 @@ public class TestLibUtil {
             CrashHandler crashHandler = CrashHandler.getInstance();
             crashHandler.init(context);
             //UI
-           // LayoutManager.init(context);
+            // LayoutManager.init(context);
             //
 
 
@@ -104,7 +104,7 @@ public class TestLibUtil {
         Logger.d("打印数据 url=     \n" + url);
         HttpTransaction been = new HttpTransaction();
         been.setUrl(url);
-        been.setResponseBody(json);
+        been.setRequestBody(json);
 //        been.setRequestBodyIsPlainText(header);
         //最大条数  0条避免数量过多溢出
         if (httpMoudleList != null) {
