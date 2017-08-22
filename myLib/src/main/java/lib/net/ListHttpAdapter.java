@@ -6,8 +6,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.orhanobut.logger.Logger;
-
 import java.util.List;
 
 import httploglib.lib.R;
@@ -53,7 +51,7 @@ public class ListHttpAdapter extends AutoAdapter {
     public void baseGetView(int position, View v, ViewHolder vh) {
 
         HttpTransaction transaction = (HttpTransaction) list.get(position);
-        Logger.d(" 每个item 的值 = "+transaction.toString());
+//        Logger.d(" 每个item 的值 = "+transaction.toString());
         TextView code;
         TextView path;
         TextView host;
