@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import httploglib.lib.R;
-import httploglib.lib.been.HttpBeen;
 import httploglib.lib.been.IpConfigBeen;
 import httploglib.lib.crash.CrashHandler;
 import httploglib.lib.service.WindowService;
@@ -103,7 +102,10 @@ public class TestLibUtil {
         //BroadcastUtil.send(context, intent1, BroadcastUtil.windows);
         //直接操作静态变量
         Logger.d("打印数据 url=     \n" + url);
-        HttpBeen been = new HttpBeen(url, json, header);
+        HttpTransaction been = new HttpTransaction();
+        been.setUrl(url);
+        been.setRequestBody(json);
+//        been.setRequestBodyIsPlainText(header);
         //最大条数  0条避免数量过多溢出
         if (httpMoudleList != null) {
 
@@ -116,23 +118,23 @@ public class TestLibUtil {
             HttpNavigatorContent.setList();
         }
     }
-
-    /**
-     * 发送网路哦请求
-     */
-    public void sendmessage(HttpBeen httpBeen) {
-        //最大条数  0条避免数量过多溢出
-        if (httpMoudleList != null) {
-
-            if (httpMoudleList.size() > 30) {
-                httpMoudleList.remove(30);
-                httpMoudleList.add(httpBeen);
-            } else {
-                httpMoudleList.add(httpBeen);
-            }
-            HttpNavigatorContent.setList();
-        }
-    }
+//
+//    /**
+//     * 发送网路哦请求
+//     */
+//    public void sendmessage(HttpBeen httpBeen) {
+//        //最大条数  0条避免数量过多溢出
+//        if (httpMoudleList != null) {
+//
+//            if (httpMoudleList.size() > 30) {
+//                httpMoudleList.remove(30);
+//                httpMoudleList.add(httpBeen);
+//            } else {
+//                httpMoudleList.add(httpBeen);
+//            }
+//            HttpNavigatorContent.setList();
+//        }
+//    }
     /**
      * 发送网路哦请求
      */
