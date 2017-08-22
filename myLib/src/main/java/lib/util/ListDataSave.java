@@ -31,11 +31,17 @@ public class ListDataSave {
     }
 
     public ListDataSave(Context mContext, String preferenceName) {
-        if(TextUtils.isEmpty(preferenceName)){
+        if (TextUtils.isEmpty(preferenceName)) {
             preferenceName = ListDataSave;
         }
-        preferences = mContext.getSharedPreferences(preferenceName, Context.MODE_PRIVATE);
-        editor = preferences.edit();
+        try {
+
+            preferences = mContext.getSharedPreferences(preferenceName, Context.MODE_PRIVATE);
+            editor = preferences.edit();
+
+        } catch (Exception e) {
+
+        }
     }
 
     //设置用户数据
@@ -47,9 +53,6 @@ public class ListDataSave {
     public String getStringData(String key) {
         return preferences.getString(key, "").trim();
     }
-
-
-
 
 
     /**
