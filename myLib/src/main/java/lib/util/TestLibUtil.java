@@ -47,12 +47,13 @@ public class TestLibUtil {
 
 
     /**
-     * 1.1版本初始化
+     * 初始化
      *
      * @param context
      */
     public void startUtil(Application context) {
         this.context = context;
+
         DemoHoverMenuService.showFloatingMenu(context);
         if (httpMoudleList == null) {
             httpMoudleList = new ArrayList<>();
@@ -64,6 +65,8 @@ public class TestLibUtil {
         setupTheme();
 
         setupAppStateTracking();
+
+
     }
 
     /**

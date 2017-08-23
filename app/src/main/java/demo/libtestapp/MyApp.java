@@ -2,8 +2,6 @@ package demo.libtestapp;
 
 import android.app.Application;
 
-import lib.util.TestLibUtil;
-
 /**
  * @author liuml
  * @explain
@@ -11,9 +9,13 @@ import lib.util.TestLibUtil;
  */
 
 public class MyApp extends Application {
+
+
     @Override
     public void onCreate() {
         super.onCreate();
-        TestLibUtil.getInstance().startUtil(this);
+//        TestLibUtil.getInstance().startUtil(this);
     }
+
+
 }

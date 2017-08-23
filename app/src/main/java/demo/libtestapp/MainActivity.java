@@ -1,6 +1,5 @@
 package demo.libtestapp;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -10,44 +9,46 @@ import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import httploglib.lib.been.IpConfigBeen;
 import lib.data.HttpTransaction;
-import lib.util.TestLibUtil;
 import lib.http.ChuckInterceptor;
+import lib.util.TestLibUtil;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends Activity {
+public class MainActivity extends BaseActivity {
     public Context context;
     private TextView tvIpList;
     private Button btStart;
 
+    private Button btMomory;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context = this;
-       // TestLibUtil.getInstance().startUtil(getApplication());
+        TestLibUtil.getInstance().startUtil(getApplication());
 
         setContentView(R.layout.activity_main);
 
         btStart = (Button) findViewById(R.id.bt_start);
 
         tvIpList = (TextView) findViewById(R.id.tv_ip_list);
-
-
+        btMomory = (Button) findViewById(R.id.bt_momory);
         btStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 doHttpActivity();
+                Toast.makeText(getApplicationContext(),"发送数据",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -90,7 +91,7 @@ public class MainActivity extends Activity {
         List<IpConfigBeen> ipList = TestLibUtil.getInstance().getIpList();
         String list = "";
         for (IpConfigBeen ipConfigBeen : ipList) {
-            list = list + ipConfigBeen.toString()+"\n";
+            list = list + ipConfigBeen.toString() + "\n";
         }
         tvIpList.setText(list);
 
@@ -104,6 +105,16 @@ public class MainActivity extends Activity {
                 startActivity(drawOverlaysSettingsIntent);
             }
         }
+
+
+        //检测内存泄露
+        btMomory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(getApplicationContext(), TestActivity.class));
+            }
+        });
     }
 
     public void IPinit() {
@@ -133,8 +144,14 @@ public class MainActivity extends Activity {
     private void doHttpActivity() {
         SampleApiService.HttpbinApi api = SampleApiService.getInstance(getClient(this));
         Callback<Void> cb = new Callback<Void>() {
-            @Override public void onResponse(Call call, Response response) {}
-            @Override public void onFailure(Call call, Throwable t) { t.printStackTrace(); }
+            @Override
+            public void onResponse(Call call, Response response) {
+            }
+
+            @Override
+            public void onFailure(Call call, Throwable t) {
+                t.printStackTrace();
+            }
         };
         api.get().enqueue(cb);
         api.post(new SampleApiService.Data("posted_____sssssssssssssssss")).enqueue(cb);
