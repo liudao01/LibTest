@@ -2,7 +2,7 @@
 # 效果图 网络的  
  ![img](https://github.com/liudao01/LibTest/blob/master/demo.gif)
 ## 好处 好处  给后端人员看  自己也不用每次看开发工具
-# 这里是1.4.1 版本的  (自用的 贡献出来)
+# 这里是1.4.4 版本的  (自用的 贡献出来)
 
 ***************测试工具库  集成步骤**************
 ## 引入
@@ -22,7 +22,7 @@ Step 2. Add the dependency
 Share this release:
 
 ## 在 application 加上
-
+根目录加上android:supportsRtl="true"
      tools:replace="Android:icon,android:name,android:theme,android:allowBackup,android:supportsRtl,android:label"
      
  # 在AndroidManifest 根目录 增加 如下
