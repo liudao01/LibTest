@@ -104,7 +104,7 @@ public class TestLibUtil {
         Logger.d("打印数据 url=     \n" + url);
         HttpTransaction been = new HttpTransaction();
         been.setUrl(url);
-//        been.setRequestBody(header);
+        been.setRequestBody("header = "+header);
         been.setResponseBody(json);
 //        been.setRequestBodyIsPlainText(header);
         //最大条数  0条避免数量过多溢出
