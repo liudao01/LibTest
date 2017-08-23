@@ -17,7 +17,7 @@ Add it in your root build.gradle at the end of repositories:
 Step 2. Add the dependency
 
 	dependencies {
-	        compile 'com.github.liudao01:LibTest:v1.4.1'
+	        compile 'com.github.liudao01:LibTest:v1.4.4'
 	}
 Share this release:
 
