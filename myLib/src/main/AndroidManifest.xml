@@ -10,9 +10,6 @@
 
         android:theme="@style/AppTheme">
         <activity
-            android:name="httploglib.lib.actiity.DemoTest"
-            android:launchMode="singleTask" />
-        <activity
             android:name="httploglib.lib.actiity.ResultListActivity"
             android:launchMode="singleTask" />
         <activity android:name="httploglib.lib.actiity.ResultInfoActivity" />

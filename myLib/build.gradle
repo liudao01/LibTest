@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
-
+//apply plugin: 'com.getkeepsafe.dexcount'//在项目build.gardle中配置代码
 group='com.github.liudao01'
 android {
     compileSdkVersion 23
@@ -38,13 +38,8 @@ dependencies {
     compile 'io.mattcarroll.hover:hover:0.9.7'//悬浮窗
     compile 'de.greenrobot:eventbus:2.4.0'
     compile 'com.android.support:design:23.1.1'
-    //compile 'com.larswerkman:HoloColorPicker:1.5'
     compile 'com.squareup.okhttp3:logging-interceptor:3.3.1'
     compile 'com.google.code.gson:gson:2.7'
     compile 'com.squareup.okhttp3:okhttp:3.6.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
-    //compile 'com.wanjian:sak:0.0.2'
-    // compile 'com.google.code.gson:gson:2.6.2'
-    //    compile 'com.android.support:recyclerview-v7:23.1.1'
-    //compile 'com.android.support.test.espresso:espresso-core:2.2.2'
 }

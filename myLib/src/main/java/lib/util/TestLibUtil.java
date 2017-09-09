@@ -16,7 +16,6 @@ import java.util.List;
 import httploglib.lib.R;
 import httploglib.lib.been.IpConfigBeen;
 import httploglib.lib.crash.CrashHandler;
-import httploglib.lib.service.WindowService;
 import lib.Bus;
 import lib.DemoHoverMenuService;
 import lib.appstate.AppStateTracker;
@@ -71,7 +70,7 @@ public class TestLibUtil {
      *
      * @param context
      */
-    public void initWindows(Application context) {
+   /* public void initWindows(Application context) {
         this.context = context;
         if (!isServiceWork(context, WindowService.class.getName())) {
             Intent intent = new Intent(context, WindowService.class);
@@ -86,7 +85,7 @@ public class TestLibUtil {
 
         }
 
-    }
+    }*/
 
 
     /**

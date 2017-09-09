@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-
+//apply plugin: 'com.getkeepsafe.dexcount'//在项目build.gardle中配置代码
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
@@ -30,4 +30,5 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile project(':myLib')
+
 }

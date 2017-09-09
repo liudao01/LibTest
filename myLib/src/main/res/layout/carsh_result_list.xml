@@ -29,7 +29,11 @@
             android:text="清除数据"
             android:textSize="12dp" />
 
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="长按列表可复制链接到剪切板"
+            android:textColor="@color/colorAccent" />
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="0.5dp"

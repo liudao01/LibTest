@@ -6,9 +6,9 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.3'
-
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1' // Add this line
         // NOTE: Do not place your application dependencies here; they belong
+//        classpath 'com.getkeepsafe.dexcount:dexcount-gradle-plugin:0.7.3'// 项目根目录build.gradle配置代码  统计
         // in the individual module build.gradle files
     }
 }
@@ -16,6 +16,7 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
+        mavenCentral()
     }
 }
 

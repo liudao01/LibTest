@@ -36,17 +36,18 @@ import java.util.List;
 
 import de.greenrobot.event.EventBus;
 import httploglib.lib.R;
-import lib.util.FileUtils;
 import io.mattcarroll.hover.Navigator;
 import io.mattcarroll.hover.NavigatorContent;
 import lib.adapter.AutoAdapter;
 import lib.adapter.ViewHolder;
 import lib.theming.HoverTheme;
+import lib.util.FileUtils;
+import lib.util.Utils;
 
 /**
  * 错误carsh导航
  */
-public class CarshNavigatorContent extends FrameLayout implements NavigatorContent, AdapterView.OnItemClickListener {
+public class CarshNavigatorContent extends FrameLayout implements NavigatorContent, AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
 
     private static final String TAG = "CarshNavigatorContent";
     private final EventBus mBus;
@@ -75,6 +76,7 @@ public class CarshNavigatorContent extends FrameLayout implements NavigatorConte
         mLogo = findViewById(R.id.imageview_logo);
         listview = (ListView) findViewById(R.id.listview);
         listview.setOnItemClickListener(this);
+        listview.setOnItemLongClickListener(this);
         //获得Serializable方式传过来的值
 
         selectCarsh();//获取carsh列表
@@ -101,7 +103,6 @@ public class CarshNavigatorContent extends FrameLayout implements NavigatorConte
                 carshAdapter.setList(lists);
             }
         });
-
 
         bt_close.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -175,16 +176,6 @@ public class CarshNavigatorContent extends FrameLayout implements NavigatorConte
         }
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-        //Toast.makeText(context,"点击了",Toast.LENGTH_SHORT).show();
-        showResult();
-//        String read = read(context, FileUtils.getCrashPath() + "/" + lists.get(position));
-        String read = readFileFromSDCard(FileUtils.getCrashPath() + "/" + lists.get(position));
-        Log.d(TAG, "onItemClick: " + read);
-        tvCarsh.setText(read);
-    }
 
     /**
      * @param fileName
@@ -205,6 +196,21 @@ public class CarshNavigatorContent extends FrameLayout implements NavigatorConte
         }
         String s = new String((buffer));
         return s;
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        showResult();
+        String read = readFileFromSDCard(FileUtils.getCrashPath() + "/" + lists.get(position));
+        Log.d(TAG, "onItemClick: " + read);
+        tvCarsh.setText(read);
+    }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+        byte[] byteArrayFromFile = FileUtils.getByteArrayFromFile(FileUtils.getCrashPath() + "/" + lists.get(position));
+        Utils.copy(context, new String(byteArrayFromFile));
+        return true;
     }
 
 
