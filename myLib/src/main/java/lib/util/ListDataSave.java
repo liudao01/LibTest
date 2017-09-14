@@ -35,10 +35,8 @@ public class ListDataSave {
             preferenceName = ListDataSave;
         }
         try {
-
             preferences = mContext.getSharedPreferences(preferenceName, Context.MODE_PRIVATE);
             editor = preferences.edit();
-
         } catch (Exception e) {
 
         }

@@ -34,6 +34,7 @@ public class TestLibUtil {
     public static List httpMoudleList;
     private Application context;
     IpLibConfig libConfig;
+    private ListDataSave instance;
 
     //使用静态单例模式
     private static class InnerInstance {
@@ -81,8 +82,6 @@ public class TestLibUtil {
             //UI
             // LayoutManager.init(context);
             //
-
-
         }
 
     }*/
@@ -205,7 +204,7 @@ public class TestLibUtil {
     public String getSwitchs(Context context) {
         String url = null;
         //切换服务器ip 地址 测试
-        ListDataSave instance = ListDataSave.getInstance(context, ListDataSave.ListDataSave);
+        instance = ListDataSave.getInstance(context, ListDataSave.ListDataSave);
         List<IpConfigBeen> list = instance.getDataList(ListDataSave.listTag);
         for (IpConfigBeen ipConfigBeen : list) {
             if (ipConfigBeen.isSelect()) {

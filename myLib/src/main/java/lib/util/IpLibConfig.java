@@ -15,9 +15,9 @@ import httploglib.lib.been.IpConfigBeen;
 
 public class IpLibConfig {
 
-    Context mContext;
-    List<IpConfigBeen> list;
-    ListDataSave sp;
+    private Context mContext;
+    private List<IpConfigBeen> list;
+    private ListDataSave sp;
     private static IpLibConfig ipLibConfig;
 
 
@@ -35,6 +35,7 @@ public class IpLibConfig {
 
     /**
      * ip 初始化 存入list集合
+     *
      * @param list
      */
     public void initIpConfig(List<IpConfigBeen> list) {
@@ -47,6 +48,7 @@ public class IpLibConfig {
 
     /**
      * 添加ip
+     *
      * @param ipConfigBeen
      */
     public void AddIp(IpConfigBeen ipConfigBeen) {
@@ -57,6 +59,7 @@ public class IpLibConfig {
 
     /**
      * 删除ip
+     *
      * @param i
      */
     public void DelIp(int i) {
@@ -75,14 +78,20 @@ public class IpLibConfig {
 
     /**
      * 获取全部ip
+     *
      * @return
      */
-    public List<IpConfigBeen> getIpList(){
+    public List<IpConfigBeen> getIpList() {
+        if (null == sp) {
+            sp = ListDataSave.getInstance(mContext, ListDataSave.ListDataSave);
+        }
         list = sp.getDataList(ListDataSave.listTag);
-        return  list;
+        return list;
     }
+
     /**
      * 设置list数据
+     *
      * @param list
      */
     public void setListSelect(List<IpConfigBeen> list) {
