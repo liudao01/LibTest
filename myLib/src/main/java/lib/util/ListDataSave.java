@@ -80,7 +80,7 @@ public class ListDataSave {
      */
     public <T> List<T> getDataList(String tag) {
         List<T> datalist = new ArrayList<T>();
-        String strJson = preferences.getString(tag, null);
+        String strJson = preferences.getString(tag, "");
         if (null == strJson) {
             return datalist;
         }
