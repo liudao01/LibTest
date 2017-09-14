@@ -2,7 +2,7 @@
 # 效果图 网络的  
  ![img](https://github.com/liudao01/LibTest/blob/master/demo.gif)
 ## 好处 好处  给后端人员看  自己也不用每次看开发工具
-# 这里是1.4.4 版本的  (自用的 贡献出来)
+# 这里是1.4.5 版本的  (自用的 贡献出来)
 
 ***************测试工具库  集成步骤**************
 ## 引入
@@ -17,7 +17,7 @@ Add it in your root build.gradle at the end of repositories:
 Step 2. Add the dependency
 
 	dependencies {
-	        compile 'com.github.liudao01:LibTest:v1.4.4'
+	        compile 'com.github.liudao01:LibTest:v1.4.5'
 	}
 Share this release:
 
