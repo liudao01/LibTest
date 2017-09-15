@@ -48,10 +48,6 @@ public class ListDataSave {
         editor.commit();
     }
 
-    public String getStringData(String key) {
-        return preferences.getString(key, "").trim();
-    }
-
 
     /**
      * 保存List
@@ -80,10 +76,14 @@ public class ListDataSave {
      */
     public <T> List<T> getDataList(String tag) {
         List<T> datalist = new ArrayList<T>();
-        String strJson = preferences.getString(tag, "");
-        if (null == strJson) {
-            return datalist;
+        String strJson = "";
+        if (null == preferences) {
+            strJson = preferences.getString(tag, "");
+            if (null == strJson) {
+                return datalist;
+            }
         }
+
 //        Gson gson = new Gson();
 //        datalist = gson.fromJson(strJson, new TypeToken<List<T>>() {
 //        }.getType());
