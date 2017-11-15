@@ -200,7 +200,11 @@ public final class ChuckInterceptor implements Interceptor {
 
         //update(transaction, transactionUri);
 
-        TestLibUtil.getInstance().sendmessage(transaction);
+        try {
+            TestLibUtil.getInstance().sendmessage(transaction);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return response;
     }
 
