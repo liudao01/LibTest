@@ -3,8 +3,8 @@ apply plugin: 'com.github.dcendents.android-maven'
 //apply plugin: 'com.getkeepsafe.dexcount'//在项目build.gardle中配置代码
 group='com.github.liudao01'
 android {
-    compileSdkVersion 23
-    buildToolsVersion '25.0.0'
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
 
     defaultConfig {
 //        applicationId "httploglib.lib"
@@ -32,12 +32,11 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.android.support:appcompat-v7:25.1.1'
     testCompile 'junit:junit:4.12'
     compile 'com.orhanobut:logger:1.15'
     compile 'io.mattcarroll.hover:hover:0.9.7'//悬浮窗
     compile 'de.greenrobot:eventbus:2.4.0'
-    compile 'com.android.support:design:23.1.1'
     compile 'com.squareup.okhttp3:logging-interceptor:3.3.1'
     compile 'com.google.code.gson:gson:2.7'
     compile 'com.squareup.okhttp3:okhttp:3.6.0'
