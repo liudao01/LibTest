@@ -352,7 +352,7 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
 //        HttpBeen httpBeen = (HttpBeen) TestLibUtil.httpMoudleList.get(position);
         HttpTransaction httpTransaction = (HttpTransaction) TestLibUtil.httpMoudleList.get(position);
         // String str = TextUtils.isEmpty(httpTransaction.getRequestBody()) ? "" : "请求参数: " + httpTransaction.getRequestBody();//请求参数
-        Utils.copy(context, "请求方式: " + httpTransaction.getMethod() + "\n" + "请求地址: " + httpTransaction.getUrl());
+        Utils.copy(context, "请求方式: " + httpTransaction.getMethod() + "\n" + "请求地址: " + httpTransaction.getUrl()+"\n"+"请求参数: "+httpTransaction.getRequestBody());
         return true;
     }
 
