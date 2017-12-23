@@ -22,13 +22,25 @@
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/bt_clear"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="清除数据"
-            android:textSize="12dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="author : liuml"
+                android:layout_centerVertical="true"
+                android:textColor="@color/colorWhite" />
+
+            <Button
+                android:id="@+id/bt_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="清除数据"
+                android:textSize="12dp" />
+        </RelativeLayout>
 
 
         <TextView

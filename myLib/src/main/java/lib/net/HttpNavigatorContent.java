@@ -48,6 +48,11 @@ import lib.util.Utils;
 /**
  * {@link NavigatorContent} that displays an introduction to Hover.
  */
+/**
+ * @explain http 界面
+ * @author liuml.
+ * @time 2017/12/22 20:37
+ */
 public class HttpNavigatorContent extends FrameLayout implements NavigatorContent, View.OnClickListener, AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
 
     private static final String TAG = "HttpNavigatorContent";

@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone">
+
         <include layout="@layout/carsh_result" />
     </LinearLayout>
 
@@ -21,19 +22,32 @@
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/bt_clear"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="清除数据"
-            android:textSize="12dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="author : liuml"
+                android:textColor="@color/colorWhite" />
+
+            <Button
+                android:id="@+id/bt_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="清除数据"
+                android:textSize="12dp" />
+        </RelativeLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="长按列表可复制链接到剪切板"
             android:textColor="@color/colorAccent" />
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="0.5dp"

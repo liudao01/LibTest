@@ -137,7 +137,7 @@ public class MainActivity extends Activity {
             @Override public void onFailure(Call call, Throwable t) { t.printStackTrace(); }
         };
         api.get().enqueue(cb);
-        api.post(new SampleApiService.Data("posted_____sssssssssssssssss")).enqueue(cb);
+        api.post(new SampleApiService.Data("posted_____sssssssssssssssss_post请求")).enqueue(cb);
         api.patch(new SampleApiService.Data("patched")).enqueue(cb);
         api.put(new SampleApiService.Data("put")).enqueue(cb);
         api.delete().enqueue(cb);
