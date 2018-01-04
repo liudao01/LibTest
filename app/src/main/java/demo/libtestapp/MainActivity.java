@@ -38,7 +38,6 @@ public class MainActivity extends Activity {
        // TestLibUtil.getInstance().startUtil(getApplication());
 
         setContentView(R.layout.activity_main);
-
         btStart = (Button) findViewById(R.id.bt_start);
 
         tvIpList = (TextView) findViewById(R.id.tv_ip_list);
