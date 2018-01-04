@@ -48,12 +48,13 @@ import lib.util.Utils;
 /**
  * {@link NavigatorContent} that displays an introduction to Hover.
  */
+
 /**
- * @explain http 界面
  * @author liuml.
+ * @explain http 界面
  * @time 2017/12/22 20:37
  */
-public class HttpNavigatorContent extends FrameLayout implements NavigatorContent, View.OnClickListener, AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
+public class HttpNavigatorContent extends FrameLayout implements NavigatorContent, AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
 
     private static final String TAG = "HttpNavigatorContent";
     private final EventBus mBus;
@@ -76,7 +77,7 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
     private Button btClose;
     private TextView tvJsonHeader;
 
-    private int clickPosition;
+    private int clickPosition = 0;
     static ListHttpAdapter listHttpAdapter;
 
     TextView url;
@@ -95,6 +96,7 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
     private TextView requestBody;
     private TextView responseHeaders;
     private TextView reponseBody;
+    private Button btCopy;
 
 
     static Handler handler = new Handler() {
@@ -121,14 +123,14 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
 //        mHoverMotion = new HoverMotion();
         httpResult = (LinearLayout) findViewById(R.id.http_result);
         httpResultList = (LinearLayout) findViewById(R.id.http_result_list);
-
+        btCopy = (Button) findViewById(R.id.bt_copy);
         btClear = (Button) findViewById(R.id.bt_clear);
 //        recyclerview = (RecyclerView) findViewById(R.id.recyclerview);
 //        recyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
 //        recyclerview.setAdapter(new HttpAdapter(TestLibUtil.httpMoudleList));
         //添加分割线
 //        recyclerview.addItemXDecoration(new DividerItemDecoration(  getActivity(), DividerItemDecoration.HORIZONTAL_LIST));
-        btClear.setOnClickListener(this);
+//        btClear.setOnClickListener(this);
 
 
         listview = (ListView) findViewById(R.id.listview);
@@ -149,14 +151,22 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
         listview.setAdapter(listHttpAdapter);
 
         // Logger.d( beens.get(0).getJson());
-        bt_clear = (Button) findViewById(R.id.bt_clear);
-        bt_clear.setOnClickListener(new View.OnClickListener() {
+        btClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 TestLibUtil.httpMoudleList.clear();
                 httpTransactionList.clear();
 //              myAdapter.setList(beens);
                 listHttpAdapter.setList(httpTransactionList);
+            }
+        });
+
+        //拷贝返回的数据
+        btCopy.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                HttpTransaction httpTransaction = httpTransactionList.get(clickPosition);
+                Utils.copy(context, "返回数据: " + httpTransaction.getFormattedResponseBody());
             }
         });
 
@@ -239,18 +249,6 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
 //        }
     }
 
-    public static void oldsetList() {
-
-//        if (TestLibUtil.httpMoudleList != null) {
-//            if (myAdapter != null) {
-//                List<HttpBeen> httpMoudleList = TestLibUtil.httpMoudleList;
-//                if (httpMoudleList != null && httpMoudleList.size() > 0) {
-//                    Collections.reverse(httpMoudleList);//倒序刚发的在最前面
-//                }
-//                myAdapter.setList(httpMoudleList);
-//            }
-//        }
-    }
 
     public static void setList() {
 
@@ -283,11 +281,6 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
 //
 //            }
 //        }
-    }
-
-    @Override
-    public void onClick(View v) {
-
     }
 
     @Override
@@ -357,7 +350,7 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
 //        HttpBeen httpBeen = (HttpBeen) TestLibUtil.httpMoudleList.get(position);
         HttpTransaction httpTransaction = (HttpTransaction) TestLibUtil.httpMoudleList.get(position);
         // String str = TextUtils.isEmpty(httpTransaction.getRequestBody()) ? "" : "请求参数: " + httpTransaction.getRequestBody();//请求参数
-        Utils.copy(context, "请求方式: " + httpTransaction.getMethod() + "\n" + "请求地址: " + httpTransaction.getUrl()+"\n"+"请求参数: "+httpTransaction.getRequestBody());
+        Utils.copy(context, "请求方式: " + httpTransaction.getMethod() + "\n" + "请求地址: " + httpTransaction.getUrl() + "\n" + "请求参数: " + httpTransaction.getRequestBody());
         return true;
     }
 
