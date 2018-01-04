@@ -28,6 +28,9 @@ public class MainActivity extends Activity {
     public Context context;
     private TextView tvIpList;
     private Button btStart;
+    private Button btCrash;
+
+
 
 
 
@@ -42,11 +45,18 @@ public class MainActivity extends Activity {
 
         tvIpList = (TextView) findViewById(R.id.tv_ip_list);
 
-
+        btCrash = (Button) findViewById(R.id.bt_crash);
         btStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 doHttpActivity();
+            }
+        });
+
+        btCrash.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int x = 1/0;
             }
         });
 
