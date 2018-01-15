@@ -30,10 +30,6 @@ public class MainActivity extends Activity {
     private Button btStart;
     private Button btCrash;
 
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
