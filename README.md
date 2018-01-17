@@ -1,5 +1,5 @@
 # 主要功能 1 查看网络请求地址  2 收集carsh 3 切换服务器ip 
-# 最新版本 v1.4.8.1 记得改下 可以看releases
+# 最新版本 v1.4.9记得改下 可以看releases
 # 效果图 网络的  
  ![img](https://github.com/liudao01/LibTest/blob/master/demo.gif)
 ## 好处 好处  给后端人员看  自己也不用每次看开发工具
@@ -18,7 +18,7 @@ Add it in your root build.gradle at the end of repositories:
 Step 2. Add the dependency
 
 	dependencies {
-	        compile 'com.github.liudao01:LibTest:v1.4.8.1'
+	        compile 'com.github.liudao01:LibTest:v1.4.9'
 	}
 Share this release:
 
