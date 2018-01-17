@@ -75,19 +75,20 @@ public class ListDataSave {
      * @return
      */
     public <T> List<T> getDataList(String tag) {
-        List<T> datalist = new ArrayList<T>();
-        String strJson = "";
-        if (null == preferences) {
-            strJson = preferences.getString(tag, "");
-            if (null == strJson) {
-                return datalist;
+        List<T> datalist = null;
+        try {
+            datalist = new ArrayList<T>();
+            String strJson = "";
+            if (null == preferences) {
+                strJson = preferences.getString(tag, "");
+                if (null == strJson) {
+                    return datalist;
+                }
             }
+            datalist = (List<T>) changeJsonToArray(strJson);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
-//        Gson gson = new Gson();
-//        datalist = gson.fromJson(strJson, new TypeToken<List<T>>() {
-//        }.getType());
-        datalist = (List<T>) changeJsonToArray(strJson);
         return datalist;
 
     }

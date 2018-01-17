@@ -35,11 +35,8 @@ import java.util.List;
 
 import de.greenrobot.event.EventBus;
 import httploglib.lib.R;
-import httploglib.lib.been.HttpBeen;
 import io.mattcarroll.hover.Navigator;
 import io.mattcarroll.hover.NavigatorContent;
-import lib.adapter.AutoAdapter;
-import lib.adapter.ViewHolder;
 import lib.data.HttpTransaction;
 import lib.theming.HoverTheme;
 import lib.util.TestLibUtil;
@@ -329,21 +326,6 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
         }
     }
 
-    private void setData() {
-        HttpBeen httpBeen = (HttpBeen) TestLibUtil.httpMoudleList.get(clickPosition);
-        tvUrl.setText(httpBeen.getUrl());
-        tvJson.setText(httpBeen.getJson());
-
-        if (!TextUtils.isEmpty(httpBeen.getJson())) {
-            byte[] buff = httpBeen.getJson().getBytes();
-            int f = buff.length;
-            double kb = f / 1024.0;
-            kb = (double) (Math.round(kb * 100) / 100.0);
-            tvJsonSize.setText(kb + " kb");
-        }
-
-        tvJsonHeader.setText(httpBeen.getHttpHeader());
-    }
 
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -354,32 +336,6 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
         return true;
     }
 
-
-    class MyAdapter extends AutoAdapter {
-        public MyAdapter(Context context, List<?> list) {
-            super(context, list);
-            // TODO Auto-generated constructor stub
-        }
-
-
-        @Override
-        public int getLayoutID(int position) {
-            return R.layout.result_list_item;
-        }
-
-        @Override
-        public void baseGetView(int position, View v, ViewHolder vh) {
-
-            TextView tv = vh.getTextView(R.id.list_item_text);
-            HttpBeen httpBeen = (HttpBeen) list.get(position);
-            tv.setText(httpBeen.getUrl());
-            if (!TextUtils.isEmpty(httpBeen.getJson())) {
-                tv.setTextColor(context.getResources().getColor(R.color.colorWhite));
-            } else {
-                tv.setTextColor(context.getResources().getColor(R.color.colorAccent));
-            }
-        }
-    }
 
 
 }
