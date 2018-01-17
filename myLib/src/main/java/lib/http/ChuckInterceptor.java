@@ -192,6 +192,11 @@ public final class ChuckInterceptor implements Interceptor {
                     charset = contentType.charset(UTF8);
                 } catch (UnsupportedCharsetException e) {
                     //update(transaction, transactionUri);
+                    try {
+                        TestLibUtil.getInstance().sendmessage(transaction);
+                    } catch (Exception e1) {
+                        e1.printStackTrace();
+                    }
                     return response;
                 }
             }

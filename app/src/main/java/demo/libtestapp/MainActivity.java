@@ -152,6 +152,7 @@ public class MainActivity extends Activity {
         api.delay(9).enqueue(cb);
         api.delay(15).enqueue(cb);
         api.redirectTo("https://http2.akamai.com").enqueue(cb);
+        api.redirectTo("https://http2.akamai2.com").enqueue(cb);
         api.redirect(3).enqueue(cb);
         api.redirectRelative(2).enqueue(cb);
         api.redirectAbsolute(4).enqueue(cb);
