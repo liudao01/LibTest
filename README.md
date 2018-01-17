@@ -1,10 +1,10 @@
 # 主要功能 1 查看网络请求地址  2 收集carsh 3 切换服务器ip 
-# 最新版本 v1.4.7.2 记得改下 可以看releases
+# 最新版本 v1.4.8.1 记得改下 可以看releases
 # 效果图 网络的  
  ![img](https://github.com/liudao01/LibTest/blob/master/demo.gif)
 ## 好处 好处  给后端人员看  自己也不用每次看开发工具
 # 这里是1.4.6 版本的  (自用的 贡献出来)  这个版本号看发布的版本
-
+### 最近琢磨出一个技巧 可以建立一个libtest的分支 这个分支和开发分支的区别就是区分是否开启测试库
 ***************测试工具库  集成步骤**************
 ## 引入
 Add it in your root build.gradle at the end of repositories:
@@ -18,7 +18,7 @@ Add it in your root build.gradle at the end of repositories:
 Step 2. Add the dependency
 
 	dependencies {
-	        compile 'com.github.liudao01:LibTest:v1.4.6'
+	        compile 'com.github.liudao01:LibTest:v1.4.8.1'
 	}
 Share this release:
 
