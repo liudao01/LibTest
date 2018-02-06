@@ -47,7 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="长按列表可复制链接到剪切板"
-            android:textColor="@color/colorAccent" />
+            android:textColor="@color/chuck_status_error" />
 
         <ImageView
             android:layout_width="match_parent"

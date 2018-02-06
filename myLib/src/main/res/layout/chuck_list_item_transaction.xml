@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
  ~ Copyright (C) 2017 Jeff Gilfelt.
  ~
  ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,8 +17,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="12dp"
-    android:background="?android:attr/selectableItemBackground">
+    android:background="?android:attr/selectableItemBackground"
+    android:padding="12dp">
 
     <TextView
         android:id="@+id/code"
@@ -29,7 +28,7 @@
         android:padding="2dp"
         android:textAppearance="@style/Chuck.TextAppearance.ListItem"
         android:textColor="@color/colorWhite"
-        tools:text="200"/>
+        tools:text="200" />
 
     <TextView
         android:id="@+id/path"
@@ -39,7 +38,7 @@
         android:padding="2dp"
         android:textAppearance="@style/Chuck.TextAppearance.ListItem"
         android:textColor="@color/colorWhite"
-        tools:text="GET /path/to/some/resource?goes=here"/>
+        tools:text="GET /path/to/some/resource?goes=here" />
 
     <TextView
         android:id="@+id/host"
@@ -55,18 +54,18 @@
         android:id="@+id/ssl"
         android:layout_width="16dp"
         android:layout_height="16dp"
-        android:layout_toRightOf="@id/host"
         android:layout_below="@id/path"
         android:layout_marginTop="4dp"
-        android:textColor="@color/colorWhite"
-        android:src="@drawable/ic_arrow_back"/>
+        android:layout_toRightOf="@id/host"
+        android:src="@drawable/ic_arrow_back"
+        android:textColor="@color/colorWhite" />
 
     <LinearLayout
         android:id="@+id/meta"
-        android:layout_below="@id/host"
-        android:layout_marginLeft="40dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@id/host"
+        android:layout_marginLeft="40dp">
 
         <TextView
             android:id="@+id/start"
@@ -80,9 +79,9 @@
             android:id="@+id/duration"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
+            android:gravity="right"
             android:padding="2dp"
             android:textColor="@color/colorWhite"
-            android:gravity="right"
             tools:text="8023 ms" />
 
         <TextView
@@ -90,10 +89,18 @@
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:gravity="right"
-            android:textColor="@color/colorWhite"
             android:padding="2dp"
+            android:textColor="@color/colorWhite"
             tools:text="16.45 KB" />
 
+        <Button
+            android:id="@+id/bt_copy_data"
+            android:focusable="false"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="copy_data"
+            android:textSize="10dp" />
     </LinearLayout>
+
 
 </RelativeLayout>

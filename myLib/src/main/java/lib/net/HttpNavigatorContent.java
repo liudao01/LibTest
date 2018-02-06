@@ -96,6 +96,7 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
     private Button btCopy;
 
 
+
     static Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -329,13 +330,11 @@ public class HttpNavigatorContent extends FrameLayout implements NavigatorConten
 
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-//        HttpBeen httpBeen = (HttpBeen) TestLibUtil.httpMoudleList.get(position);
         HttpTransaction httpTransaction = (HttpTransaction) TestLibUtil.httpMoudleList.get(position);
-        // String str = TextUtils.isEmpty(httpTransaction.getRequestBody()) ? "" : "请求参数: " + httpTransaction.getRequestBody();//请求参数
-        Utils.copy(context, "请求方式: " + httpTransaction.getMethod() + "\n" + "请求地址: " + httpTransaction.getUrl() + "\n" + "请求参数: " + httpTransaction.getRequestBody());
+        Utils.copy(context, "请求方式: " + httpTransaction.getMethod() + "\n" + "请求地址: " +
+                httpTransaction.getUrl() + "\n" + "请求参数: " + httpTransaction.getRequestBody());
         return true;
     }
-
 
 
 }
