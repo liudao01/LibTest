@@ -24,7 +24,7 @@ Share this release:
 
 ## 在 application 加上
 根目录加上android:supportsRtl="true"
-     tools:replace="Android:icon,android:name,android:theme,android:allowBackup,android:supportsRtl,android:label"
+     tools:replace="android:icon,android:name,android:theme,android:allowBackup,android:supportsRtl,android:label"
      
  # 在AndroidManifest 根目录 增加 如下
  
