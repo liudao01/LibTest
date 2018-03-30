@@ -28,6 +28,7 @@ import java.util.concurrent.TimeUnit;
 import httploglib.lib.R;
 import lib.data.HttpTransaction;
 import lib.support.RetentionManager;
+import lib.util.JsonFormatUtil;
 import lib.util.TestLibUtil;
 import okhttp3.Headers;
 import okhttp3.Interceptor;
@@ -141,7 +142,8 @@ public final class ChuckInterceptor implements Interceptor {
                 charset = contentType.charset(UTF8);
             }
             if (isPlaintext(buffer)) {
-                transaction.setRequestBody(readFromBuffer(buffer, charset));
+
+                transaction.setRequestBody( JsonFormatUtil.formatJson(readFromBuffer(buffer, charset)));
             } else {
                 transaction.setResponseBodyIsPlainText(false);
             }
@@ -201,7 +203,7 @@ public final class ChuckInterceptor implements Interceptor {
                 }
             }
             if (isPlaintext(buffer)) {
-                transaction.setResponseBody(readFromBuffer(buffer.clone(), charset));
+                transaction.setResponseBody(JsonFormatUtil.formatJson(readFromBuffer(buffer.clone(), charset)));
             } else {
                 transaction.setResponseBodyIsPlainText(false);
             }
