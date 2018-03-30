@@ -20,6 +20,8 @@ import android.util.Log;
 
 import java.io.EOFException;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.nio.charset.Charset;
 import java.nio.charset.UnsupportedCharsetException;
 import java.util.Date;
@@ -142,8 +144,9 @@ public final class ChuckInterceptor implements Interceptor {
                 charset = contentType.charset(UTF8);
             }
             if (isPlaintext(buffer)) {
-
-                transaction.setRequestBody( JsonFormatUtil.formatJson(readFromBuffer(buffer, charset)));
+                String s = readFromBuffer(buffer, charset);
+                String requestStr = decode(s);
+                transaction.setRequestBody( JsonFormatUtil.formatJson(requestStr));
             } else {
                 transaction.setResponseBodyIsPlainText(false);
             }
@@ -310,5 +313,35 @@ public final class ChuckInterceptor implements Interceptor {
             }
         }
         return response.body().source();
+    }
+
+    public static String decode(String url)
+
+    {
+
+        try {
+
+            String prevURL="";
+
+            String decodeURL=url;
+
+            while(!prevURL.equals(decodeURL))
+
+            {
+
+                prevURL=decodeURL;
+
+                decodeURL= URLDecoder.decode( decodeURL, "UTF-8" );
+
+            }
+
+            return decodeURL;
+
+        } catch (UnsupportedEncodingException e) {
+
+            return "Issue while decoding" +e.getMessage();
+
+        }
+
     }
 }
