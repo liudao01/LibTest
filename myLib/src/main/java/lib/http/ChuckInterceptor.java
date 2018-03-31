@@ -148,7 +148,7 @@ public final class ChuckInterceptor implements Interceptor {
                 String requestStr = decode(s);
                 String string = converStr(requestStr);
 
-                transaction.setRequestBody( JsonFormatUtil.formatJson(string));
+                transaction.setRequestBody(JsonFormatUtil.formatJson(string));
             } else {
                 transaction.setResponseBodyIsPlainText(false);
             }
@@ -318,38 +318,39 @@ public final class ChuckInterceptor implements Interceptor {
     }
 
 
-    public String converStr(String string){
+    public String converStr(String string) {
         if (null == string || "".equals(string)) {
             return "";
         }
         StringBuilder sb = new StringBuilder();
-        char current = '\0';
+        char current;
         for (int i = 0; i < string.length(); i++) {
             current = string.charAt(i);
             sb.append(current);
-            if("&".equals(current)){
+            if ("&".equals(current)) {
                 sb.append('\n');
             }
         }
         return sb.toString();
     }
-    public  String decode(String url)
+
+    public String decode(String url)
 
     {
 
         try {
 
-            String prevURL="";
+            String prevURL = "";
 
-            String decodeURL=url;
+            String decodeURL = url;
 
-            while(!prevURL.equals(decodeURL))
+            while (!prevURL.equals(decodeURL))
 
             {
 
-                prevURL=decodeURL;
+                prevURL = decodeURL;
 
-                decodeURL= URLDecoder.decode( decodeURL, "UTF-8" );
+                decodeURL = URLDecoder.decode(decodeURL, "UTF-8");
 
             }
 
@@ -357,7 +358,7 @@ public final class ChuckInterceptor implements Interceptor {
 
         } catch (UnsupportedEncodingException e) {
 
-            return "Issue while decoding" +e.getMessage();
+            return "Issue while decoding" + e.getMessage();
 
         }
 
