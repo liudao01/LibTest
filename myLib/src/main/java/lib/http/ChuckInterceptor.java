@@ -146,7 +146,9 @@ public final class ChuckInterceptor implements Interceptor {
             if (isPlaintext(buffer)) {
                 String s = readFromBuffer(buffer, charset);
                 String requestStr = decode(s);
-                transaction.setRequestBody( JsonFormatUtil.formatJson(requestStr));
+                String string = converStr(requestStr);
+
+                transaction.setRequestBody( JsonFormatUtil.formatJson(string));
             } else {
                 transaction.setResponseBodyIsPlainText(false);
             }
@@ -315,7 +317,23 @@ public final class ChuckInterceptor implements Interceptor {
         return response.body().source();
     }
 
-    public static String decode(String url)
+
+    public String converStr(String string){
+        if (null == string || "".equals(string)) {
+            return "";
+        }
+        StringBuilder sb = new StringBuilder();
+        char current = '\0';
+        for (int i = 0; i < string.length(); i++) {
+            current = string.charAt(i);
+            sb.append(current);
+            if("&".equals(current)){
+                sb.append('\n');
+            }
+        }
+        return sb.toString();
+    }
+    public  String decode(String url)
 
     {
 
