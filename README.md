@@ -1,3 +1,5 @@
+
+[![](https://jitpack.io/v/liudao01/LibTest.svg)](https://jitpack.io/#liudao01/LibTest)
 # 主要功能 1 查看网络请求地址  2 收集carsh 3 切换服务器ip 
 # 最新版本 v1.4.9记得改下 可以看releases
 # 效果图 网络的  
@@ -7,7 +9,7 @@
 ### 最近琢磨出一个技巧 可以建立一个libtest的分支 这个分支和开发分支的区别就是区分是否开启测试库
 ***************测试工具库  集成步骤**************
 
-[![](https://jitpack.io/v/liudao01/LibTest.svg)](https://jitpack.io/#liudao01/LibTest)
+
 ## 引入
 Add it in your root build.gradle at the end of repositories:
 
