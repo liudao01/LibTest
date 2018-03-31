@@ -318,20 +318,19 @@ public final class ChuckInterceptor implements Interceptor {
     }
 
 
-    public String converStr(String string) {
-        if (null == string || "".equals(string)) {
+    public String converStr(String str) {
+        if (null == str || "".equals(str)) {
             return "";
         }
-        StringBuilder sb = new StringBuilder();
-        char current;
-        for (int i = 0; i < string.length(); i++) {
-            current = string.charAt(i);
-            sb.append(current);
-            if ("&".equals(current)) {
-                sb.append('\n');
+        StringBuilder newStr = new StringBuilder();
+        for(int i = 0;i<str.length();i++){
+            String substring = str.substring(i, i + 1);
+            if("&".equals(substring)){
+                newStr.append("\n");
             }
+            newStr.append(str.charAt(i));
         }
-        return sb.toString();
+        return newStr.toString();
     }
 
     public String decode(String url)
