@@ -50,6 +50,8 @@ import okio.Okio;
  */
 public final class ChuckInterceptor implements Interceptor {
 
+    private String requestStrLast;
+
     public enum Period {
         /**
          * Retain data for the last hour.
@@ -118,6 +120,7 @@ public final class ChuckInterceptor implements Interceptor {
         boolean hasRequestBody = requestBody != null;
 
         HttpTransaction transaction = new HttpTransaction();
+        HttpTransaction transactionView = new HttpTransaction();
         transaction.setRequestDate(new Date());//时间
 
         transaction.setMethod(request.method());//请求方法
@@ -147,8 +150,8 @@ public final class ChuckInterceptor implements Interceptor {
                 String s = readFromBuffer(buffer, charset);
                 String requestStr = decode(s);
                 String string = converStr(requestStr);
-
-                transaction.setRequestBody(JsonFormatUtil.formatJson(string));
+                requestStrLast = JsonFormatUtil.formatJson(string);
+                transaction.setRequestBody(readFromBuffer(buffer, charset));
             } else {
                 transaction.setResponseBodyIsPlainText(false);
             }
@@ -163,7 +166,9 @@ public final class ChuckInterceptor implements Interceptor {
         } catch (Exception e) {
             transaction.setError(e.toString());
             try {
-                TestLibUtil.getInstance().sendmessage(transaction);
+                transactionView =  transaction;
+                transactionView.setRequestBody(requestStrLast);
+                TestLibUtil.getInstance().sendmessage(transactionView);
             } catch (Exception e1) {
                 e1.printStackTrace();
             }
@@ -200,7 +205,9 @@ public final class ChuckInterceptor implements Interceptor {
                 } catch (UnsupportedCharsetException e) {
                     //update(transaction, transactionUri);
                     try {
-                        TestLibUtil.getInstance().sendmessage(transaction);
+                        transactionView =  transaction;
+                        transactionView.setRequestBody(requestStrLast);
+                        TestLibUtil.getInstance().sendmessage(transactionView);
                     } catch (Exception e1) {
                         e1.printStackTrace();
                     }
@@ -217,7 +224,9 @@ public final class ChuckInterceptor implements Interceptor {
         //update(transaction, transactionUri);
 
         try {
-            TestLibUtil.getInstance().sendmessage(transaction);
+            transactionView =  transaction;
+            transactionView.setRequestBody(requestStrLast);
+            TestLibUtil.getInstance().sendmessage(transactionView);
         } catch (Exception e) {
             e.printStackTrace();
         }
