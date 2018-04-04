@@ -51,6 +51,7 @@ import okio.Okio;
 public final class ChuckInterceptor implements Interceptor {
 
     private String requestStrLast;
+    private String responseStrLast;
 
     public enum Period {
         /**
@@ -166,7 +167,7 @@ public final class ChuckInterceptor implements Interceptor {
         } catch (Exception e) {
             transaction.setError(e.toString());
             try {
-                transactionView =  transaction;
+                transactionView = transaction;
                 transactionView.setRequestBody(requestStrLast);
                 TestLibUtil.getInstance().sendmessage(transactionView);
             } catch (Exception e1) {
@@ -205,7 +206,7 @@ public final class ChuckInterceptor implements Interceptor {
                 } catch (UnsupportedCharsetException e) {
                     //update(transaction, transactionUri);
                     try {
-                        transactionView =  transaction;
+                        transactionView = transaction;
                         transactionView.setRequestBody(requestStrLast);
                         TestLibUtil.getInstance().sendmessage(transactionView);
                     } catch (Exception e1) {
@@ -215,7 +216,8 @@ public final class ChuckInterceptor implements Interceptor {
                 }
             }
             if (isPlaintext(buffer)) {
-                transaction.setResponseBody(JsonFormatUtil.formatJson(readFromBuffer(buffer.clone(), charset)));
+                responseStrLast = JsonFormatUtil.formatJson(readFromBuffer(buffer.clone(), charset));
+                transaction.setResponseBody(readFromBuffer(buffer.clone(), charset));
             } else {
                 transaction.setResponseBodyIsPlainText(false);
             }
@@ -224,8 +226,9 @@ public final class ChuckInterceptor implements Interceptor {
         //update(transaction, transactionUri);
 
         try {
-            transactionView =  transaction;
+            transactionView = transaction;
             transactionView.setRequestBody(requestStrLast);
+            transactionView.setResponseBody(responseStrLast);
             TestLibUtil.getInstance().sendmessage(transactionView);
         } catch (Exception e) {
             e.printStackTrace();
@@ -332,9 +335,9 @@ public final class ChuckInterceptor implements Interceptor {
             return "";
         }
         StringBuilder newStr = new StringBuilder();
-        for(int i = 0;i<str.length();i++){
+        for (int i = 0; i < str.length(); i++) {
             String substring = str.substring(i, i + 1);
-            if("&".equals(substring)){
+            if ("&".equals(substring)) {
                 newStr.append("\n");
             }
             newStr.append(str.charAt(i));
