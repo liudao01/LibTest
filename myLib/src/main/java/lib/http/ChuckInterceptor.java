@@ -181,8 +181,10 @@ public final class ChuckInterceptor implements Interceptor {
                 TestLibUtil.getInstance().sendmessage(transactionView);
             } catch (Exception e1) {
                 e1.printStackTrace();
+                TestLibUtil.getInstance().sendmessage(transactionView);
             }
 //            update(transaction, transactionUri);
+            //TestLibUtil.getInstance().sendmessage(transactionView);
             throw e;
         }
         long tookMs = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startNs);
