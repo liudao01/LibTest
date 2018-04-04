@@ -148,7 +148,7 @@ public final class ChuckInterceptor implements Interceptor {
                 charset = contentType.charset(UTF8);
             }
             if (isPlaintext(buffer)) {
-                if (contentType.toString().contains("multipart/form-data")) {
+                if (!contentType.toString().contains("multipart/form-data")) {
                     try {
                         String s = readFromBuffer(buffer, charset);
                         String requestStr = decode(s);
