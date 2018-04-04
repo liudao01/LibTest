@@ -148,10 +148,14 @@ public final class ChuckInterceptor implements Interceptor {
                 charset = contentType.charset(UTF8);
             }
             if (isPlaintext(buffer)) {
-                String s = readFromBuffer(buffer, charset);
-                String requestStr = decode(s);
-                String string = converStr(requestStr);
-                requestStrLast = JsonFormatUtil.formatJson(string);
+                try {
+                    String s = readFromBuffer(buffer, charset);
+                    String requestStr = decode(s);
+                    String string = converStr(requestStr);
+                    requestStrLast = JsonFormatUtil.formatJson(string);
+                } catch (Exception e) {
+                    requestStrLast = readFromBuffer(buffer, charset);
+                }
                 transaction.setRequestBody(readFromBuffer(buffer, charset));
             } else {
                 transaction.setResponseBodyIsPlainText(false);
@@ -216,7 +220,12 @@ public final class ChuckInterceptor implements Interceptor {
                 }
             }
             if (isPlaintext(buffer)) {
-                responseStrLast = JsonFormatUtil.formatJson(readFromBuffer(buffer.clone(), charset));
+                try {
+
+                    responseStrLast = JsonFormatUtil.formatJson(readFromBuffer(buffer.clone(), charset));
+                } catch (Exception e) {
+                    responseStrLast = readFromBuffer(buffer.clone(), charset);
+                }
                 transaction.setResponseBody(readFromBuffer(buffer.clone(), charset));
             } else {
                 transaction.setResponseBodyIsPlainText(false);
