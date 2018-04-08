@@ -159,6 +159,7 @@ public final class ChuckInterceptor implements Interceptor {
                     }
                 } else {
                     requestStrLast = "";
+                    return null;
                 }
 
                 transaction.setRequestBody(readFromBuffer(buffer, charset));
