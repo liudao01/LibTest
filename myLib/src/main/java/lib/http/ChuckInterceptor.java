@@ -20,7 +20,6 @@ import android.util.Log;
 
 import java.io.EOFException;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.nio.charset.Charset;
 import java.nio.charset.UnsupportedCharsetException;
@@ -369,33 +368,16 @@ public final class ChuckInterceptor implements Interceptor {
         return newStr.toString();
     }
 
-    public String decode(String url)
+    public String decode(String url) throws Exception {
+        String prevURL = "";
+        String decodeURL = url;
 
-    {
-
-        try {
-
-            String prevURL = "";
-
-            String decodeURL = url;
-
-            while (!prevURL.equals(decodeURL))
-
-            {
-
-                prevURL = decodeURL;
-
-                decodeURL = URLDecoder.decode(decodeURL, "UTF-8");
-
-            }
-
-            return decodeURL;
-
-        } catch (UnsupportedEncodingException e) {
-
-            return "Issue while decoding" + e.getMessage();
-
+        while (!prevURL.equals(decodeURL)) {
+            prevURL = decodeURL;
+            decodeURL = URLDecoder.decode(decodeURL, "UTF-8");
         }
+
+        return decodeURL;
 
     }
 }
