@@ -5,6 +5,8 @@ import android.content.Context;
 
 import java.util.List;
 
+import lib.data.HttpTransaction;
+
 /**
  * @explain 测试库工具 关于工具库所有的操作都通过这个类
  * @author liuml.

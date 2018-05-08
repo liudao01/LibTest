@@ -1,4 +1,4 @@
-package lib.util;
+package lib.data;
 
 /**
  * @author liuml
