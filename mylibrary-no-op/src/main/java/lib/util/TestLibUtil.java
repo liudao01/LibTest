@@ -6,11 +6,10 @@ import android.content.Context;
 import java.util.List;
 
 /**
- * @author liuml
  * @explain 测试库工具 关于工具库所有的操作都通过这个类
- * @time 2016/12/7 10:04
+ * @author liuml.
+ * @time 2018/5/8 20:08
  */
-
 public class TestLibUtil {
     public static List httpMoudleList;
     private Application context;
