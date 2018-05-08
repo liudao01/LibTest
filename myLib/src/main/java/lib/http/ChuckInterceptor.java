@@ -376,8 +376,6 @@ public final class ChuckInterceptor implements Interceptor {
             prevURL = decodeURL;
             decodeURL = URLDecoder.decode(decodeURL, "UTF-8");
         }
-
         return decodeURL;
-
     }
 }
