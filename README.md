@@ -3,10 +3,18 @@
 # 最新版本 看上面那个小按钮 点一下就知道
 # 效果图 网络的  
  ![img](https://github.com/liudao01/LibTest/blob/master/demo.gif)
-## 好处 好处  给后端人员看  自己也不用每次看开发工具
-# 这里是1.4.6 版本的  (自用的 贡献出来)  这个版本号看发布的版本
+## 好处   给后端人员看  自己也不用每次看开发工具
+# 这里是v1.5.4 版本的  (自用的 贡献出来)  这个版本号看发布的版本
 ### 最近琢磨出一个技巧 可以建立一个libtest的分支 这个分支和开发分支的区别就是区分是否开启测试库
 ***************测试工具库  集成步骤**************
+
+---
+2018.5.9 更新 
+
+    debugImplementation 'com.github.liudao01.LibTest:myLib:v1.5.4'
+    releaseImplementation 'com.github.liudao01.LibTest:mylibrary-no-op:v1.5.4'
+使用这种方式集成 release 打包的时候不会把代码打进去
+---
 
 
 ## 引入
@@ -21,7 +29,9 @@ Add it in your root build.gradle at the end of repositories:
 Step 2. Add the dependency
 
 	dependencies {
-	        compile 'com.github.liudao01:LibTest:v1.4.9'
+	       
+   	 debugImplementation 'com.github.liudao01.LibTest:myLib:v1.5.4'
+   	 releaseImplementation 'com.github.liudao01.LibTest:mylibrary-no-op:v1.5.4'
 	}
 Share this release:
 
