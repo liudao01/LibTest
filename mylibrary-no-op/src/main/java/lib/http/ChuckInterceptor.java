@@ -11,5 +11,6 @@ import android.content.Context;
 public class ChuckInterceptor {
 
     public ChuckInterceptor(Context context) {
+
     }
 }
