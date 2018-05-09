@@ -1,7 +1,5 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven'
-//apply plugin: 'com.getkeepsafe.dexcount'//在项目build.gardle中配置代码
-group='com.github.liudao01'
+
 android {
     compileSdkVersion 26
     buildToolsVersion "27.0.3"
@@ -33,5 +31,5 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:3.0.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-
+    compile 'com.squareup.okhttp3:okhttp:3.6.0'
 }
