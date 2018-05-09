@@ -18,7 +18,6 @@ public final class ChuckInterceptor implements Interceptor {
     public ChuckInterceptor(Context context) {
 
     }
-
     @Override
     public Response intercept(Chain chain) throws IOException {
         return null;
