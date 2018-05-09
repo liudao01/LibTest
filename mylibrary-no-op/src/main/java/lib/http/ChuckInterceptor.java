@@ -19,6 +19,7 @@ public final class ChuckInterceptor implements Interceptor {
 
     }
     @Override
+
     public Response intercept(Chain chain) throws IOException {
         return null;
     }
