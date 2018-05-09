@@ -1,5 +1,7 @@
 apply plugin: 'com.android.library'
-
+apply plugin: 'com.github.dcendents.android-maven'
+//apply plugin: 'com.getkeepsafe.dexcount'//在项目build.gardle中配置代码
+group='com.github.liudao01'
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
@@ -7,7 +9,7 @@ android {
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 26
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
 
