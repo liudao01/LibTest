@@ -10,9 +10,11 @@
 
 ---
 2018.5.9 更新 
-
+```
     debugImplementation 'com.github.liudao01.LibTest:myLib:v1.5.4'
     releaseImplementation 'com.github.liudao01.LibTest:mylibrary-no-op:v1.5.4'
+```
+
 使用这种方式集成 release 打包的时候不会把代码打进去
 ---
 
