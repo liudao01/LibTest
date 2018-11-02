@@ -66,25 +66,6 @@ public class TestLibUtil {
         setupAppStateTracking();
     }
 
-    /**
-     * 1.0版本初始化
-     *
-     * @param context
-     */
-   /* public void initWindows(Application context) {
-        this.context = context;
-        if (!isServiceWork(context, WindowService.class.getName())) {
-            Intent intent = new Intent(context, WindowService.class);
-            context.startService(intent);
-            //崩溃工具初始化
-            CrashHandler crashHandler = CrashHandler.getInstance();
-            crashHandler.init(context);
-            //UI
-            // LayoutManager.init(context);
-            //
-        }
-
-    }*/
 
 
     /**
@@ -117,25 +98,8 @@ public class TestLibUtil {
             HttpNavigatorContent.setList();
         }
     }
-//
-//    /**
-//     * 发送网路哦请求
-//     */
-//    public void sendmessage(HttpBeen httpBeen) {
-//        //最大条数  0条避免数量过多溢出
-//        if (httpMoudleList != null) {
-//
-//            if (httpMoudleList.size() > 30) {
-//                httpMoudleList.remove(30);
-//                httpMoudleList.add(httpBeen);
-//            } else {
-//                httpMoudleList.add(httpBeen);
-//            }
-//            HttpNavigatorContent.setList();
-//        }
-//    }
     /**
-     * 发送网路哦请求
+     * 发送网络请求
      */
     public void sendmessage(HttpTransaction httpBeen) {
         //最大条数  0条避免数量过多溢出
@@ -259,15 +223,6 @@ public class TestLibUtil {
         return ipList;
     }
 
-    /**
-     *
-     */
-
-
-//    public void setAppTracking(Application appTracking){
-//        setupTheme();
-//        setupAppStateTracking(appTracking);
-//    }
 
     /**
      * 主题样式 颜色
