@@ -23,7 +23,6 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="16dp"
             android:scaleType="centerInside"
-            android:background="@drawable/ic_delete"
             />
         <TextView
             android:id="@+id/textview_hover_title"
