@@ -28,20 +28,20 @@ android {
 
 dependencies {
 
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.4.0'
-    compile 'com.android.support:design:25.1.1'
-    testCompile 'junit:junit:4.12'
-    compile 'com.orhanobut:logger:1.15'
+    implementation 'com.android.support:appcompat-v7:25.4.0'
+    implementation 'com.android.support:design:25.1.1'
+    testImplementation 'junit:junit:4.12'
+    implementation 'com.orhanobut:logger:1.15'
     api 'io.reactivex.rxjava2:rxjava:2.1.3'
     api 'io.reactivex.rxjava2:rxandroid:2.0.1'
-    compile 'io.mattcarroll.hover:hover:0.9.8'//悬浮窗
-    compile 'de.greenrobot:eventbus:2.4.0'
-    compile 'com.squareup.okhttp3:logging-interceptor:3.3.1'
-    compile 'com.google.code.gson:gson:2.7'
-    compile 'com.squareup.okhttp3:okhttp:3.6.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    implementation 'io.mattcarroll.hover:hover:0.9.8'//悬浮窗
+    implementation 'de.greenrobot:eventbus:2.4.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.3.1'
+    implementation 'com.google.code.gson:gson:2.7'
+    implementation 'com.squareup.okhttp3:okhttp:3.6.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
 }
