@@ -11,7 +11,7 @@
 
         android:theme="@style/AppTheme">
         <service
-            android:name="lib.MultipleSectionsHoverMenuService"
+            android:name="lib.DemoHoverMenuService"
             android:enabled="true"
             android:exported="true"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">

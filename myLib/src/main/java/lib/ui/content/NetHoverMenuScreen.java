@@ -1,8 +1,6 @@
 package lib.ui.content;
 
 import android.content.Context;
-import android.os.Handler;
-import android.os.Message;
 import android.support.annotation.NonNull;
 import android.text.Html;
 import android.text.TextUtils;
@@ -19,8 +17,11 @@ import java.util.List;
 
 import httploglib.lib.R;
 import io.mattcarroll.hover.Content;
+import io.reactivex.functions.Consumer;
 import lib.data.HttpTransaction;
+import lib.listener.HoverChangeListener;
 import lib.net.ListHttpAdapter;
+import lib.util.RxBus;
 import lib.util.TestLibUtil;
 import lib.util.Utils;
 
@@ -29,7 +30,7 @@ import lib.util.Utils;
  * @explain
  * @time 2018/11/2 14:14
  */
-public class HoverMenuNetScreen implements Content, AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
+public class NetHoverMenuScreen implements Content, AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
     private static final String TAG = "HttpNavigatorContent";
     private final Context mContext;
     private final String mPageTitle;
@@ -37,11 +38,7 @@ public class HoverMenuNetScreen implements Content, AdapterView.OnItemClickListe
 
 
     private Button btClear;
-    //    private RecyclerView recyclerview;
-//    List<HttpBeen> beens;
     List<HttpTransaction> httpTransactionList;
-    Button bt_clear;
-    //    static MyAdapter myAdapter;
     private LinearLayout httpResult;
     private LinearLayout httpResultList;
     private ListView listview;
@@ -73,47 +70,47 @@ public class HoverMenuNetScreen implements Content, AdapterView.OnItemClickListe
     private TextView reponseBody;
     private Button btCopy;
 
+    private HoverChangeListener hoverChangeListener;
 
-
-    static Handler handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            List<HttpTransaction> httpTransactionList = (List<HttpTransaction>) msg.obj;
-            listHttpAdapter.setList(httpTransactionList);
-        }
-    };
+//
+//    Handler handler = new Handler() {
+//        @Override
+//        public void handleMessage(Message msg) {
+//            super.handleMessage(msg);
+//            List<HttpTransaction> httpTransactionList = (List<HttpTransaction>) msg.obj;
+//            listHttpAdapter.setList(httpTransactionList);
+//        }
+//    };
     private View view;
 
 
-    public HoverMenuNetScreen(@NonNull Context context, @NonNull String pageTitle) {
+    public NetHoverMenuScreen(@NonNull Context context, @NonNull String pageTitle) {
         mContext = context.getApplicationContext();
         mPageTitle = pageTitle;
         mWholeScreen = initView();
     }
 
-//    @NonNull
-//    private View createScreenView() {
-//        TextView wholeScreen = new TextView(mContext);
-//        wholeScreen.setText("Screen: " + mPageTitle);
-//        wholeScreen.setGravity(Gravity.CENTER);
-//        return wholeScreen;
-//    }
+    public NetHoverMenuScreen(@NonNull Context context, @NonNull String pageTitle, HoverChangeListener hoverChangeListener) {
+        mContext = context.getApplicationContext();
+        mPageTitle = pageTitle;
+        mWholeScreen = initView();
+        this.hoverChangeListener = hoverChangeListener;
+    }
+
+////    private View createScreenView() {
+////        TextView wholeScreen = new TextView(mContext);
+////        wholeScreen.setText("Screen: " + mPageTitle);
+////        wholeScreen.setGravity(Gravity.CENTER);
+////        return wholeScreen;
+////    }    @NonNull
+
 
     private View initView() {
-        view = LayoutInflater.from(mContext).inflate(R.layout.result_list,  null);
-//        mLogo = view.findViewById(R.id.imageview_logo);
-//        mHoverMotion = new HoverMotion();
+        view = LayoutInflater.from(mContext).inflate(R.layout.result_list, null);
         httpResult = (LinearLayout) view.findViewById(R.id.http_result);
         httpResultList = (LinearLayout) view.findViewById(R.id.http_result_list);
         btCopy = (Button) view.findViewById(R.id.bt_copy);
         btClear = (Button) view.findViewById(R.id.bt_clear);
-//        recyclerview = (RecyclerView) view.findViewById(R.id.recyclerview);
-//        recyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
-//        recyclerview.setAdapter(new HttpAdapter(TestLibUtil.httpMoudleList));
-        //添加分割线
-//        recyclerview.addItemXDecoration(new DividerItemDecoration(  getActivity(), DividerItemDecoration.HORIZONTAL_LIST));
-//        btClear.setOnClickListener(this);
 
 
         listview = (ListView) view.findViewById(R.id.listview);
@@ -122,24 +119,17 @@ public class HoverMenuNetScreen implements Content, AdapterView.OnItemClickListe
 
         httpTransactionList = TestLibUtil.httpMoudleList;
 
-//        if (beens != null && beens.size() > 0) {
-//            Collections.reverse(beens);//倒序刚发的在最前面
-//        }
         if (httpTransactionList != null && httpTransactionList.size() > 0) {
             Collections.reverse(httpTransactionList);//倒序刚发的在最前面
         }
         listHttpAdapter = new ListHttpAdapter(mContext, httpTransactionList);
-        // myAdapter = new MyAdapter(context, beens);
-//        listview.setAdapter(myAdapter);
         listview.setAdapter(listHttpAdapter);
 
-        // Logger.d( beens.get(0).getJson());
         btClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 TestLibUtil.httpMoudleList.clear();
                 httpTransactionList.clear();
-//              myAdapter.setList(beens);
                 listHttpAdapter.setList(httpTransactionList);
             }
         });
@@ -177,17 +167,27 @@ public class HoverMenuNetScreen implements Content, AdapterView.OnItemClickListe
         responseHeaders = (TextView) view.findViewById(R.id.response_headers);
         reponseBody = (TextView) view.findViewById(R.id.reponse_body);
 
-        tvUrl = (TextView)view.findViewById(R.id.tv_url);
-        tvJsonSize = (TextView)view.findViewById(R.id.tv_json_size);
-        tvJson = (TextView)view.findViewById(R.id.tv_json);
-        tvJsonHeader = (TextView)view.findViewById(R.id.tv_json_header);
-        btClose = (Button)view.findViewById(R.id.bt_close);
+        tvUrl = (TextView) view.findViewById(R.id.tv_url);
+        tvJsonSize = (TextView) view.findViewById(R.id.tv_json_size);
+        tvJson = (TextView) view.findViewById(R.id.tv_json);
+        tvJsonHeader = (TextView) view.findViewById(R.id.tv_json_header);
+        btClose = (Button) view.findViewById(R.id.bt_close);
 
 
         btClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showResultList();
+            }
+        });
+
+        RxBus.getInstance().doSubscribe(this,List.class,new Consumer<List>(){
+
+            @Override
+            public void accept(List list) throws Exception {
+                httpTransactionList = list;
+                listHttpAdapter.setList(httpTransactionList);
+//                hoverChangeListener.onChange();
             }
         });
     }
@@ -203,21 +203,22 @@ public class HoverMenuNetScreen implements Content, AdapterView.OnItemClickListe
         httpResult.setVisibility(View.GONE);
 
     }
-    public static void setList() {
 
+    public static void setList() {
         if (TestLibUtil.httpMoudleList != null) {
             if (listHttpAdapter != null) {
                 List<HttpTransaction> httpMoudleList = TestLibUtil.httpMoudleList;
                 if (httpMoudleList != null && httpMoudleList.size() > 0) {
                     Collections.reverse(httpMoudleList);//倒序刚发的在最前面
                 }
-                Message message = Message.obtain();
-                message.obj = httpMoudleList;
-                handler.sendMessage(message);
-
+                RxBus.getInstance().post(httpMoudleList);
+//                Message message = Message.obtain();
+//                message.obj = httpMoudleList;
+//                handler.sendMessage(message);
             }
         }
     }
+
     // Make sure that this method returns the SAME View.  It should NOT create a new View each time
     // that it is invoked.
     @NonNull
