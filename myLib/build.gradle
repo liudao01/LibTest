@@ -36,7 +36,7 @@ dependencies {
     compile 'com.android.support:design:25.1.1'
     testCompile 'junit:junit:4.12'
     compile 'com.orhanobut:logger:1.15'
-    compile 'io.mattcarroll.hover:hover:0.9.7'//悬浮窗
+    compile 'io.mattcarroll.hover:hover:0.9.8'//悬浮窗
     compile 'de.greenrobot:eventbus:2.4.0'
     compile 'com.squareup.okhttp3:logging-interceptor:3.3.1'
     compile 'com.google.code.gson:gson:2.7'

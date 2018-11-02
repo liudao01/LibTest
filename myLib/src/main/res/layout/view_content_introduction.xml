@@ -69,7 +69,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/floatingmenu_popup_color"
+        android:background="@color/colorWhite"
         />
 
     <LinearLayout
@@ -94,7 +94,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:gravity="center"
-            android:textColor="@color/floatingmenu_popup_color"
+            android:textColor="@color/black"
             android:textSize="12sp"
             android:text="Provide an easy-to-use, out-of-the-box floating menu implementation for developers.\n\nProvide common tools for developers to create their own floating menu."
             />

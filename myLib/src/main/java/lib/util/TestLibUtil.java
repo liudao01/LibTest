@@ -15,14 +15,13 @@ import java.util.List;
 
 import httploglib.lib.R;
 import httploglib.lib.been.IpConfigBeen;
-import httploglib.lib.crash.CrashHandler;
 import lib.Bus;
-import lib.DemoHoverMenuService;
+import lib.MultipleSectionsHoverMenuService;
 import lib.appstate.AppStateTracker;
 import lib.data.HttpTransaction;
-import lib.net.HttpNavigatorContent;
 import lib.theming.HoverTheme;
 import lib.theming.HoverThemeManager;
+import lib.ui.content.HoverMenuNetScreen;
 
 /**
  * @author liuml
@@ -53,17 +52,19 @@ public class TestLibUtil {
      */
     public void startUtil(Application context) {
         this.context = context;
-        DemoHoverMenuService.showFloatingMenu(context);
+//        DemoHoverMenuService.showFloatingMenu(context);
         if (httpMoudleList == null) {
             httpMoudleList = new ArrayList<>();
         }
+        Intent startHoverIntent = new Intent(context, MultipleSectionsHoverMenuService.class);
+        context.startService(startHoverIntent);
         //崩溃工具初始化
-        CrashHandler crashHandler = CrashHandler.getInstance();
-        crashHandler.init(context);
-
-        setupTheme();
-
-        setupAppStateTracking();
+//        CrashHandler crashHandler = CrashHandler.getInstance();
+//        crashHandler.init(context);
+//
+//        setupTheme();
+//
+//        setupAppStateTracking();
     }
 
     /**
@@ -114,7 +115,7 @@ public class TestLibUtil {
             } else {
                 httpMoudleList.add(been);
             }
-            HttpNavigatorContent.setList();
+            HoverMenuNetScreen.setList();
         }
     }
 //
@@ -147,7 +148,7 @@ public class TestLibUtil {
             } else {
                 httpMoudleList.add(httpBeen);
             }
-            HttpNavigatorContent.setList();
+            HoverMenuNetScreen.setList();
         }
     }
 

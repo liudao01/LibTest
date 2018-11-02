@@ -52,7 +52,9 @@ public class ListHttpAdapter extends AutoAdapter {
 
     @Override
     public void baseGetView(final int position, View v, ViewHolder vh) {
-
+        if (list == null || list.size() <= 0) {
+            return;
+        }
         HttpTransaction transaction = (HttpTransaction) list.get(position);
 //        Logger.d(" 每个item 的值 = "+transaction.toString());
         TextView code;
