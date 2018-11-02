@@ -50,7 +50,7 @@ public class CarshNavigatorContent extends FrameLayout implements Content, Adapt
 
     private static final String TAG = "CarshNavigatorContent";
     private final EventBus mBus;
-    private View mLogo;
+//    private View mLogo;
     //    private HoverMotion mHoverMotion;
     public List<String> lists;
     private Button bt_clear, bt_close;
@@ -72,7 +72,7 @@ public class CarshNavigatorContent extends FrameLayout implements Content, Adapt
 
     private void init() {
         LayoutInflater.from(getContext()).inflate(R.layout.carsh_result_list, this, true);
-        mLogo = findViewById(R.id.imageview_logo);
+//        mLogo = findViewById(R.id.imageview_logo);
         listview = (ListView) findViewById(R.id.listview);
         listview.setOnItemClickListener(this);
         listview.setOnItemLongClickListener(this);
