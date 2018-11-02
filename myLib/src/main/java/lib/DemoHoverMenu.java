@@ -95,9 +95,9 @@ public class DemoHoverMenu extends HoverMenu {
         Resources resources = mContext.getResources();
         int padding = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 15, resources.getDisplayMetrics());
 //
-        DemoTabView view = new DemoTabView(mContext, resources.getDrawable(R.drawable.tab_background), resources.getDrawable(tabBitmapRes));
-        view.setTabBackgroundColor(backgroundColor);
-        view.setTabForegroundColor(iconColor);
+        DemoTabView view = new DemoTabView(mContext, resources.getDrawable(tabBitmapRes), null);
+//        view.setTabBackgroundColor(backgroundColor);
+//        view.setTabForegroundColor(iconColor);
         view.setPadding(padding, padding, padding, padding);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             view.setElevation(padding);
