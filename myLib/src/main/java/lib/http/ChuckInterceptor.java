@@ -137,7 +137,7 @@ public final class ChuckInterceptor implements Interceptor {
         }
 
         transaction.setRequestBodyIsPlainText(!bodyHasUnsupportedEncoding(request.headers()));//请求体是否明文
-        if (hasRequestBody && transaction.requestBodyIsPlainText()) {
+        if (hasRequestBody && transaction.responseBodyIsPlainText()) {
             BufferedSource source = getNativeSource(new Buffer(), bodyGzipped(request.headers()));
             Buffer buffer = source.buffer();
             requestBody.writeTo(buffer);
