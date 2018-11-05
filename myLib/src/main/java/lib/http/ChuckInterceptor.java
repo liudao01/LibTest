@@ -27,7 +27,7 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import httploglib.lib.R;
-import lib.data.HttpTransaction;
+import lib.data.HttpTransaction2;
 import lib.support.RetentionManager;
 import lib.util.JsonFormatUtil;
 import lib.util.TestLibUtil;
@@ -66,7 +66,7 @@ public final class ChuckInterceptor implements Interceptor {
          */
         ONE_WEEK,
         /**
-         * Retain data forever.
+         * Retain data forever.chuck:library
          */
         FOREVER
     }
@@ -119,8 +119,8 @@ public final class ChuckInterceptor implements Interceptor {
         RequestBody requestBody = request.body();
         boolean hasRequestBody = requestBody != null;
 
-        HttpTransaction transaction = new HttpTransaction();
-        HttpTransaction transactionView = new HttpTransaction();
+        HttpTransaction2 transaction = new HttpTransaction2();
+        HttpTransaction2 transactionView = new HttpTransaction2();
         transaction.setRequestDate(new Date());//时间
 
         transaction.setMethod(request.method());//请求方法

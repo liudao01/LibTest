@@ -18,7 +18,7 @@ import java.util.List;
 import httploglib.lib.R;
 import io.mattcarroll.hover.Content;
 import io.reactivex.functions.Consumer;
-import lib.data.HttpTransaction;
+import lib.data.HttpTransaction2;
 import lib.listener.HoverChangeListener;
 import lib.net.ListHttpAdapter;
 import lib.util.RxBus;
@@ -38,7 +38,7 @@ public class NetHoverMenuScreen implements Content, AdapterView.OnItemClickListe
 
 
     private Button btClear;
-    List<HttpTransaction> httpTransactionList;
+    List<HttpTransaction2> httpTransaction2List;
     private LinearLayout httpResult;
     private LinearLayout httpResultList;
     private ListView listview;
@@ -117,20 +117,20 @@ public class NetHoverMenuScreen implements Content, AdapterView.OnItemClickListe
         listview.setOnItemClickListener(this);
         listview.setOnItemLongClickListener(this);
 
-        httpTransactionList = TestLibUtil.httpMoudleList;
+        httpTransaction2List = TestLibUtil.httpMoudleList;
 
-        if (httpTransactionList != null && httpTransactionList.size() > 0) {
-            Collections.reverse(httpTransactionList);//倒序刚发的在最前面
+        if (httpTransaction2List != null && httpTransaction2List.size() > 0) {
+            Collections.reverse(httpTransaction2List);//倒序刚发的在最前面
         }
-        listHttpAdapter = new ListHttpAdapter(mContext, httpTransactionList);
+        listHttpAdapter = new ListHttpAdapter(mContext, httpTransaction2List);
         listview.setAdapter(listHttpAdapter);
 
         btClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 TestLibUtil.httpMoudleList.clear();
-                httpTransactionList.clear();
-                listHttpAdapter.setList(httpTransactionList);
+                httpTransaction2List.clear();
+                listHttpAdapter.setList(httpTransaction2List);
             }
         });
 
@@ -138,8 +138,8 @@ public class NetHoverMenuScreen implements Content, AdapterView.OnItemClickListe
         btCopy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HttpTransaction httpTransaction = httpTransactionList.get(clickPosition);
-                Utils.copy(mContext, "返回数据: " + httpTransaction.getFormattedResponseBody());
+                HttpTransaction2 httpTransaction2 = httpTransaction2List.get(clickPosition);
+                Utils.copy(mContext, "返回数据: " + httpTransaction2.getFormattedResponseBody());
             }
         });
 
@@ -185,8 +185,8 @@ public class NetHoverMenuScreen implements Content, AdapterView.OnItemClickListe
 
             @Override
             public void accept(List list) throws Exception {
-                httpTransactionList = list;
-                listHttpAdapter.setList(httpTransactionList);
+                httpTransaction2List = list;
+                listHttpAdapter.setList(httpTransaction2List);
 //                hoverChangeListener.onChange();
             }
         });
@@ -207,7 +207,7 @@ public class NetHoverMenuScreen implements Content, AdapterView.OnItemClickListe
     public static void setList() {
         if (TestLibUtil.httpMoudleList != null) {
             if (listHttpAdapter != null) {
-                List<HttpTransaction> httpMoudleList = TestLibUtil.httpMoudleList;
+                List<HttpTransaction2> httpMoudleList = TestLibUtil.httpMoudleList;
                 if (httpMoudleList != null && httpMoudleList.size() > 0) {
                     Collections.reverse(httpMoudleList);//倒序刚发的在最前面
                 }
@@ -250,10 +250,10 @@ public class NetHoverMenuScreen implements Content, AdapterView.OnItemClickListe
         showResult();
         clickPosition = position;
         //setData();
-        setHttpInfoData((HttpTransaction) httpTransactionList.get(position));
+        setHttpInfoData((HttpTransaction2) httpTransaction2List.get(position));
     }
 
-    private void setHttpInfoData(HttpTransaction transaction) {
+    private void setHttpInfoData(HttpTransaction2 transaction) {
         url.setText(transaction.getUrl());
         method.setText(transaction.getMethod());
         protocol.setText(transaction.getProtocol());
@@ -292,9 +292,9 @@ public class NetHoverMenuScreen implements Content, AdapterView.OnItemClickListe
 
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-        HttpTransaction httpTransaction = (HttpTransaction) TestLibUtil.httpMoudleList.get(position);
-        Utils.copy(mContext, "请求方式: " + httpTransaction.getMethod() + "\n" + "请求地址: " +
-                httpTransaction.getUrl() + "\n" + "请求参数: " + httpTransaction.getRequestBody());
+        HttpTransaction2 httpTransaction2 = (HttpTransaction2) TestLibUtil.httpMoudleList.get(position);
+        Utils.copy(mContext, "请求方式: " + httpTransaction2.getMethod() + "\n" + "请求地址: " +
+                httpTransaction2.getUrl() + "\n" + "请求参数: " + httpTransaction2.getRequestBody());
         return true;
     }
 

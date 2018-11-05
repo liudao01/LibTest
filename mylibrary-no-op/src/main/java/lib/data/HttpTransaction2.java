@@ -8,7 +8,7 @@ import java.util.Date;
  * @time 2018/5/8 20:04
  */
 
-public class HttpTransaction {
+public class HttpTransaction2 {
 
     private Long _id;
     private Date requestDate;

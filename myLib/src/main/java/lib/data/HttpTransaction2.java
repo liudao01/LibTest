@@ -30,7 +30,7 @@ import lib.support.FormatUtils;
 import lib.support.JsonConvertor;
 import okhttp3.Headers;
 
-public class HttpTransaction {
+public class HttpTransaction2 {
 
     public enum Status {
         Requested,

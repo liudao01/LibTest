@@ -12,7 +12,7 @@ import java.util.List;
 import httploglib.lib.R;
 import lib.adapter.AutoAdapter;
 import lib.adapter.ViewHolder;
-import lib.data.HttpTransaction;
+import lib.data.HttpTransaction2;
 import lib.util.TestLibUtil;
 import lib.util.Utils;
 
@@ -23,7 +23,7 @@ import lib.util.Utils;
  */
 
 public class ListHttpAdapter extends AutoAdapter {
-    HttpTransaction transaction;
+    HttpTransaction2 transaction;
     Context context;
     int colorDefault;
     int colorRequested;
@@ -55,7 +55,7 @@ public class ListHttpAdapter extends AutoAdapter {
         if (list == null || list.size() <= 0) {
             return;
         }
-        HttpTransaction transaction = (HttpTransaction) list.get(position);
+        HttpTransaction2 transaction = (HttpTransaction2) list.get(position);
 //        Logger.d(" 每个item 的值 = "+transaction.toString());
         TextView code;
         TextView path;
@@ -78,7 +78,7 @@ public class ListHttpAdapter extends AutoAdapter {
         host.setText(transaction.getHost());
         start.setText(transaction.getRequestStartTimeString());
         ssl.setVisibility(transaction.isSsl() ? View.VISIBLE : View.GONE);
-        if (transaction.getStatus() == HttpTransaction.Status.Complete) {
+        if (transaction.getStatus() == HttpTransaction2.Status.Complete) {
             code.setText(String.valueOf(transaction.getResponseCode()));
             duration.setText(transaction.getDurationString());
             size.setText(transaction.getTotalSizeString());
@@ -87,26 +87,26 @@ public class ListHttpAdapter extends AutoAdapter {
             duration.setText(null);
             size.setText(null);
         }
-        if (transaction.getStatus() == HttpTransaction.Status.Failed) {
+        if (transaction.getStatus() == HttpTransaction2.Status.Failed) {
             code.setText("!!!");
         }
         mBtCopyData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HttpTransaction httpTransaction = (HttpTransaction) TestLibUtil.httpMoudleList.get(position);
-                Utils.copy(context, "请求方式: " + httpTransaction.getMethod() + "\n" + "请求地址: " +
-                        httpTransaction.getUrl() + "\n" + "请求参数: " + httpTransaction.getRequestBody()
-                        + "\n请求结果:" + httpTransaction.getFormattedResponseBody());
+                HttpTransaction2 httpTransaction2 = (HttpTransaction2) TestLibUtil.httpMoudleList.get(position);
+                Utils.copy(context, "请求方式: " + httpTransaction2.getMethod() + "\n" + "请求地址: " +
+                        httpTransaction2.getUrl() + "\n" + "请求参数: " + httpTransaction2.getRequestBody()
+                        + "\n请求结果:" + httpTransaction2.getFormattedResponseBody());
             }
         });
         setStatusColor(vh, transaction);
     }
 
-    private void setStatusColor(ViewHolder holder, HttpTransaction transaction) {
+    private void setStatusColor(ViewHolder holder, HttpTransaction2 transaction) {
         int color;
-        if (transaction.getStatus() == HttpTransaction.Status.Failed) {
+        if (transaction.getStatus() == HttpTransaction2.Status.Failed) {
             color = colorError;
-        } else if (transaction.getStatus() == HttpTransaction.Status.Requested) {
+        } else if (transaction.getStatus() == HttpTransaction2.Status.Requested) {
             color = colorRequested;
         } else if (transaction.getResponseCode() >= 500) {
             color = color500;

@@ -19,7 +19,7 @@ import httploglib.lib.crash.CrashHandler;
 import lib.Bus;
 import lib.DemoHoverMenuService;
 import lib.appstate.AppStateTracker;
-import lib.data.HttpTransaction;
+import lib.data.HttpTransaction2;
 import lib.net.HttpNavigatorContent;
 import lib.theming.HoverTheme;
 import lib.theming.HoverThemeManager;
@@ -81,7 +81,7 @@ public class TestLibUtil {
         //BroadcastUtil.send(context, intent1, BroadcastUtil.windows);
         //直接操作静态变量
         Logger.d("打印数据 url=     \n" + url);
-        HttpTransaction been = new HttpTransaction();
+        HttpTransaction2 been = new HttpTransaction2();
         been.setUrl(url);
         been.setRequestBody("header = "+header);
         been.setResponseBody(json);
@@ -101,7 +101,7 @@ public class TestLibUtil {
     /**
      * 发送网络请求
      */
-    public void sendmessage(HttpTransaction httpBeen) {
+    public void sendmessage(HttpTransaction2 httpBeen) {
         //最大条数  0条避免数量过多溢出
         if (httpMoudleList != null) {
 
