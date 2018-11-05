@@ -17,7 +17,7 @@ import java.util.List;
 import httploglib.lib.been.IpConfigBeen;
 import lib.data.HttpTransaction2;
 import lib.util.TestLibUtil;
-import lib.http.ChuckInterceptor;
+import lib.http.LibChuckInterceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
@@ -130,7 +130,7 @@ public class MainActivity extends Activity {
     private OkHttpClient getClient(Context context) {
         return new OkHttpClient.Builder()
                 // Add a ChuckInterceptor instance to your OkHttp client
-                .addInterceptor(new ChuckInterceptor(context))
+                .addInterceptor(new LibChuckInterceptor(context))
                 .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .build();
     }

@@ -47,7 +47,7 @@ import okio.Okio;
 /**
  * An OkHttp Interceptor which persists and displays HTTP activity in your application for later inspection.
  */
-public final class ChuckInterceptor implements Interceptor {
+public final class LibChuckInterceptor implements Interceptor {
 
     private String requestStrLast;
     private String responseStrLast;
@@ -82,7 +82,7 @@ public final class ChuckInterceptor implements Interceptor {
     /**
      * @param context The current Context.
      */
-    public ChuckInterceptor(Context context) {
+    public LibChuckInterceptor(Context context) {
         this.context = context.getApplicationContext();
         retentionManager = new RetentionManager(this.context, DEFAULT_RETENTION);
     }
@@ -93,9 +93,9 @@ public final class ChuckInterceptor implements Interceptor {
      * Warning: setting this value too high may cause unexpected results.
      *
      * @param max the maximum length (in bytes) for request/response content.
-     * @return The {@link ChuckInterceptor} instance.
+     * @return The {@link LibChuckInterceptor} instance.
      */
-    public ChuckInterceptor maxContentLength(long max) {
+    public LibChuckInterceptor maxContentLength(long max) {
         this.maxContentLength = max;
         return this;
     }
@@ -105,9 +105,9 @@ public final class ChuckInterceptor implements Interceptor {
      * The default is one week.
      *
      * @param period the peroid for which to retain HTTP transaction data.
-     * @return The {@link ChuckInterceptor} instance.
+     * @return The {@link LibChuckInterceptor} instance.
      */
-    public ChuckInterceptor retainDataFor(Period period) {
+    public LibChuckInterceptor retainDataFor(Period period) {
         retentionManager = new RetentionManager(context, period);
         return this;
     }

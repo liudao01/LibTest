@@ -13,9 +13,9 @@ import okhttp3.Response;
  * @time 2018/5/8 20:45
  */
 
-public final class ChuckInterceptor implements Interceptor {
+public final class LibChuckInterceptor implements Interceptor {
 
-    public ChuckInterceptor(Context context) {
+    public LibChuckInterceptor(Context context) {
 
     }
     @Override
