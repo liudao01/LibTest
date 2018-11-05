@@ -15,9 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import httploglib.lib.been.IpConfigBeen;
-import lib.data.HttpTransaction2;
+import lib.data.HttpTransaction;
 import lib.util.TestLibUtil;
-import lib.http.LibChuckInterceptor;
+import lib.http.ChuckInterceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
@@ -78,10 +78,10 @@ public class MainActivity extends Activity {
                 "    ]\n" +
                 "}";
 
-        HttpTransaction2 httpTransaction2 = new HttpTransaction2();
-        httpTransaction2.setUrl(url);
-        httpTransaction2.setResponseBody(json);
-        TestLibUtil.getInstance().sendmessage(httpTransaction2);
+        HttpTransaction httpTransaction = new HttpTransaction();
+        httpTransaction.setUrl(url);
+        httpTransaction.setResponseBody(json);
+        TestLibUtil.getInstance().sendmessage(httpTransaction);
 
 //        tvIpList.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -130,7 +130,7 @@ public class MainActivity extends Activity {
     private OkHttpClient getClient(Context context) {
         return new OkHttpClient.Builder()
                 // Add a ChuckInterceptor instance to your OkHttp client
-                .addInterceptor(new LibChuckInterceptor(context))
+                .addInterceptor(new ChuckInterceptor(context))
                 .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .build();
     }

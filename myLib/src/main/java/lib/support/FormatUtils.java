@@ -37,7 +37,7 @@ import javax.xml.transform.stream.StreamResult;
 
 import httploglib.lib.R;
 import lib.data.HttpHeader;
-import lib.data.HttpTransaction2;
+import lib.data.HttpTransaction;
 
 public class FormatUtils {
 
@@ -84,7 +84,7 @@ public class FormatUtils {
         }
     }
 
-    public static String getShareText(Context context, HttpTransaction2 transaction) {
+    public static String getShareText(Context context, HttpTransaction transaction) {
         String text = "";
         text += context.getString(R.string.chuck_url) + ": " + v(transaction.getUrl()) + "\n";
         text += context.getString(R.string.chuck_method) + ": " + v(transaction.getMethod()) + "\n";
@@ -119,7 +119,7 @@ public class FormatUtils {
         return text;
     }
 
-    public static String getShareCurlCommand(HttpTransaction2 transaction) {
+    public static String getShareCurlCommand(HttpTransaction transaction) {
         boolean compressed = false;
         String curlCmd = "curl";
         curlCmd += " -X " + transaction.getMethod();

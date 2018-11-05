@@ -5,7 +5,7 @@ import android.content.Context;
 
 import java.util.List;
 
-import lib.data.HttpTransaction2;
+import lib.data.HttpTransaction;
 
 /**
  * @explain 测试库工具 关于工具库所有的操作都通过这个类
@@ -47,7 +47,7 @@ public class TestLibUtil {
     /**
      * 发送网路哦请求
      */
-    public void sendmessage(HttpTransaction2 httpBeen) {
+    public void sendmessage(HttpTransaction httpBeen) {
     }
 
 
