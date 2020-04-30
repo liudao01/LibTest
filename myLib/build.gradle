@@ -39,8 +39,7 @@ dependencies {
     api 'io.reactivex.rxjava2:rxjava:2.1.3'
 //    api 'io.reactivex.rxjava2:rxandroid:2.0.1'
 //    api 'io.mattcarroll.hover:hover:0.9.8'//悬浮窗
-    api 'com.github.liudao01:hover:4bdd23d242'
-
+    api 'com.github.liudao01:hover:918fbbb806'
 //    api 'com.github.liudao01:hover:v0.9.9'
     api 'de.greenrobot:eventbus:2.4.0'
     api 'com.squareup.okhttp3:logging-interceptor:3.3.1'
