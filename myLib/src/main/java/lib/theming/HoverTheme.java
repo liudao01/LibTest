@@ -15,7 +15,7 @@
  */
 package lib.theming;
 
-import android.support.annotation.ColorInt;
+import androidx.annotation.ColorInt;
 
 /**
  * POJO representing a theme configuration.

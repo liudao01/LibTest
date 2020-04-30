@@ -15,7 +15,7 @@
  */
 package lib.theming;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * Alters the visual theme of a Hover demo menu.
