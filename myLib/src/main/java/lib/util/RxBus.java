@@ -4,7 +4,6 @@ import java.util.HashMap;
 
 import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
@@ -62,7 +61,7 @@ public class RxBus {
     public <T> void doSubscribe(Object o, Class<T> type, Consumer<T> next) {
         Disposable subscribe = toObservable(type)
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidScheduler.mainThread())
                 .subscribe(next);
         addSubscription(o, subscribe);
     }
@@ -79,7 +78,7 @@ public class RxBus {
     public <T> void doSubscribe(Object o, Class<T> type, Consumer<T> next, Consumer<Throwable> error) {
         Disposable subscribe = toObservable(type)
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidScheduler.mainThread())
                 .subscribe(next, error);
         addSubscription(o, subscribe);
     }
