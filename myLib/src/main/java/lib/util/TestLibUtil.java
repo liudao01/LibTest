@@ -57,13 +57,13 @@ public class TestLibUtil {
      */
     public void startUtil(Application context) {
         this.context = context;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (!Settings.canDrawOverlays(context)) {
-                Intent drawOverlaysSettingsIntent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
-                drawOverlaysSettingsIntent.setData(Uri.parse("package:" + context.getPackageName()));
-                context.startActivity(drawOverlaysSettingsIntent);
-            }
-        } else {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//            if (!Settings.canDrawOverlays(context)) {
+//                Intent drawOverlaysSettingsIntent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
+//                drawOverlaysSettingsIntent.setData(Uri.parse("package:" + context.getPackageName()));
+//                context.startActivity(drawOverlaysSettingsIntent);
+//            }
+//        } else {
 
             DemoHoverMenuService.showFloatingMenu(context);
             if (httpMoudleList == null) {
@@ -76,7 +76,7 @@ public class TestLibUtil {
             setupTheme();
 
             setupAppStateTracking();
-        }
+//        }
     }
 
 
