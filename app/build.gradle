@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 //apply plugin: 'com.getkeepsafe.dexcount'//在项目build.gardle中配置代码
 android {
     compileSdkVersion 28
-    buildToolsVersion "25.0.2"
+    buildToolsVersion "28.0.3"
     defaultConfig {
         applicationId "demo.libtestapp"
         minSdkVersion 15

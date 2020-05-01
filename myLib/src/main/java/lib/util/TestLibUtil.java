@@ -4,8 +4,12 @@ import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
+
 import androidx.core.content.ContextCompat;
+
+import android.provider.Settings;
 import android.text.TextUtils;
 
 import com.orhanobut.logger.Logger;
@@ -53,19 +57,27 @@ public class TestLibUtil {
      */
     public void startUtil(Application context) {
         this.context = context;
-        DemoHoverMenuService.showFloatingMenu(context);
-        if (httpMoudleList == null) {
-            httpMoudleList = new ArrayList<>();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (!Settings.canDrawOverlays(context)) {
+                Intent drawOverlaysSettingsIntent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
+                drawOverlaysSettingsIntent.setData(Uri.parse("package:" + context.getPackageName()));
+                context.startActivity(drawOverlaysSettingsIntent);
+            }
+        } else {
+
+            DemoHoverMenuService.showFloatingMenu(context);
+            if (httpMoudleList == null) {
+                httpMoudleList = new ArrayList<>();
+            }
+            //崩溃工具初始化
+            CrashHandler crashHandler = CrashHandler.getInstance();
+            crashHandler.init(context);
+
+            setupTheme();
+
+            setupAppStateTracking();
         }
-        //崩溃工具初始化
-        CrashHandler crashHandler = CrashHandler.getInstance();
-        crashHandler.init(context);
-
-        setupTheme();
-
-        setupAppStateTracking();
     }
-
 
 
     /**
@@ -83,7 +95,7 @@ public class TestLibUtil {
         Logger.d("打印数据 url=     \n" + url);
         HttpTransaction been = new HttpTransaction();
         been.setUrl(url);
-        been.setRequestBody("header = "+header);
+        been.setRequestBody("header = " + header);
         been.setResponseBody(json);
 //        been.setRequestBodyIsPlainText(header);
         //最大条数  0条避免数量过多溢出
@@ -98,6 +110,7 @@ public class TestLibUtil {
             HttpNavigatorContent.setList();
         }
     }
+
     /**
      * 发送网络请求
      */
