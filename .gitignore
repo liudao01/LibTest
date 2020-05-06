@@ -9,7 +9,7 @@
 .externalNativeBuild
 .idea/
 Would skip repository LibTest/
-app/libs/
+#app/libs/
 app/src/main/res/drawable/
 "https\357\200\272/"
 "https\357\200\272github.com/"
