@@ -27,7 +27,7 @@ android {
     }
 
 }
-
+configurations.embed.transitive = true
 dependencies {
 
     implementation fileTree(include: ['*.jar'], dir: 'libs')
@@ -43,7 +43,7 @@ dependencies {
 //    api 'io.mattcarroll.hover:hover:0.9.8'//悬浮窗
 //    api('com.github.liudao01:hover:918fbbb806')
 //    api 'com.github.liudao01:hover:v0.9.9'
-    api 'de.greenrobot:eventbus:2.4.0'
+    embed 'de.greenrobot:eventbus:2.4.0'
     api 'com.squareup.okhttp3:logging-interceptor:3.3.1'
     api 'com.google.code.gson:gson:2.7'
     api 'com.squareup.okhttp3:okhttp:3.6.0'
@@ -52,4 +52,3 @@ dependencies {
 }
 // the default value is false
 // invalid for local aar dependency
-configurations.embed.transitive = true
