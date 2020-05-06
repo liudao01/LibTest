@@ -10,7 +10,7 @@
 
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <application
-
+        android:allowBackup="false"
         android:theme="@style/AppTheme">
         <service
             android:name="lib.DemoHoverMenuService"

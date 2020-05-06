@@ -46,5 +46,5 @@ dependencies {
     api 'com.google.code.gson:gson:2.7'
     api 'com.squareup.okhttp3:okhttp:3.6.0'
     api 'com.squareup.retrofit2:converter-gson:2.1.0'
-    api project(path: ':hover')
+//    api project(path: ':hover')
 }

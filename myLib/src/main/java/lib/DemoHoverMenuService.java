@@ -15,9 +15,15 @@
  */
 package lib;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+
+import android.os.Build;
 import android.view.ContextThemeWrapper;
 
 import java.io.IOException;
@@ -37,17 +43,41 @@ import lib.theming.HoverTheme;
 public class DemoHoverMenuService extends HoverMenuService {
 
     private static final String TAG = "DemoHoverMenuService";
+    private Notification notification;
 
     public static void showFloatingMenu(Context context) {
-        context.startService(new Intent(context, DemoHoverMenuService.class));
+        Intent intent = new Intent(context, DemoHoverMenuService.class);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            context.startForegroundService(intent);
+        } else {
+            context.startService(intent);
+        }
     }
 
     private DemoHoverMenu mDemoHoverMenu;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onCreate() {
         super.onCreate();
+        NotificationChannel channel = new NotificationChannel("1","name",
+                NotificationManager.IMPORTANCE_HIGH);
+
+        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        manager.createNotificationChannel(channel);
+
+        notification = new Notification.Builder(getApplicationContext(),"1").build();
+        startForeground(1, notification);
+
+
+
         Bus.getInstance().register(this);
+    }
+
+    @Override
+    public void onStart(Intent intent, int startId) {
+        super.onStart(intent, startId);
+        startForeground(1, notification);
     }
 
     @Override

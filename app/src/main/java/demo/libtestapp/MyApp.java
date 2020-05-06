@@ -11,9 +11,11 @@ import lib.util.TestLibUtil;
  */
 
 public class MyApp extends Application {
+    public  static  MyApp myApp ;
     @Override
     public void onCreate() {
         super.onCreate();
+        myApp  = this;
         TestLibUtil.getInstance().startUtil(this);
     }
 }

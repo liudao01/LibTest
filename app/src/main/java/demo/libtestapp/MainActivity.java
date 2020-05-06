@@ -99,16 +99,7 @@ public class MainActivity extends Activity {
         }
         tvIpList.setText(list);
 
-        /**
-         * 开始的时候 的权限 判断是否可以让悬浮窗 悬浮到所有应用的前面
-         */
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (!Settings.canDrawOverlays(this)) {
-                Intent drawOverlaysSettingsIntent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
-                drawOverlaysSettingsIntent.setData(Uri.parse("package:" + getPackageName()));
-                startActivity(drawOverlaysSettingsIntent);
-            }
-        }
+
     }
 
     public void IPinit() {
