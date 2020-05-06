@@ -1,1 +1,1 @@
-include ':app', ':myLib', ':mylibrary-no-op'
+include ':app', ':myLib', ':mylibrary-no-op', ':hover'
