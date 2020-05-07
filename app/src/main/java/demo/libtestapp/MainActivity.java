@@ -37,6 +37,14 @@ public class MainActivity extends Activity {
        // TestLibUtil.getInstance().startUtil(getApplication());
 
         setContentView(R.layout.activity_main);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (!Settings.canDrawOverlays(context)) {
+                Intent drawOverlaysSettingsIntent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
+                drawOverlaysSettingsIntent.setData(Uri.parse("package:" + context.getPackageName()));
+                context.startActivity(drawOverlaysSettingsIntent);
+            }
+        }
         btStart = (Button) findViewById(R.id.bt_start);
 
         tvIpList = (TextView) findViewById(R.id.tv_ip_list);
