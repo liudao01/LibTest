@@ -26,6 +26,9 @@ allprojects {
         jcenter()
         maven { url 'https://jitpack.io' }
         mavenCentral()
+//        mavenLocal()
+        //本地maven库
+
         maven {
             url 'https://maven.google.com/'
             name 'Google'

@@ -1,7 +1,8 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
-apply plugin: 'com.kezong.fat-aar'
+apply plugin: 'maven-publish'
 
+//apply plugin: 'com.kezong.fat-aar'
 //apply plugin: 'com.getkeepsafe.dexcount'//在项目build.gardle中配置代码
 group = 'com.github.liudao01'
 android {
@@ -27,10 +28,10 @@ android {
     }
 
 }
-configurations.embed.transitive = true
+//configurations.embed.transitive = true
 dependencies {
-
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    api fileTree(dir: 'libs', include: ['*.jar'])
+//    implementation fileTree(include: ['*.jar'], dir: 'libs')
 //    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
 //        exclude group: 'com.android.support', module: 'support-annotations'
 //    })
@@ -44,14 +45,51 @@ dependencies {
 //    api('com.github.liudao01:hover:918fbbb806')
 //    api 'com.github.liudao01:hover:v0.9.9'
 
-    api ('de.greenrobot:eventbus:2.4.0'){
-        transitive = true
-    }
+    implementation ('de.greenrobot:eventbus:2.4.0')
     api 'com.squareup.okhttp3:logging-interceptor:3.3.1'
     api 'com.google.code.gson:gson:2.7'
     api 'com.squareup.okhttp3:okhttp:3.6.0'
     api 'com.squareup.retrofit2:converter-gson:2.1.0'
 //    api project(path: ':hover')
+}
+
+task sourceJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier "sources"
+}
+
+publishing {
+    publications {
+        aar(MavenPublication) {
+            //记住一下规则,等会导入时注意, 举例compile 'com.dz.bleota:bleota:1.0.0'
+            groupId 'httploglib.lib'//包名
+            artifactId 'libtest'
+            version '1.0.0'//版本
+            // Tell maven to prepare the generated "*.aar" file for publishing
+            artifact(sourceJar)
+            artifact("$buildDir/outputs/aar/${project.getName()}-release.aar")
+//同时记录该依赖库所依赖的其他远程依赖
+            pom.withXml {
+                def dependenciesNode = asNode().appendNode('dependencies')
+                //Iterate over the compile dependencies (we don't want the test ones), adding a <dependency> node for each
+                configurations.api.allDependencies.each {
+                    if(it.group != null && (it.name != null || "unspecified".equals(it.name)) && it.version != null)
+                    {
+                        def dependencyNode = dependenciesNode.appendNode('dependency')
+                        dependencyNode.appendNode('groupId', it.group)
+                        dependencyNode.appendNode('artifactId', it.name)
+                        dependencyNode.appendNode('version', it.version)
+                    }
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            //仓库存放在项目根目录
+            url("file://"+project.rootDir.absolutePath+"/repository")
+        }
+    }
 }
 // the default value is false
 // invalid for local aar dependency
