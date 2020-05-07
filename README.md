@@ -3,7 +3,7 @@
 # 最新版本 看上面那个小按钮 点一下就知道
 # 效果图 网络的  
  ![img](https://github.com/liudao01/LibTest/blob/master/demo.gif)
-## 好处   给后端人员看  自己也不用每次看开发工具
+## 好处  给后端人员看  自己也不用每次看开发工具
 # 这里是v1.5.4 版本的  (自用的 贡献出来)  这个版本号看发布的版本
 
 ***************测试工具库  集成步骤**************
@@ -49,9 +49,24 @@ Share this release:
          
 ## 在你自己的 welcome页面 (第一个页面) 使用下面的代码
 
-上传jitpack 注意事项:
-1 将github 项目克隆到非空目录   可以使用tmp  新建一个空tmp 文件夹 再移动.git文件夹  再删除tmp文件夹 再更新
-2  必须将gradle 相关的东西 提交到github上面去要不然会编译错误
+
+```java
+# 做一下悬浮窗判断
+    在起始页面 或者欢迎页面加入下面代码,或者你自己
+    手动加上悬浮窗权限也行 建议用这种方式自动判断
+    /**
+         * 开始的时候 的权限 判断是否可以让悬浮窗 悬浮到所有应用的前面
+         */
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (!Settings.canDrawOverlays(this)) {
+                Intent drawOverlaysSettingsIntent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
+                drawOverlaysSettingsIntent.setData(Uri.parse("package:" + getPackageName()));
+                startActivity(drawOverlaysSettingsIntent);
+            }
+        }
+	
+```
+
 
 ## 1,   //初始化测试库  网络请求初始化 IP地址初始化
 
@@ -75,23 +90,6 @@ ______________________________________
 ```
 
 
-
-```java
-# 做一下悬浮窗判断
-    在起始页面 或者欢迎页面加入下面代码,或者你自己
-    手动加上悬浮窗权限也行 建议用这种方式自动判断
-    /**
-         * 开始的时候 的权限 判断是否可以让悬浮窗 悬浮到所有应用的前面
-         */
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (!Settings.canDrawOverlays(this)) {
-                Intent drawOverlaysSettingsIntent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
-                drawOverlaysSettingsIntent.setData(Uri.parse("package:" + getPackageName()));
-                startActivity(drawOverlaysSettingsIntent);
-            }
-        }
-	
-```
 ## 2, 如果要有切换ip的功能,设置自己url 在接口地址里面 设置自己的url 
  ```java
  public static String switchs  = TestLibConfig.getSwitchs(MyApplication.getContext());//设置接口地址前缀   获取当前接口 是正式还是测试
@@ -125,5 +123,10 @@ ______________________________________
 ```
 
 ----end----
+
+
+上传jitpack 注意事项:
+1 将github 项目克隆到非空目录   可以使用tmp  新建一个空tmp 文件夹 再移动.git文件夹  再删除tmp文件夹 再更新
+2  必须将gradle 相关的东西 提交到github上面去要不然会编译错误
 
 
