@@ -17,6 +17,16 @@
     releaseImplementation 'com.github.liudao01.LibTest:mylibrary-no-op:v1.6.0'
 ```
 
+
+如果buildTypes存在dev  uat 等自己添加的buildTypes 那么需要按照如下的样式写
+```
+//调试工具库
+    debugImplementation 'com.github.liudao01.LibTest:myLib:v1.6.0'
+    uatImplementation 'com.github.liudao01.LibTest:myLib:v1.6.0'
+    devImplementation 'com.github.liudao01.LibTest:myLib:v1.6.0'
+    releaseImplementation 'com.github.liudao01.LibTest:mylibrary-no-op:v1.6.0'
+```
+
 使用这种方式集成 release 打包的时候不会把代码打进去
 ---
 
