@@ -4,15 +4,17 @@
 # 效果图 网络的  
  ![img](https://github.com/liudao01/LibTest/blob/master/demo.gif)
 ## 好处  给后端人员看  自己也不用每次看开发工具
-# 这里是v1.5.4 版本的  (自用的 贡献出来)  这个版本号看发布的版本
+# 这里是v1.6.0 版本的  (自用的 贡献出来)  这个版本号看发布的版本
 
 ***************测试工具库  集成步骤**************
 
 ---
-2018.5.9 更新 
+具体版本看这里 [![](https://jitpack.io/v/liudao01/LibTest.svg)](https://jitpack.io/#liudao01/LibTest)
+
+2020.5.8 更新 
 ```
-    debugImplementation 'com.github.liudao01.LibTest:myLib:v1.5.4'
-    releaseImplementation 'com.github.liudao01.LibTest:mylibrary-no-op:v1.5.4'
+    debugImplementation 'com.github.liudao01.LibTest:myLib:v1.6.0'
+    releaseImplementation 'com.github.liudao01.LibTest:mylibrary-no-op:v1.6.0'
 ```
 
 使用这种方式集成 release 打包的时候不会把代码打进去
