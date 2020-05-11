@@ -16,6 +16,7 @@
 package lib.http;
 
 import android.content.Context;
+import android.net.Uri;
 import android.util.Log;
 
 import java.io.EOFException;
@@ -155,7 +156,7 @@ public final class ChuckInterceptor implements Interceptor {
                     } catch (Exception e) {
                         requestStr = s;
                     }
-                    String string = converStr(requestStr);
+                    String string = converStr(Uri.decode(requestStr));
                     try {
                         requestStrLast = JsonFormatUtil.formatJson(string);
 
