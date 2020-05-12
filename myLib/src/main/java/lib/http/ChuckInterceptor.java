@@ -158,8 +158,8 @@ public final class ChuckInterceptor implements Interceptor {
                     }
                     String string = converStr(requestStr);
                     try {
-                        requestStrLast = string;
-//                        requestStrLast = JsonFormatUtil.formatJson(string);
+//                        requestStrLast = string;
+                        requestStrLast = JsonFormatUtil.formatJson(string);
 
                     } catch (Exception e) {
                         requestStrLast = string;
