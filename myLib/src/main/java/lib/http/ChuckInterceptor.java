@@ -156,9 +156,10 @@ public final class ChuckInterceptor implements Interceptor {
                     } catch (Exception e) {
                         requestStr = s;
                     }
-                    String string = converStr(Uri.decode(requestStr));
+                    String string = converStr(requestStr);
                     try {
-                        requestStrLast = JsonFormatUtil.formatJson(string);
+                        requestStrLast = string;
+//                        requestStrLast = JsonFormatUtil.formatJson(string);
 
                     } catch (Exception e) {
                         requestStrLast = string;
