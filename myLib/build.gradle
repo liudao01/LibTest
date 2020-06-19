@@ -21,6 +21,10 @@ android {
     lintOptions {
         abortOnError false
     }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
 
 }
 //configurations.embed.transitive = true
@@ -34,7 +38,7 @@ dependencies {
 //    api 'io.mattcarroll.hover:hover:0.9.8'//悬浮窗
 //    api('com.github.liudao01:hover:918fbbb806')
 
-    implementation ('de.greenrobot:eventbus:2.4.0')
+    implementation('de.greenrobot:eventbus:2.4.0')
     implementation 'com.squareup.okhttp3:logging-interceptor:4.7.2'
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.squareup.okhttp3:okhttp:4.7.2'

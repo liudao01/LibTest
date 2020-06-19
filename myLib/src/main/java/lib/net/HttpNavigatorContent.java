@@ -18,9 +18,9 @@ package lib.net;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
-import androidx.annotation.NonNull;
 import android.text.Html;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -30,6 +30,9 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -93,7 +96,6 @@ public class HttpNavigatorContent extends FrameLayout implements Content, Adapte
     private TextView responseHeaders;
     private TextView reponseBody;
     private Button btCopy;
-
 
 
     static Handler handler = new Handler() {
@@ -244,9 +246,9 @@ public class HttpNavigatorContent extends FrameLayout implements Content, Adapte
 
     @Override
     public void onShown() {
+        Log.d(TAG, "onShown: ");
 
     }
-
 
 
     public static void setList() {
@@ -254,8 +256,12 @@ public class HttpNavigatorContent extends FrameLayout implements Content, Adapte
         if (TestLibUtil.httpMoudleList != null) {
             if (listHttpAdapter != null) {
                 List<HttpTransaction> httpMoudleList = TestLibUtil.httpMoudleList;
+
                 if (httpMoudleList != null && httpMoudleList.size() > 0) {
-                    Collections.reverse(httpMoudleList);//倒序刚发的在最前面
+
+
+//                    Collections.reverse(httpMoudleList);//倒序刚发的在最前面
+//                    Collections.sort(httpMoudleList);
                 }
                 Message message = Message.obtain();
                 message.obj = httpMoudleList;
@@ -267,10 +273,11 @@ public class HttpNavigatorContent extends FrameLayout implements Content, Adapte
 
     @Override
     public void onHidden() {
-
+        Log.d(TAG, "onHidden: ");
     }
 
     public void onEventMainThread(@NonNull HoverTheme newTheme) {
+        Log.d(TAG, "onEventMainThread: ");
         //点击导航按钮的时候调用这个
 //        if (TestLibUtil.httpMoudleList != null) {
 //            if (myAdapter == null) {
@@ -280,6 +287,21 @@ public class HttpNavigatorContent extends FrameLayout implements Content, Adapte
 //
 //            }
 //        }
+        if (TestLibUtil.httpMoudleList != null) {
+            if (listHttpAdapter != null) {
+
+                List<HttpTransaction> httpMoudleList = new ArrayList<>();
+                httpMoudleList.addAll(TestLibUtil.httpMoudleList);
+                if (httpMoudleList != null && httpMoudleList.size() > 0) {
+                    Collections.reverse(httpMoudleList);//倒序刚发的在最前面
+                }
+
+                Message message = Message.obtain();
+                message.obj = httpMoudleList;
+                handler.sendMessage(message);
+
+            }
+        }
     }
 
     @Override

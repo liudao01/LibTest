@@ -4,13 +4,10 @@ import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Build;
+import android.text.TextUtils;
 
 import androidx.core.content.ContextCompat;
-
-import android.provider.Settings;
-import android.text.TextUtils;
 
 import com.orhanobut.logger.Logger;
 
@@ -118,8 +115,8 @@ public class TestLibUtil {
         //最大条数  0条避免数量过多溢出
         if (httpMoudleList != null) {
 
-            if (httpMoudleList.size() > 30) {
-                httpMoudleList.remove(30);
+            if (httpMoudleList.size() > 20) {
+                httpMoudleList.remove(20);
                 httpMoudleList.add(httpBeen);
             } else {
                 httpMoudleList.add(httpBeen);

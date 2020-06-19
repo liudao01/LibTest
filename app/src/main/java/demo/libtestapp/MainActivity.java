@@ -29,12 +29,14 @@ public class MainActivity extends Activity {
     private TextView tvIpList;
     private Button btStart;
     private Button btCrash;
+    private Button btStartOne;
+    int count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context = this;
-       // TestLibUtil.getInstance().startUtil(getApplication());
+        // TestLibUtil.getInstance().startUtil(getApplication());
 
         setContentView(R.layout.activity_main);
 
@@ -60,7 +62,7 @@ public class MainActivity extends Activity {
         btCrash.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int x = 1/0;
+                int x = 1 / 0;
             }
         });
 
@@ -86,11 +88,24 @@ public class MainActivity extends Activity {
                 "    ]\n" +
                 "}";
 
+
+        btStartOne = findViewById(R.id.bt_start_one);
+
         HttpTransaction httpTransaction = new HttpTransaction();
         httpTransaction.setUrl(url);
         httpTransaction.setResponseBody(json);
         TestLibUtil.getInstance().sendmessage(httpTransaction);
 
+        btStartOne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                HttpTransaction httpTransaction = new HttpTransaction();
+                httpTransaction.setUrl("www.google.com__" + (count++));
+                httpTransaction.setResponseBody(json);
+
+                TestLibUtil.getInstance().sendmessage(httpTransaction);
+            }
+        });
 //        tvIpList.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -103,7 +118,7 @@ public class MainActivity extends Activity {
         List<IpConfigBeen> ipList = TestLibUtil.getInstance().getIpList();
         String list = "";
         for (IpConfigBeen ipConfigBeen : ipList) {
-            list = list + ipConfigBeen.toString()+"\n";
+            list = list + ipConfigBeen.toString() + "\n";
         }
         tvIpList.setText(list);
 
@@ -137,8 +152,14 @@ public class MainActivity extends Activity {
     private void doHttpActivity() {
         SampleApiService.HttpbinApi api = SampleApiService.getInstance(getClient(this));
         Callback<Void> cb = new Callback<Void>() {
-            @Override public void onResponse(Call call, Response response) {}
-            @Override public void onFailure(Call call, Throwable t) { t.printStackTrace(); }
+            @Override
+            public void onResponse(Call call, Response response) {
+            }
+
+            @Override
+            public void onFailure(Call call, Throwable t) {
+                t.printStackTrace();
+            }
         };
         api.get().enqueue(cb);
         api.post(new SampleApiService.Data("posted_____sssssssssssssssss_post请求")).enqueue(cb);

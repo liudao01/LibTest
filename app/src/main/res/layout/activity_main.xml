@@ -19,6 +19,11 @@
             android:text="开始发送数据"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/bt_start_one"
+            android:text="开始发送数据_一次"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/bt_crash"
