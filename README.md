@@ -4,27 +4,27 @@
 # 效果图 网络的  
  ![img](https://github.com/liudao01/LibTest/blob/master/demo.gif)
 ## 好处  给后端人员看  自己也不用每次看开发工具
-# 这里是v1.6.0 版本的  (自用的 贡献出来)  这个版本号看发布的版本
+# 这里是[![](https://jitpack.io/v/liudao01/LibTest.svg)](https://jitpack.io/#liudao01/LibTest)版本的  (自用的 贡献出来)  这个版本号看发布的版本
 
 ***************测试工具库  集成步骤**************
 
 ---
 具体版本看这里 [![](https://jitpack.io/v/liudao01/LibTest.svg)](https://jitpack.io/#liudao01/LibTest)
 
-2020.5.8 更新 
+2020.7.28 更新 
 ```
-    debugImplementation 'com.github.liudao01.LibTest:myLib:v1.6.0'
-    releaseImplementation 'com.github.liudao01.LibTest:mylibrary-no-op:v1.6.0'
+    debugImplementation 'com.github.liudao01.LibTest:myLib:v1.6.2'
+    releaseImplementation 'com.github.liudao01.LibTest:mylibrary-no-op:v1.6.2'
 ```
 
 
 如果buildTypes存在dev  uat 等自己添加的buildTypes 那么需要按照如下的样式写
 ```
 //调试工具库
-    debugImplementation 'com.github.liudao01.LibTest:myLib:v1.6.0'
-    uatImplementation 'com.github.liudao01.LibTest:myLib:v1.6.0'
-    devImplementation 'com.github.liudao01.LibTest:myLib:v1.6.0'
-    releaseImplementation 'com.github.liudao01.LibTest:mylibrary-no-op:v1.6.0'
+    debugImplementation 'com.github.liudao01.LibTest:myLib:v1.6.2'
+    uatImplementation 'com.github.liudao01.LibTest:myLib:v1.6.2'
+    devImplementation 'com.github.liudao01.LibTest:myLib:v1.6.2'
+    releaseImplementation 'com.github.liudao01.LibTest:mylibrary-no-op:v1.6.2'
 ```
 
 使用这种方式集成 release 打包的时候不会把代码打进去
@@ -138,9 +138,5 @@ ______________________________________
 
 ----end----
 
-
-上传jitpack 注意事项:
-1 将github 项目克隆到非空目录   可以使用tmp  新建一个空tmp 文件夹 再移动.git文件夹  再删除tmp文件夹 再更新
-2  必须将gradle 相关的东西 提交到github上面去要不然会编译错误
 
 
