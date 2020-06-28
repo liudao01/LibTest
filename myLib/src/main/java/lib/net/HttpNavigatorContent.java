@@ -29,6 +29,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -141,9 +142,9 @@ public class HttpNavigatorContent extends FrameLayout implements Content, Adapte
 //        if (beens != null && beens.size() > 0) {
 //            Collections.reverse(beens);//倒序刚发的在最前面
 //        }
-        if (httpTransactionList != null && httpTransactionList.size() > 0) {
-            Collections.reverse(httpTransactionList);//倒序刚发的在最前面
-        }
+//        if (httpTransactionList != null && httpTransactionList.size() > 0) {
+//            Collections.reverse(httpTransactionList);//倒序刚发的在最前面
+//        }
         listHttpAdapter = new ListHttpAdapter(context, httpTransactionList);
         // myAdapter = new MyAdapter(context, beens);
 //        listview.setAdapter(myAdapter);
@@ -256,13 +257,6 @@ public class HttpNavigatorContent extends FrameLayout implements Content, Adapte
         if (TestLibUtil.httpMoudleList != null) {
             if (listHttpAdapter != null) {
                 List<HttpTransaction> httpMoudleList = TestLibUtil.httpMoudleList;
-
-                if (httpMoudleList != null && httpMoudleList.size() > 0) {
-
-
-//                    Collections.reverse(httpMoudleList);//倒序刚发的在最前面
-//                    Collections.sort(httpMoudleList);
-                }
                 Message message = Message.obtain();
                 message.obj = httpMoudleList;
                 handler.sendMessage(message);
@@ -279,14 +273,7 @@ public class HttpNavigatorContent extends FrameLayout implements Content, Adapte
     public void onEventMainThread(@NonNull HoverTheme newTheme) {
         Log.d(TAG, "onEventMainThread: ");
         //点击导航按钮的时候调用这个
-//        if (TestLibUtil.httpMoudleList != null) {
-//            if (myAdapter == null) {
-//                myAdapter = new MyAdapter(context, TestLibUtil.httpMoudleList);
-//            } else {
-//                myAdapter.setList(TestLibUtil.httpMoudleList);
-//
-//            }
-//        }
+
         if (TestLibUtil.httpMoudleList != null) {
             if (listHttpAdapter != null) {
 
@@ -304,14 +291,23 @@ public class HttpNavigatorContent extends FrameLayout implements Content, Adapte
         }
     }
 
+    private List<HttpTransaction> getHttpTransactionList() {
+        List<HttpTransaction> httpMoudleList = new ArrayList<>();
+        httpMoudleList.addAll(TestLibUtil.httpMoudleList);
+        if (httpMoudleList != null && httpMoudleList.size() > 0) {
+            Collections.reverse(httpMoudleList);//倒序刚发的在最前面
+        }
+        return httpMoudleList;
+    }
+
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-//        Toast.makeText(context,"点击了",Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "点击了"+position, Toast.LENGTH_SHORT).show();
         showResult();
         clickPosition = position;
         //setData();
-        setHttpInfoData((HttpTransaction) httpTransactionList.get(position));
+        setHttpInfoData(getHttpTransactionList().get(position));
     }
 
     private void setHttpInfoData(HttpTransaction transaction) {
@@ -353,7 +349,7 @@ public class HttpNavigatorContent extends FrameLayout implements Content, Adapte
 
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-        HttpTransaction httpTransaction = (HttpTransaction) TestLibUtil.httpMoudleList.get(position);
+        HttpTransaction httpTransaction = getHttpTransactionList().get(position);
         Utils.copy(context, "请求方式: " + httpTransaction.getMethod() + "\n" + "请求地址: " +
                 httpTransaction.getUrl() + "\n" + "请求参数: " + httpTransaction.getRequestBody());
         return true;
