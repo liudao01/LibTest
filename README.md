@@ -13,18 +13,18 @@
 
 2020.7.28 更新 
 ```
-    debugImplementation 'com.github.liudao01.LibTest:myLib:v1.6.2'
-    releaseImplementation 'com.github.liudao01.LibTest:mylibrary-no-op:v1.6.2'
+    debugImplementation 'com.github.liudao01.LibTest:myLib:v1.6.3'
+    releaseImplementation 'com.github.liudao01.LibTest:mylibrary-no-op:v1.6.3'
 ```
 
 
 如果buildTypes存在dev  uat 等自己添加的buildTypes 那么需要按照如下的样式写
 ```
 //调试工具库
-    debugImplementation 'com.github.liudao01.LibTest:myLib:v1.6.2'
-    uatImplementation 'com.github.liudao01.LibTest:myLib:v1.6.2'
-    devImplementation 'com.github.liudao01.LibTest:myLib:v1.6.2'
-    releaseImplementation 'com.github.liudao01.LibTest:mylibrary-no-op:v1.6.2'
+    debugImplementation 'com.github.liudao01.LibTest:myLib:v1.6.3'
+    uatImplementation 'com.github.liudao01.LibTest:myLib:v1.6.3'
+    devImplementation 'com.github.liudao01.LibTest:myLib:v1.6.3'
+    releaseImplementation 'com.github.liudao01.LibTest:mylibrary-no-op:v1.6.3'
 ```
 
 使用这种方式集成 release 打包的时候不会把代码打进去
@@ -44,8 +44,8 @@ Step 2. Add the dependency
 
 	dependencies {
 	       
-   	 debugImplementation 'com.github.liudao01.LibTest:myLib:v1.5.4'
-   	 releaseImplementation 'com.github.liudao01.LibTest:mylibrary-no-op:v1.5.4'
+   	 debugImplementation 'com.github.liudao01.LibTest:myLib:v1.6.3'
+   	 releaseImplementation 'com.github.liudao01.LibTest:mylibrary-no-op:v1.6.3'
 	}
 Share this release:
 
